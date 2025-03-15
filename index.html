@@ -5,31 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Training Dashboard - L&D Dashboard</title>
     <link rel="stylesheet" href="src\styles\style.css">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>    
 </head>
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="src\services\script.js"></script>
     <div class="topPerformer">
         <div class="mainTitle">
             <h1>Top Performer</h1>
         </div>
         <div class="content">
-            <div class="cards">
+            <div class="cards employee">
                 <img src="src\assets\profile.png" alt="Profile Photo">
                 <div class="titles">
-                    <h1>Maria</h1>
-                    <h3>Dept Name</h3>
-                    <h3>Trained hr:30hrs</h3>
+                    <h1 class="name"></h1>
+                    <h3 class="deptname">Dept Name</h3>
+                    <h3 class="traininghr">30</h3>
                 </div>
             </div>
-            <div class="cards">
+            <div class="cards dept">
                 <img src="src\assets\profile.png">
                 <div class="titles">
-                    <h1>Data Science</h1>
+                    <h1 class="name">Data Science</h1>
                     <h3>Dept Id</h3>
-                    <h3>Trained hr:120hrs</h3>
+                    <h3 class="traininghr">Trained hr:120hrs</h3>
                 </div>
             </div>
-            <div class="cards">
+            <div class="cards trainer">
                 <img src="src\assets\profile.png">
                 <div class="titles">
                     <h1>Jordon</h1>
