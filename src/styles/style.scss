@@ -1,0 +1,44 @@
+$topper-color-background:rgb(152, 81, 182);
+$topper-card-color:white;
+@mixin flex-row{
+    display:flex;
+    flex-direction:row;
+}
+
+@mixin flex-column{
+    display:flex;
+    flex-direction:column;
+}
+
+.topPerformer{
+    font-family: 'Poppins';
+    background-color:$topper-color-background; 
+    @include flex-column();
+    .mainTitle{
+        align-items: center;
+    }
+    .content{
+        @include flex-row();
+        justify-content: space-between;
+        padding :10px;
+        .cards{
+            background-color:$topper-card-color;
+            @include flex-row();
+            justify-content: space-between;
+            padding:10px;
+            border-radius: 10%;
+            .titles{
+                font-size: 16px;
+                text-align:center;
+            }
+        }
+
+        img{
+            border-radius: 50%;
+            width: 150px;
+            height:150px;
+            padding:10px;
+        }
+        
+    }
+}
