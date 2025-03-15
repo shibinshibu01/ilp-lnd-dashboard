@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Training Dashboard - L&D Dashboard</title>
+    <link rel="stylesheet" href="src/styles/style.css">
 </head>
+
 <body>
-    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <section>
+        <div class="top-card">
+            <div class="top-card__header">
+                <h1>Training Dashboard</h1>
+                <h2>Learning and Development</h2>
+            </div>
+            <div class="total-hours-card">
+                <div class="total-hours">
+                    <div class="total-hours__entry__trainee">
+                        <p class="total-hours__number"></p>
+                        <span class="total-hours__label">total trainee hrs</span>
+                    </div>
+
+                    <div class="total-hours__entry__course">
+                        <p class="total-hours__number"></p>
+                        <span class="total-hours__label">total course hrs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="src/services/script.js" type="module"></script>
 </body>
+
 </html>
