@@ -28,8 +28,7 @@ training-dashboard/
 │   ├── styles/
 │── public/
 │── tests/
-│── package.json
 │── README.md
 ```
 ---
-👨‍💻 Developed by **Experion Technologies ILP Team** 🚀
+👨‍💻 Developed by **Experion Technologies ILP Team 4** 🚀
