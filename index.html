@@ -12,21 +12,53 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="src\services\script.js"></script>
+            
     <!-- Main Dashboard Container -->
     <div class="dashboard-container">
         <!-- Left Sidebar Navigation Allocated to: Shibin -->
         <nav class="sidebar">
             <header class="sidebar-header">
                 <div class="logo">
-                    <h1>Sidebar</h1>
+                    <img src="src/assets/logo-experion-technologies.svg" alt="Experion Technologies Logo">
                 </div>
                 <div class="user-profile">
-                    
+                    <img src="src/assets/lnd-user-profile-pic.svg" alt="User Profile Picture">
+                    <p id="textUserName"><span id="textHai">hai </span>Jordan</p>
+                    <p id="textPosition">associate - L&D</p>
                 </div>
             </header>
-            
+
             <ul class="nav-links">
-                
+                <li>
+                    <a href="#" class="nav-menu active">
+                        <img src="src/assets/icon-home.svg" alt="Dashboard Icon" class="menu-icon">
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-menu">
+                        <img src="src/assets/icon-search.svg" alt="Search Icon" class="menu-icon">
+                        <span>Search</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-menu">
+                        <img src="src/assets/icon-notification.svg" alt="Notification Icon" class="menu-icon">
+                        <span>Notifications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-menu">
+                        <img src="src/assets/icon-settings.svg" alt="Settings Icon" class="menu-icon">
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-menu">
+                        <img src="src/assets/icon-help.svg" alt="Help Icon" class="menu-icon">
+                        <span>Help</span>
+                    </a>
+                </li>
             </ul>
         </nav>
 
@@ -34,9 +66,28 @@
         <main class="main-content">
             <!--  Dashboard Header Section Allocated to: Aswin -->
             <header class="header">
-                <h1>Header</h1>
+                <div class="top-card">
+                    <div class="top-card__header">
+                        <h1>training dashboard</h1>
+                        <h2>learning & development</h2>
+                    </div>
+                    <div class="total-hours-card">
+                        <div class="total-hours">
+                            <div class="total-hours__entry__trainee">
+                                <p class="total-hours__number">1</p>
+                                <span class="total-hours__label">total trainee hrs</span>
+                            </div>
+
+                            <div class="total-hours__entry__course">
+                                <p class="total-hours__number"></p>
+                                <span class="total-hours__label">total course hrs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </header>
 
+            <!--  Top Performance Section Allocated to: Mariyam-->
             <!--  Top Performance Section Allocated to: Mariyam-->
             <section class="top-performance">
                 <div class="topPerformer">
@@ -125,114 +176,6 @@
                         </div>
                     </div>
                 </div>
-            </section>
-            
-            <!--  Courses, Nominations and Charts Layout Section -->
-            <section class="courses-nomination-charts">
-                <!-- Left content: Courses and Nominations -->
-                <section class="courses-nomination">
-                    <!-- Courses Section Allocated to: Sebin -->
-                    <section class="courses">
-                        <h1>Course</h1>
-                    </section>
-                    
-                    <!-- Nominations Section Allocated to: Litto -->
-                    <section class="nominations">
-                        <h1>Nominations</h1>
-                    </section>
-                </section>
-                
-                <!-- Charts and Visualizations Allocated to: Shibin-->
-                <section class="charts">
-                    <aside class="chart-1">
-                        <h1>Chart 1</h1>
-                    </aside>
-
-                    <aside class="chart-2">
-                        <h1>Chart 2</h1>
-                    </aside>
-                </section>
-            </section>
-        </main>
-    </div>    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <!-- Main Dashboard Container -->
-    <div class="dashboard-container">
-        <!-- Left Sidebar Navigation Allocated to: Shibin -->
-        <nav class="sidebar">
-            <header class="sidebar-header">
-                <div class="logo">
-                    <img src="src/assets/logo-experion-technologies.svg" alt="Experion Technologies Logo">
-                </div>
-                <div class="user-profile">
-                    <img src="src/assets/lnd-user-profile-pic.svg" alt="User Profile Picture">
-                    <p id="textUserName"><span id="textHai">hai </span>Jordan</p>
-                    <p id="textPosition">associate - L&D</p>
-                </div>
-            </header>
-
-            <ul class="nav-links">
-                <li>
-                    <a href="#" class="nav-menu active">
-                        <img src="src/assets/icon-home.svg" alt="Dashboard Icon" class="menu-icon">
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-menu">
-                        <img src="src/assets/icon-search.svg" alt="Search Icon" class="menu-icon">
-                        <span>Search</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-menu">
-                        <img src="src/assets/icon-notification.svg" alt="Notification Icon" class="menu-icon">
-                        <span>Notifications</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-menu">
-                        <img src="src/assets/icon-settings.svg" alt="Settings Icon" class="menu-icon">
-                        <span>Settings</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-menu">
-                        <img src="src/assets/icon-help.svg" alt="Help Icon" class="menu-icon">
-                        <span>Help</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <!--  Dashboard Header Section Allocated to: Aswin -->
-            <header class="header">
-                <div class="top-card">
-                    <div class="top-card__header">
-                        <h1>training dashboard</h1>
-                        <h2>learning & development</h2>
-                    </div>
-                    <div class="total-hours-card">
-                        <div class="total-hours">
-                            <div class="total-hours__entry__trainee">
-                                <p class="total-hours__number">1</p>
-                                <span class="total-hours__label">total trainee hrs</span>
-                            </div>
-
-                            <div class="total-hours__entry__course">
-                                <p class="total-hours__number"></p>
-                                <span class="total-hours__label">total course hrs</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            <!--  Top Performance Section Allocated to: Mariyam-->
-            <section class="top-performance">
-                <h1>Top Performance</h1>
             </section>
 
             <!--  Courses, Nominations and Charts Layout Section -->
@@ -324,8 +267,6 @@
             </aside>
         </main>
     </div>
-
-    <script src="src/services/script.js"></script>
 </body>
 
 </html>
