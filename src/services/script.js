@@ -105,20 +105,58 @@ axios.get(url)
                 nominationCards.appendChild(nominationItem); // Append nominationItem to nominationCards
             }
         });
+        function topThree(object,key) {
+            return object.reduce((top, current) => {
+                top.push(current);  
+                top.sort((a, b) => b[key] - a[key]); 
+                if (top.length > 3) top.pop();    
+                return top;
+            }, []);
+        }
+
+                const topEmployees = topThree(Object.values(data.employees), 'trainingHour');
+        updateDisplayEmployee(topEmployees);
+
+        const topTrainers = topThree(Object.values(data.trainers), 'feedbackScore');
+        updateDisplayTrainer(topTrainers);
+
+        const topDepartments= topThree(Object.values(data.departments), 'deptTrainingHours');
+        updateDisplayDept(topDepartments);
     })
     .catch(error => {
         console.error('Axios Error:', error);
-    });
+    });   
 
 
-
+    function updateDisplayEmployee(topThree) {
+        topThree.forEach((emp, index) => {
+            document.querySelector(`.employee #picture${index +1}`).src= emp.profilePicture;
+            document.querySelector(`.employee .name${index + 1}`).textContent = emp.firstName + " "+emp.lastName;
+            document.querySelector(`.employee .traininghr${index + 1}`).textContent = emp.trainingHour;
+        });
+    }
+    
+    function updateDisplayTrainer(topThree) {
+        topThree.forEach((train, index) => {
+            document.querySelector(`.trainer #picture${index +1}`).src= train.profilePicture;
+            document.querySelector(`.trainer .name${index + 1}`).textContent = train.firstName;
+            document.querySelector(`.trainer .traininghr${index + 1}`).textContent = train.feedbackScore;
+        });
+    }
+    
+    function updateDisplayDept(topThree) {
+        topThree.forEach((dept, index) => {
+            document.querySelector(`.dept #picture${index +1}`).src= dept.deptImage;
+            document.querySelector(`.dept .name${index + 1}`).textContent = dept.deptName;
+            document.querySelector(`.dept .traininghr${index + 1}`).textContent = dept.deptTrainingHours;
+        });
+    }  
 // var modal = document.getElementById("course-modal");
 var btn = document.querySelector('.total-hours__entry__course .total-hours__number');
 
 btn.addEventListener("click", function (event) {
     openCourseModal("course021")
-});
-
+}); 
 
 const courseModalBackdrop = document.getElementById('courseModalBackdrop');
 const buttonContainer = document.getElementById('buttonContainer');
@@ -176,13 +214,12 @@ function populateModalData(courseId) {
     } else {
         statusElement.classList.add('course-modal__status-upcoming');
     }
-    ////////////////////////////////////////////////
+
     var attendance = 0;
     var totalNominiees = course.totalNominees;
     var totalAttendees = course.totalAttendees;
     attendance = (totalAttendees / totalNominiees) * 100;
 
-    /////////////////////////////////
     document.getElementById('courseTrainer').textContent = course.trainerName;
     document.getElementById('courseTypeDetails').textContent = course.courseType.toLowerCase();
     document.getElementById('modalCourseMode').textContent = course.mode.toLowerCase();
