@@ -25,7 +25,7 @@ axios.get(url)
 
         document.querySelector('.total-hours__entry__course .total-hours__number').textContent = totalCourseHours;
 
-        // Category Chart creation
+        // Course category Chart creation
 
         const courseCategoriesFunction = () => {
             let technicalCourses = 0;
@@ -46,9 +46,10 @@ axios.get(url)
         };
         const [technicalCourses, softSkillsCourses, behavioralCourses] = courseCategoriesFunction();
 
+
         const courseCategoriesChart = document.getElementById('courseCategories').getContext('2d');
         
-        const myChart = new Chart(courseCategoriesChart, {
+        const categoryChart = new Chart(courseCategoriesChart, {
             type: 'bar',
             data: {
                 labels: ['Technical', 'Soft Skills', 'Behavioral'],
@@ -67,6 +68,42 @@ axios.get(url)
                 plugins: {
                     legend: {
                         display: false 
+                    },
+                    title: {
+                        display: true,
+                        text: 'No of courses in each category.'
+                    }
+                }
+            }
+        });
+
+        // Department data Chart creation
+
+        const departmentDataChart = document.getElementById('departmentData').getContext('2d');
+        
+        const departmentChart = new Chart(departmentDataChart, {
+            type: 'line',
+            data: {
+                labels: ['Engineering', 'HR', 'Finance', 'Marketing'],
+                datasets: [{
+                    data: [10, 20, 30, 40],
+                    backgroundColor: ['#DC143B', '#DC143B', '#DC143B'],
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false 
+                    },
+                    title: {
+                        display: true,
+                        text: 'No of employees trained.'
                     }
                 }
             }
