@@ -628,9 +628,12 @@ $course-padding:5px 30px 5px 30px;
         @include course-card-content($light-theme-inner-lightcard-cardcolor,$light-theme-inner-lightcard-textcolor);
         width: 300px;
         height: 320px;
+        cursor: pointer;
         &:hover {
             transform: scale(1.05);
             transition: transform 0.3s ease;
+            cursor: pointer;
+
         }
 
        .course-type-badge {
