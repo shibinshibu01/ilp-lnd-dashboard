@@ -159,18 +159,20 @@ axios.get(url)
                 }
                 newContent += `
                     <div class="course-card">
+                        <div class="course-type-badge">
+                            <button id="courseType" class="${courseTypeClass}">${course.courseType}</button>
+                        </div>
                         <img class="course-img" src="${course.courseBannerImage}">
                         <div class="course-content">
                             <div class="title-type">
                                 <h3 id="courseTitle">${course.courseName}</h3>
-                                <button id="courseType" class="${courseTypeClass}">${course.courseType}</button>
                             </div>
                             <p id="courseDesc">${course.shortDescription}</p>
-                            <p id="courseDuration">Duration: ${course.duration} hrs<p>
-                            <p id="courseStartDate">Start date: ${course.startDate}</p>
+                            <p id="courseDuration">duration: <span class="dynamic-content">${course.duration} hrs</span><p>
+                            <p id="courseStartDate">start date: <span class="dynamic-content">${formatDate(course.startDate)}</span></p>
                             <div class="coursestatus-mode">
-                                <p id="courseStatus">Status: <span class="${coursestatusClass}">${course.status}</span></p>
-                                <p id="courseMode">${course.mode}</p>
+                                <p id="courseStatus">status: <span class="${coursestatusClass}">${course.status}</span></p>
+                                <p id="courseMode"><span class="dynamic-content_mode">${course.mode}</span></p>
                             </div>
                         </div>
                     </div>`;
@@ -180,6 +182,15 @@ axios.get(url)
 
             const prevBtn = document.getElementById("prevBtn");
             const nextBtn = document.getElementById("nextBtn");
+
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                const day = date.getDate(); 
+                const month = date.toLocaleString('en-US', { month: 'short' }); 
+                const year = date.getFullYear();
+            
+                return `${day} ${month} ${year}`;
+            }
 
             let autoScroll;
 
