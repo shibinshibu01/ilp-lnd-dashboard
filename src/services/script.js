@@ -5,38 +5,49 @@ axios.get(url)
         const data = response.data;
 
         let employees = Object.values(data.employees);
-        const topPerformer = employees.reduce((max, emp) => 
-            (emp.trainingHour> max.trainingHour ? emp : max), employees[0]);
-        updateTopPerformer(topPerformer);
 
-        let departments = Object.values(data.departments);
-        const topDept = departments.reduce((max, dept) =>
-            (dept.deptTrainingHours > max.deptTrainingHours ? dept : max), departments[0]);
-        updateTopDept(topDept);
+        function topThree(object,key) {
+            return object.reduce((top, current) => {
+                top.push(current);  
+                top.sort((a, b) => b[key] - a[key]); 
+                if (top.length > 3) top.pop();    
+                return top;
+            }, []);
+        }
 
-        
-        let trainers = Object.values(data.trainers);
-        const topTrainer = trainers.reduce((max, train) =>
-            (train.feedbackScore > max.feedbackScore? train : max), trainers[0]);         
-        updateTopTrainer(topTrainer);
+
+
+        const topEmployees = topThree(employees, 'trainingHour');
+        updateDisplayEmployee(topEmployees);
+
+        const topTrainers = topThree(Object.values(data.trainers), 'feedbackScore');
+        updateDisplayTrainer(topTrainers);
+
+        const topDepartments= topThree(Object.values(data.departments), 'deptTrainingHours');
+        updateDisplayDept(topDepartments);
+
     })
-
     .catch(error => {
         console.error("Axios Error:", error);
     });
 
-function updateTopPerformer(employee) {
-    document.querySelector('.employee .name').textContent = employee.firstName + " " + employee.lastName;
-    document.querySelector('.employee .deptname').textContent = employee.deptName;
-    document.querySelector('.employee .traininghr').textContent = employee.trainingHour;
+function updateDisplayEmployee(topThree) {
+    topThree.forEach((emp, index) => {
+        document.querySelector(`.employee .name${index + 1}`).textContent = emp.firstName + emp.lastName;
+        document.querySelector(`.employee .traininghr${index + 1}`).textContent = emp.trainingHour+"hrs";
+    });
 }
 
-function updateTopDept(department) {
-    document.querySelector('.dept .name').textContent = department.deptName;
-    document.querySelector('.dept .traininghr').textContent = department.deptTrainingHours;
+function updateDisplayTrainer(topThree) {
+    topThree.forEach((train, index) => {
+        document.querySelector(`.trainer .name${index + 1}`).textContent = train.firstName;
+        document.querySelector(`.trainer .traininghr${index + 1}`).textContent = train.feedbackScore + "/5";
+    });
 }
 
-function updateTopTrainer(trainer) {    
-    document.querySelector('.trainer .name').textContent = trainer.firstName + " " + trainer.lastName;
+function updateDisplayDept(topThree) {
+    topThree.forEach((dept, index) => {
+        document.querySelector(`.dept .name${index + 1}`).textContent = dept.deptName;
+        document.querySelector(`.dept .traininghr${index + 1}`).textContent = dept.deptTrainingHours +"hrs";
+    });
 }
-
