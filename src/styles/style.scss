@@ -20,6 +20,7 @@ $light-theme-inner-darkcard-cardcolor: #2E4946;
 
 body {
     font-family: 'Poppins', sans-serif;
+    background-color: $light-theme-bg-bgcolor;
 }
 
 /* Main Dashboard Container */
@@ -92,12 +93,13 @@ body {
 /* Main Content Area */
 .main-content {
     flex: 1;
-    /* Takes remaining width */
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    background-color: #f5f5f5;
+    padding: 40px 50px 40px 50px;
+    background-color: $light-theme-inner-bgcolor;
     overflow-y: auto;
+    border-radius: 30px;
+    margin: 20px;
 }
 
 /* Header */
@@ -191,7 +193,7 @@ body {
     margin: 0;
     color: $light-theme-bg-bgcolor;
     font-family: poppins-semibold;
-    font-size: 34.36px;
+    font-size: 30px;
 }
 
 .top-card__header h2 {
