@@ -55,7 +55,7 @@ axios.get(url)
                 labels: ['Technical', 'Soft Skills', 'Behavioral'],
                 datasets: [{
                     data: [technicalCourses, softSkillsCourses, behavioralCourses],
-                    backgroundColor: ['#DC143B', '#DC143B', '#DC143B'],
+                    backgroundColor: '#DC143B'
                 }]
             },
             options: {
@@ -86,8 +86,8 @@ axios.get(url)
             data: {
                 labels: ['Engineering', 'HR', 'Finance', 'Marketing'],
                 datasets: [{
-                    data: [10, 20, 30, 40],
-                    backgroundColor: ['#DC143B', '#DC143B', '#DC143B'],
+                    data: [10, 250, 30, 140],
+                    backgroundColor: '#DC143B',
                 }]
             },
             options: {
@@ -108,7 +108,18 @@ axios.get(url)
                 }
             }
         });
+        setInterval(() => {
+            departmentChart.data.datasets[0].data = [15, 25, 35, 45]; // New data for trainee hours in each department
+            departmentChart.options.plugins.title.text = 'No of trainee hours in each department';
+            departmentChart.update(); // Update the chart with the new data and title
         
+            // Optionally, you can toggle back to the original data to create a loop effect
+            setTimeout(() => {
+                departmentChart.data.datasets[0].data = [10, 250, 30, 140]; // Original data
+                departmentChart.options.plugins.title.text = 'No of employees trained.';
+                departmentChart.update();
+            }, 5000);
+        }, 5000);
     })
     .catch(error => {
         console.error('Axios Error:', error);
