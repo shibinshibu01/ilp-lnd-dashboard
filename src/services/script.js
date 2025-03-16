@@ -79,6 +79,52 @@ axios.get(url)
 
         // Department data Chart creation
 
+        const deptTrainingFunction = () => {
+            let engineeringTrainingHours = 0;
+            let hrTrainingHours = 0;
+            let financeTrainingHours = 0;  
+            let marketingTrainingHours = 0;
+            if (data.departments) {
+                Object.values(data.departments).forEach(department => {
+                    if (department.deptName === 'Engineering') {
+                        engineeringTrainingHours += department.deptTrainingHours;
+                    } else if (department.deptName === 'HR') {
+                        hrTrainingHours += department.deptTrainingHours;
+                    } else if (department.deptName === 'Finance') {
+                        financeTrainingHours += department.deptTrainingHours;
+                    } else {
+                        marketingTrainingHours += department.deptTrainingHours;
+                    }
+                });
+            }
+            return [engineeringTrainingHours, hrTrainingHours, financeTrainingHours, marketingTrainingHours];
+        };
+
+        const deptemployeeFunction = () => {
+            let engineeringEmployees = 0;
+            let hrEmployees = 0;
+            let financeEmployees = 0;
+            let marketingEmployees = 0;
+            if (data.employees) {
+                Object.values(data.employees).forEach(employee => {
+                    if (employee.deptName === 'Engineering') {
+                        engineeringEmployees++;
+                    } else if (employee.deptName === 'HR') {
+                        hrEmployees++;
+                    } else if (employee.deptName === 'Finance') {
+                        financeEmployees++;
+                    } else {
+                        marketingEmployees++;
+                    }
+                });
+            }
+            return [engineeringEmployees, hrEmployees, financeEmployees, marketingEmployees];
+        };
+
+
+        const [engineeringEmployees, hrEmployees, financeEmployees, marketingEmployees] = deptemployeeFunction();
+        const [engineeringTrainingHours, hrTrainingHours, financeTrainingHours, marketingTrainingHours] = deptTrainingFunction();
+
         const departmentDataChart = document.getElementById('departmentData').getContext('2d');
         
         const departmentChart = new Chart(departmentDataChart, {
@@ -86,7 +132,7 @@ axios.get(url)
             data: {
                 labels: ['Engineering', 'HR', 'Finance', 'Marketing'],
                 datasets: [{
-                    data: [10, 250, 30, 140],
+                    data: [engineeringTrainingHours, hrTrainingHours, financeTrainingHours, marketingTrainingHours],
                     backgroundColor: '#DC143B',
                 }]
             },
@@ -103,20 +149,18 @@ axios.get(url)
                     },
                     title: {
                         display: true,
-                        text: 'No of employees trained.'
+                        text: 'No of training hours in each department.'
                     }
                 }
             }
         });
         setInterval(() => {
-            departmentChart.data.datasets[0].data = [15, 25, 35, 45]; // New data for trainee hours in each department
-            departmentChart.options.plugins.title.text = 'No of trainee hours in each department';
-            departmentChart.update(); // Update the chart with the new data and title
-        
-            // Optionally, you can toggle back to the original data to create a loop effect
+            departmentChart.data.datasets[0].data = [engineeringTrainingHours, hrTrainingHours, financeTrainingHours, marketingTrainingHours]; 
+            departmentChart.options.plugins.title.text = 'No of training hours in each department.';
+            departmentChart.update(); 
             setTimeout(() => {
-                departmentChart.data.datasets[0].data = [10, 250, 30, 140]; // Original data
-                departmentChart.options.plugins.title.text = 'No of employees trained.';
+                departmentChart.data.datasets[0].data = [engineeringEmployees, hrEmployees, financeEmployees, marketingEmployees]; 
+                departmentChart.options.plugins.title.text = 'No of employees in each department.';
                 departmentChart.update();
             }, 5000);
         }, 5000);
