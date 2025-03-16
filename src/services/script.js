@@ -1,7 +1,137 @@
-const url = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/.json"; 
+const url = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/.json"; // Ensure to fetch with .json
+let data = null;
+axios.get(url)
+    .then(response => {
+
+        data = response.data;
+        let totalTraineeHours = 0;
+        console.log(data);
+
+        if (data.employees) {
+            Object.values(data.employees).forEach(employee => {
+                totalTraineeHours += employee.trainingHour || 0;
+            });
+        }
+
+        document.querySelector('.total-hours__entry__trainee .total-hours__number').textContent = totalTraineeHours;
+
+        let totalCourseHours = 0;
+
+        if (data.courses) {
+            Object.values(data.courses).forEach(course => {
+                totalCourseHours += course.duration || 0;
+            });
+        }
+
+        document.querySelector('.total-hours__entry__course .total-hours__number').textContent = totalCourseHours;
 
 
-    axios.get(url)
+
+    })
+    .catch(error => {
+        console.error('Axios Error:', error);
+    });
+
+console.log(data);
+
+
+// var modal = document.getElementById("course-modal");
+var btn = document.querySelector('.total-hours__entry__course .total-hours__number');
+
+btn.addEventListener("click", function (event) {
+    openCourseModal("course021")
+});
+
+
+const courseModalBackdrop = document.getElementById('courseModalBackdrop');
+const buttonContainer = document.getElementById('buttonContainer');
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'short' });
+    const year = date.getFullYear();
+
+    return `${day}${getDaySuffix(day)} ${month} ${year}`;
+}
+
+function getDaySuffix(day) {
+    if (day > 3 && day < 21) return 'th';
+    switch (day % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+    }
+}
+
+
+function populateModalData(courseId) {
+    const course = data.courses[courseId];
+
+    document.getElementById('courseImage').src = course.courseBannerImage;
+
+    const typeElement = document.getElementById('courseType');
+    typeElement.textContent = course.courseType;
+    typeElement.className = 'course-modal__tag';
+    if (course.courseType === 'Technical') {
+        typeElement.classList.add('course-modal__tag-technical');
+    } else if (course.courseType === 'Softskills') {
+        typeElement.classList.add('course-modal__tag-softskills');
+    } else {
+        typeElement.classList.add('course-modal__tag-behavioural');
+    }
+
+    document.getElementById('courseName').textContent = course.courseName;
+    document.getElementById('courseDescription').textContent = course.shortDescription;
+    document.getElementById('courseDuration').textContent = `${course.duration} hrs`;
+    document.getElementById('courseStartDate').textContent = formatDate(course.startDate);
+
+    const statusElement = document.getElementById('courseStatus');
+    statusElement.textContent = course.status;
+    statusElement.className = 'course-modal__detail-value';
+    if (course.status === 'completed') {
+        statusElement.classList.add('course-modal__status-completed');
+    } else if (course.status === 'ongoing') {
+        statusElement.classList.add('course-modal__status-ongoing');
+    } else {
+        statusElement.classList.add('course-modal__status-upcoming');
+    }
+    ////////////////////////////////////////////////
+    var attendance = 0;
+    var totalNominiees = course.totalNominees;
+    var totalAttendees = course.totalAttendees;
+    attendance = (totalAttendees / totalNominiees) * 100;
+
+    /////////////////////////////////
+    document.getElementById('courseTrainer').textContent = course.trainerName;
+    document.getElementById('courseTypeDetails').textContent = course.courseType.toLowerCase();
+    document.getElementById('courseMode').textContent = course.mode.toLowerCase();
+
+    document.getElementById('courseFeedback').textContent = course.feedbackScore.toFixed(1);
+    document.getElementById('courseEffectiveness').textContent = course.effectiveness.toFixed(1);
+    document.getElementById('courseAttendance').textContent = attendance.toFixed(1) + "%";
+}
+
+function openCourseModal(courseId) {
+    populateModalData(courseId);
+    courseModalBackdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCourseModal() {
+    courseModalBackdrop.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+
+courseModalBackdrop.addEventListener("click", function (event) {
+    if (event.target === courseModalBackdrop) {
+        closeCourseModal();
+    }
+});
+//to display courses
+axios.get(url)
         .then(response => {
             console.log('Axios Data:', response.data);
             const courses=response.data.courses;
@@ -11,18 +141,36 @@ const url = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/.j
             
             Object.keys(courses).forEach(key=>{
                 const course=courses[key];
+                let courseTypeClass = "";
+                if (course.courseType === "Softskills") {
+                        courseTypeClass = "softskills-course";
+                } else if (course.courseType === "Technical") {
+                        courseTypeClass = "technical-course";
+                } else if (course.courseType === "Behavioural") {
+                        courseTypeClass = "behavioral-course";
+                }
+                let coursestatusClass = "";
+                if (course.status === "completed") {
+                        coursestatusClass = "completed-class";
+                } else if (course.status === "in-progress") {
+                        coursestatusClass = "inprogress-class";
+                } else if (course.status === "scheduled") {
+                        coursestatusClass = "scheduled-class";
+                }
                 newContent += `
                     <div class="course-card">
                         <img class="course-img" src="${course.courseBannerImage}">
                         <div class="course-content">
-                            <div class="title-mode">
-                                <h3>${course.courseName}</h3>
-                                <button>${course.mode}</button>
+                            <div class="title-type">
+                                <h3 id="courseTitle">${course.courseName}</h3>
+                                <button id="courseType" class="${courseTypeClass}">${course.courseType}</button>
                             </div>
-                            <h4>Duration: ${course.duration}</h4>
-                            <div class="coursestart-status">
-                                <p>Start date: ${course.startDate}</p>
-                                <p><span>Status: ${course.status}</span></p>
+                            <p id="courseDesc">${course.shortDescription}</p>
+                            <p id="courseDuration">Duration: ${course.duration} hrs<p>
+                            <p id="courseStartDate">Start date: ${course.startDate}</p>
+                            <div class="coursestatus-mode">
+                                <p id="courseStatus">Status: <span class="${coursestatusClass}">${course.status}</span></p>
+                                <p id="courseMode">${course.mode}</p>
                             </div>
                         </div>
                     </div>`;
@@ -73,4 +221,11 @@ const url = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/.j
             console.error('Axios Error: ',error);
             document.querySelector(".course-container").innerHTML = "<p>Error fetching courses.</p>";
         })
-        
+
+
+
+
+
+
+
+
