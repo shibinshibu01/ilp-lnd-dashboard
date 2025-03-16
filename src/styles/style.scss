@@ -1,5 +1,16 @@
-$topper-color-background:rgb(152, 81, 182);
-$topper-card-color:white;
+$experion-red: #DC143B;
+
+$dark-theme-bg-bgcolor: #101212;
+$dark-theme-bg-textcolor: #FEFEFE;
+$dark-theme-bg-menu-textcolor: #E3FCF9;
+
+$dark-theme-inner-bgcolor: #2C2C2C;
+$dark-theme-inner-headcolor: #FEFEFE;
+$dark-theme-inner-lightcard-textcolor:#FEFEFE;
+$dark-theme-inner-lightcard-cardcolor:#101212;
+$dark-theme-inner-darkcard-textcolor:#FEFEFE;
+$dark-theme-inner-darkcard-cardcolor:#101212;
+
 @mixin flex-row{
     display:flex;
     flex-direction:row;
@@ -12,7 +23,8 @@ $topper-card-color:white;
 
 .topPerformer{
     font-family: 'Poppins';
-    background-color:$topper-color-background; 
+    color: $dark-theme-inner-headcolor;
+    background-color:$dark-theme-inner-bgcolor; 
     @include flex-column();
     .mainTitle{
         align-items: center;
@@ -22,11 +34,14 @@ $topper-card-color:white;
         justify-content: space-between;
         padding :10px;
         .cards{
-            background-color:$topper-card-color;
-            @include flex-row();
+            // background-color:$dark-theme-inner-lightcard-cardcolor;
+            @include flex-column();
             justify-content: space-between;
             padding:10px;
-            border-radius: 10%;
+            border-radius: 11px;
+            .list-item{
+                @include flex-row();
+            }
             .titles{
                 font-size: 16px;
                 text-align:center;
@@ -41,4 +56,12 @@ $topper-card-color:white;
         }
         
     }
+}
+
+
+
+// testing
+
+.employee{
+background-color: red;
 }

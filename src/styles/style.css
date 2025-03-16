@@ -1,6 +1,7 @@
 .topPerformer {
   font-family: "Poppins";
-  background-color: rgb(152, 81, 182);
+  color: #FEFEFE;
+  background-color: #2C2C2C;
   display: flex;
   flex-direction: column;
 }
@@ -14,12 +15,15 @@
   padding: 10px;
 }
 .topPerformer .content .cards {
-  background-color: white;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   padding: 10px;
-  border-radius: 10%;
+  border-radius: 11px;
+}
+.topPerformer .content .cards .list-item {
+  display: flex;
+  flex-direction: row;
 }
 .topPerformer .content .cards .titles {
   font-size: 16px;
@@ -30,6 +34,10 @@
   width: 150px;
   height: 150px;
   padding: 10px;
+}
+
+.employee {
+  background-color: red;
 }
 
 /*# sourceMappingURL=style.css.map */
