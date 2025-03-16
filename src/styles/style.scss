@@ -140,21 +140,29 @@ body {
     flex: 1;
 }
 
-/* Right Side: Charts */
 .charts {
     flex: 1;
-    /* Takes 1/3 of available space */
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+.section-headings {
+    color: $light-theme-inner-headcolor;
+    font-family: Poppins;
+    font-size: 17.179px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 25.769px;
+    letter-spacing: 0.286px;
 }
 
 .chart-1,
 .chart-2 {
     flex: 1;
-    background-color: white;
+    background-color: $light-theme-inner-lightcard-cardcolor;
     border-radius: 8px;
     padding: 15px;
+    box-shadow: 2px 4px 9.3px 0px rgba(0, 0, 0, 0.15);
 }
 
 
@@ -442,3 +450,170 @@ body {
         max-width: 100%;
     }
 }
+//sebin-tomy
+$course-img-width:200px;
+$course-img-height:140px;
+$course-font-weight:400;
+$display-type:flex;
+$justify-type:space-between;
+$course-padding:5px 30px 5px 30px;
+
+@mixin course-img($img-width,$img-height)
+{
+    width: $img-width;
+    height: $img-height;
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+@mixin course-content($displaytype,$justifytype,$paddingtype){
+    display: $displaytype;
+    justify-content: $justifytype;
+    margin-left: 22px;
+}
+@mixin course-card-content($bg-color,$fnt-color){
+   background-color: $bg-color;
+   color: $fnt-color;
+   border-radius: 20px;
+   min-width: 220px;
+   box-shadow: 3px 3px 5px rgb(173, 173, 173);
+   position: relative;
+   overflow: hidden;
+}
+@mixin course-type($bg-color) {
+    background-color: $bg-color;
+    border: none;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 10px;
+    font-family: poppins-semibold;
+    padding: 5px;
+}
+.slider-btn{
+        background-color: rgba(0, 0, 0, 0);
+        color: white;
+        border: none;
+        user-select: none;
+        font-size: 24px;
+        padding: 10px;
+        position: absolute;
+        top: 70%;
+        transform: translateY(-50%);
+    }
+#prevBtn { left: 300px; }
+#nextBtn { right: 400px; }
+
+.course-container{
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    padding: 20px;
+    overflow-x:auto;
+    scroll-behavior: smooth;
+    width: 600px;
+    height: 400px;
+    .course-card{
+       @include course-card-content($light-theme-inner-lightcard-cardcolor,$light-theme-inner-lightcard-textcolor);
+       
+       width: 300px;
+       height: 320px;
+
+       .course-type-badge {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        z-index: 2; 
+        } 
+       .course-img{
+            @include course-img($course-img-width,$course-img-height);
+            margin: 10px;
+        }
+    }
+}
+.course-container::-webkit-scrollbar {
+    display:none;
+  }
+.course-content{
+     #courseTitle{
+        font-weight: 600;
+        margin-left: 22px;
+        margin-top: -15px;
+        font-size: 15px;
+    }
+    #courseDuration{
+        margin-left: 22px;
+        font-size: 10px;
+        margin-top: 8px;
+            span {
+                font-size: 12px;
+                font-weight: 600;
+            }
+    }
+    #courseStartDate{
+        margin-left: 22px;
+        font-size: 10px;
+        margin-top: 1px;
+            span {
+                font-size: 12px;
+                font-weight: 600;
+            }
+    }
+    .coursestatus-mode{
+        @include course-content($display-type,$justify-type ,$course-padding );
+        #courseStatus {
+            font-size: 10px;
+            margin-top: 1px;
+            span {
+                font-size: 12px;
+                font-weight: 600;
+            }
+        }
+        #courseMode{
+            font-size: 12px;
+            margin-right: 22px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+    }
+    #courseDesc{
+        margin-left: 22px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        font-weight: 600;
+        text-align: left;
+        font-size: 10px;
+        width: 180px;
+        line-height: 14px;
+        overflow: hidden;
+        height: 25px;
+    }
+}
+.softskills-course {
+    @include course-type(#FFD1DA);
+}
+
+.technical-course {
+    @include course-type(#C5D5FF);
+}
+
+.behavioral-course {
+    @include course-type(#CAFDFF);
+}
+.completed-class{
+    color: #10810A;
+}
+.inprogress-class{
+    color:#9CA011;
+}
+.scheduled-class{
+    color:#810A0C;
+}
+.dynamic-content{
+    font-weight: 600;
+}
+.dynamic-content_mode{
+    font-weight: 700;
+    color: rgb(97, 97, 97);
+}
+
+
