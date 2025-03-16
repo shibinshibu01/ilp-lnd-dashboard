@@ -171,6 +171,108 @@ courseModalBackdrop.addEventListener("click", function (event) {
         closeCourseModal();
     }
 });
+//to display courses
+axios.get(url)
+        .then(response => {
+            console.log('Axios Data:', response.data);
+            const courses=response.data.courses;
+            
+            const courseContainer = document.querySelector(".course-container");
+            let newContent = "";
+            
+            Object.keys(courses).forEach(key=>{
+                const course=courses[key];
+                let courseTypeClass = "";
+                if (course.courseType === "Softskills") {
+                        courseTypeClass = "softskills-course";
+                } else if (course.courseType === "Technical") {
+                        courseTypeClass = "technical-course";
+                } else if (course.courseType === "Behavioural") {
+                        courseTypeClass = "behavioral-course";
+                }
+                let coursestatusClass = "";
+                if (course.status === "completed") {
+                        coursestatusClass = "completed-class";
+                } else if (course.status === "in-progress") {
+                        coursestatusClass = "inprogress-class";
+                } else if (course.status === "scheduled") {
+                        coursestatusClass = "scheduled-class";
+                }
+                newContent += `
+                    <div class="course-card">
+                        <div class="course-type-badge">
+                            <button id="courseType" class="${courseTypeClass}">${course.courseType}</button>
+                        </div>
+                        <img class="course-img" src="${course.courseBannerImage}">
+                        <div class="course-content">
+                            <div class="title-type">
+                                <h3 id="courseTitle">${course.courseName}</h3>
+                            </div>
+                            <p id="courseDesc">${course.shortDescription}</p>
+                            <p id="courseDuration">duration: <span class="dynamic-content">${course.duration} hrs</span><p>
+                            <p id="courseStartDate">start date: <span class="dynamic-content">${formatDate(course.startDate)}</span></p>
+                            <div class="coursestatus-mode">
+                                <p id="courseStatus">status: <span class="${coursestatusClass}">${course.status}</span></p>
+                                <p id="courseMode"><span class="dynamic-content_mode">${course.mode}</span></p>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+
+            courseContainer.innerHTML = newContent;
+
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                const day = date.getDate(); 
+                const month = date.toLocaleString('en-US', { month: 'short' }); 
+                const year = date.getFullYear();
+            
+                return `${day} ${month} ${year}`;
+            }
+
+            let autoScroll;
+
+            function startAutoScroll(){
+                stopAutoScroll();
+                autoScroll=setInterval(() => {
+                    courseContainer.scrollBy({left:320,behavior:'smooth'});
+
+                    if (courseContainer.scrollLeft + courseContainer.clientWidth >= courseContainer.scrollWidth) {
+                        setTimeout(() => {
+                            courseContainer.scrollTo({ left: 0, behavior: 'smooth' });
+                        }, 500); 
+                    }
+                }, 2500);
+            }
+
+            function stopAutoScroll(){
+                clearInterval(autoScroll);
+            }
+
+            nextBtn.addEventListener("click",()=>{
+                stopAutoScroll();
+                courseContainer.scrollBy({left:320,behavior:'smooth'});
+                setTimeout(startAutoScroll(),5000);
+            })
+            
+            prevBtn.addEventListener("click",()=>{
+                stopAutoScroll();
+                courseContainer.scrollBy({left:-320,behavior:'smooth'});
+                setTimeout(startAutoScroll(),5000);
+            })
+
+            courseContainer.addEventListener("mouseenter", stopAutoScroll());
+            courseContainer.addEventListener("mouseleave", startAutoScroll());
+
+            startAutoScroll();
+        })
+        .catch(error=>{
+            console.error('Axios Error: ',error);
+            document.querySelector(".course-container").innerHTML = "<p>Error fetching courses.</p>";
+        })
 
 
 
