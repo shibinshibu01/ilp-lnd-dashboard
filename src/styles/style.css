@@ -412,6 +412,88 @@ body {
     max-width: 100%;
   }
 }
+.nomination-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  padding-top: 25px;
+  margin-left: 0;
+  background-color: #FEFEFE;
+  border-radius: 8px;
+  height: 100;
+}
+
+.nomination-cards {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 15px;
+  justify-content: flex-start;
+  overflow-x: auto;
+  /* Hide scrollbar for IE, Edge, and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.nomination-cards::-webkit-scrollbar {
+  display: none;
+}
+
+.nomination-item {
+  display: flex;
+  flex-direction: row;
+  background: #2E4946;
+  border-radius: 10px;
+  height: 125px;
+  padding: 0;
+  min-width: 350px;
+  text-align: left;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.nomination-item .course-image {
+  width: 125px;
+  height: 125px;
+  object-fit: cover;
+}
+.nomination-item h4 {
+  color: #FEFEFE;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  margin-top: 25px;
+}
+.nomination-item h5 {
+  color: #FEFEFE;
+  font-family: Poppins, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  padding-left: 10px;
+  margin-top: 10px;
+  padding-bottom: 25px;
+}
+.nomination-item h6 {
+  color: #FEFEFE;
+  font-family: Poppins, sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 1.5;
+  padding-left: 10px;
+  margin-top: -10px;
+}
+.nomination-item .text-container {
+  padding: 0 px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 2px;
+}
+
 .slider-btn {
   background-color: rgba(0, 0, 0, 0);
   color: white;
@@ -605,6 +687,15 @@ body {
   margin: 10px;
   padding: 10px;
   border-radius: 11px;
+}
+.performance-cards .top-heading {
+  color: #FEFEFE;
+  font-family: Poppins;
+  font-size: 11.8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14.75px; /* 125% */
+  letter-spacing: 0.197px;
 }
 .performance-cards .performer-header {
   margin-top: 15px;
