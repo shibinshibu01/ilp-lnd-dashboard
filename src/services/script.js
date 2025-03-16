@@ -25,7 +25,7 @@ axios.get(url)
 
         document.querySelector('.total-hours__entry__course .total-hours__number').textContent = totalCourseHours;
 
-        // Category Chart creation
+        // Course category Chart creation
 
         const courseCategoriesFunction = () => {
             let technicalCourses = 0;
@@ -46,15 +46,16 @@ axios.get(url)
         };
         const [technicalCourses, softSkillsCourses, behavioralCourses] = courseCategoriesFunction();
 
-        const courseCategoriesChart = document.getElementById('courseCategories').getContext('2d');
 
-        const myChart = new Chart(courseCategoriesChart, {
+        const courseCategoriesChart = document.getElementById('courseCategories').getContext('2d');
+        
+        const categoryChart = new Chart(courseCategoriesChart, {
             type: 'bar',
             data: {
                 labels: ['Technical', 'Soft Skills', 'Behavioral'],
                 datasets: [{
                     data: [technicalCourses, softSkillsCourses, behavioralCourses],
-                    backgroundColor: ['#DC143B', '#DC143B', '#DC143B'],
+                    backgroundColor: '#DC143B'
                 }]
             },
             options: {
@@ -66,11 +67,103 @@ axios.get(url)
                 },
                 plugins: {
                     legend: {
-                        display: false
+                        display: false 
+                    },
+                    title: {
+                        display: true,
+                        text: 'No of courses in each category.'
                     }
                 }
             }
         });
+
+        // Department data Chart creation
+
+        const deptTrainingFunction = () => {
+            let engineeringTrainingHours = 0;
+            let hrTrainingHours = 0;
+            let financeTrainingHours = 0;  
+            let marketingTrainingHours = 0;
+            if (data.departments) {
+                Object.values(data.departments).forEach(department => {
+                    if (department.deptName === 'Engineering') {
+                        engineeringTrainingHours += department.deptTrainingHours;
+                    } else if (department.deptName === 'HR') {
+                        hrTrainingHours += department.deptTrainingHours;
+                    } else if (department.deptName === 'Finance') {
+                        financeTrainingHours += department.deptTrainingHours;
+                    } else {
+                        marketingTrainingHours += department.deptTrainingHours;
+                    }
+                });
+            }
+            return [engineeringTrainingHours, hrTrainingHours, financeTrainingHours, marketingTrainingHours];
+        };
+
+        const deptemployeeFunction = () => {
+            let engineeringEmployees = 0;
+            let hrEmployees = 0;
+            let financeEmployees = 0;
+            let marketingEmployees = 0;
+            if (data.employees) {
+                Object.values(data.employees).forEach(employee => {
+                    if (employee.deptName === 'Engineering') {
+                        engineeringEmployees++;
+                    } else if (employee.deptName === 'HR') {
+                        hrEmployees++;
+                    } else if (employee.deptName === 'Finance') {
+                        financeEmployees++;
+                    } else {
+                        marketingEmployees++;
+                    }
+                });
+            }
+            return [engineeringEmployees, hrEmployees, financeEmployees, marketingEmployees];
+        };
+
+
+        const [engineeringEmployees, hrEmployees, financeEmployees, marketingEmployees] = deptemployeeFunction();
+        const [engineeringTrainingHours, hrTrainingHours, financeTrainingHours, marketingTrainingHours] = deptTrainingFunction();
+
+        const departmentDataChart = document.getElementById('departmentData').getContext('2d');
+        
+        const departmentChart = new Chart(departmentDataChart, {
+            type: 'line',
+            data: {
+                labels: ['Engineering', 'HR', 'Finance', 'Marketing'],
+                datasets: [{
+                    data: [engineeringTrainingHours, hrTrainingHours, financeTrainingHours, marketingTrainingHours],
+                    backgroundColor: '#DC143B',
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false 
+                    },
+                    title: {
+                        display: true,
+                        text: 'No of training hours in each department.'
+                    }
+                }
+            }
+        });
+        setInterval(() => {
+            departmentChart.data.datasets[0].data = [engineeringTrainingHours, hrTrainingHours, financeTrainingHours, marketingTrainingHours]; 
+            departmentChart.options.plugins.title.text = 'No of training hours in each department.';
+            departmentChart.update(); 
+            setTimeout(() => {
+                departmentChart.data.datasets[0].data = [engineeringEmployees, hrEmployees, financeEmployees, marketingEmployees]; 
+                departmentChart.options.plugins.title.text = 'No of employees in each department.';
+                departmentChart.update();
+            }, 5000);
+        }, 5000);
 
 
         const nominations = data.nominations;
