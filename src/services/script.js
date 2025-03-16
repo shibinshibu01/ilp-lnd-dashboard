@@ -53,22 +53,25 @@ axios.get(url)
 
 function updateDisplayEmployee(topThree) {
     topThree.forEach((emp, index) => {
-        document.querySelector(`.employee .name${index + 1}`).textContent = emp.firstName + emp.lastName;
-        document.querySelector(`.employee .traininghr${index + 1}`).textContent = emp.trainingHour+"hrs";
+        document.querySelector(`.employee #picture${index +1}`).src= emp.profilePicture;
+        document.querySelector(`.employee .name${index + 1}`).textContent = emp.firstName + " "+emp.lastName;
+        document.querySelector(`.employee .traininghr${index + 1}`).textContent = emp.trainingHour;
     });
 }
 
 function updateDisplayTrainer(topThree) {
     topThree.forEach((train, index) => {
+        document.querySelector(`.trainer #picture${index +1}`).src= train.profilePicture;
         document.querySelector(`.trainer .name${index + 1}`).textContent = train.firstName;
-        document.querySelector(`.trainer .traininghr${index + 1}`).textContent = train.feedbackScore + "/5";
+        document.querySelector(`.trainer .traininghr${index + 1}`).textContent = train.feedbackScore;
     });
 }
 
 function updateDisplayDept(topThree) {
     topThree.forEach((dept, index) => {
+        document.querySelector(`.dept #picture${index +1}`).src= dept.deptImage;
         document.querySelector(`.dept .name${index + 1}`).textContent = dept.deptName;
-        document.querySelector(`.dept .traininghr${index + 1}`).textContent = dept.deptTrainingHours +"hrs";
+        document.querySelector(`.dept .traininghr${index + 1}`).textContent = dept.deptTrainingHours;
     });
 }    
 console.log(data);

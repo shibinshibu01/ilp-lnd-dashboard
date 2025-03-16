@@ -25,49 +25,61 @@ body {
   padding: 40px;
   color: #FEFEFE;
 }
+
 .sidebar .sidebar-header {
   margin-bottom: 80px;
 }
+
 .sidebar .sidebar-header .logo {
   margin-bottom: 30px;
 }
+
 .sidebar .sidebar-header .user-profile img {
   margin-bottom: 10px;
 }
+
 .sidebar .sidebar-header .user-profile #textUserName {
   font-size: 20px;
   font-weight: 800;
 }
+
 .sidebar .sidebar-header .user-profile #textUserName #textHai {
   font-weight: 300;
   font-size: 20px;
 }
+
 .sidebar .sidebar-header .user-profile #textPosition {
   font-size: 12px;
   font-weight: 300;
 }
+
 .sidebar .nav-links {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
 .sidebar .nav-links li .nav-menu {
   text-decoration: none;
   color: #E3FCF9;
   display: flex;
   gap: 10px;
 }
+
 .sidebar .nav-links li .nav-menu .menu-icon {
   width: 25px;
 }
+
 .sidebar .nav-links li .nav-menu span {
   font-size: 16px;
   font-weight: 500;
 }
+
 .sidebar .nav-links li .active {
   color: #FEFEFE;
 }
+
 .sidebar .nav-links li :hover {
   color: #FEFEFE;
 }
@@ -403,27 +415,25 @@ body {
     max-width: 100%;
   }
 }
-.topPerformer {
-  font-family: "Poppins";
+.top-performance {
   color: #FEFEFE;
   background-color: white;
   display: flex;
   flex-direction: column;
 }
-.topPerformer .mainTitle {
+.top-performance .main-title {
   color: #101010;
-}
-.topPerformer .mainTitle {
   align-items: center;
 }
-.topPerformer .content {
+.top-performance .content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 0px;
 }
-.topPerformer .content .cards {
-  width: 350px;
+
+.performance-cards {
+  width: 100%;
   background-color: #2E4946;
   display: flex;
   flex-direction: column;
@@ -432,36 +442,55 @@ body {
   padding: 10px;
   border-radius: 11px;
 }
-.topPerformer .content .cards .titles {
-  font-size: 16px;
-  text-align: center;
-}
-.topPerformer .content .cards .performer-header {
+.performance-cards .performer-header {
+  margin-top: 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-size: 10px;
 }
-.topPerformer .content .cards .list-item {
+.performance-cards .list-item {
   position: relative;
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
+}
+.performance-cards .list-item .name {
   font-size: 16px;
-}
-.topPerformer .content .cards .list-item h3 {
-  float: right;
-}
-.topPerformer .content .cards .list-item img {
-  flex: 1;
-  border-radius: 11px;
-  width: 30px;
-  height: 30px;
-}
-.topPerformer .content .cards .list-item .name {
   flex: 2;
 }
-.topPerformer .content .cards .list-item .key {
+.performance-cards .list-item .value {
   flex: 1;
 }
+.performance-cards .list-item .value .name {
+  padding: 5px;
+}
+.performance-cards .list-item img {
+  flex: 1;
+  border-radius: 11px;
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  padding-left: 5px;
+}
+.performance-cards .list-item h3 {
+  float: right;
+}
+
+.trainingHours, .feedbackScore {
+  display: flex;
+}
+.trainingHours h2, .feedbackScore h2 {
+  font-size: 20px;
+  font-weight: 800;
+}
+.trainingHours h3, .feedbackScore h3 {
+  font-size: 15px;
+  padding-bottom: 0px;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+
 
 /*# sourceMappingURL=style.css.map */
