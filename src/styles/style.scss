@@ -455,9 +455,12 @@ body {
 }
 
 .topPerformer{
+    .mainTitle{
+        color:#101010
+    }
     font-family: 'Poppins';
     color: $light-theme-bg-textcolor;
-    background-color:$light-theme-inner-headcolor; 
+    background-color:white; 
     @include flex-column();
     .mainTitle{
         align-items: center;
@@ -465,17 +468,15 @@ body {
     .content{
         @include flex-row();
         justify-content: space-between;
-        padding:10px;
+        padding:0px;
         .cards{
             width:350px;
-            background-color:$light-theme-inner-lightcard-textcolor;
+            background-color:$light-theme-inner-headcolor;
             @include flex-column();
             justify-content: space-between;
+            margin:10px;
             padding:10px;
             border-radius: 11px;
-            .list-item{
-                @include flex-row();
-            }
             .titles{
                 font-size: 16px;
                 text-align:center;
@@ -483,10 +484,15 @@ body {
             .performer-header{
                 @include flex-row();
                 justify-content: space-between;
-                font-size: 5.7px;
+                font-size: 10px;
             }
             .list-item{
+                position: relative;
                 @include flex-row();
+                font-size: 16px;
+                h3{
+                    float: right;
+                }
                 img{
                     flex:1;
                     border-radius: 11px;
@@ -498,11 +504,8 @@ body {
                 }
                 .key{
                     flex:1;
-                    font-size: 11.6px;
                 }
-                h1 h2 h3{
-                    font-size: 11.6px;
-                }
+
             }
         }
         
