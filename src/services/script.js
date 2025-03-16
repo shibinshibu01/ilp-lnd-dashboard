@@ -36,7 +36,7 @@ console.log(data);
 
 
 // var modal = document.getElementById("course-modal");
-var btn = document.getElementById("myBtn");
+var btn = document.querySelector('.total-hours__entry__course .total-hours__number');
 
 btn.addEventListener("click", function (event) {
     openCourseModal("course021")
@@ -44,7 +44,6 @@ btn.addEventListener("click", function (event) {
 
 
 const courseModalBackdrop = document.getElementById('courseModalBackdrop');
-const courseModalCloseButton = document.querySelector('.course-modal__close-button');
 const buttonContainer = document.getElementById('buttonContainer');
 
 function formatDate(dateString) {
@@ -125,13 +124,7 @@ function closeCourseModal() {
     document.body.style.overflow = 'auto';
 }
 
-courseModalCloseButton.addEventListener('click', closeCourseModal);
 
-courseModalBackdrop.addEventListener('click', function (event) {
-    if (event.target === courseModalBackdrop) {
-        closeCourseModal();
-    }
-});
 
 
 
