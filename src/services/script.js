@@ -1,4 +1,4 @@
-const url = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/.json"; // Ensure to fetch with .json
+const url = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/.json";
 let data = null;
 axios.get(url)
     .then(response => {
@@ -25,15 +25,11 @@ axios.get(url)
 
         document.querySelector('.total-hours__entry__course .total-hours__number').textContent = totalCourseHours;
 
-
-
+        
     })
     .catch(error => {
         console.error('Axios Error:', error);
     });
-
-console.log(data);
-
 
 // var modal = document.getElementById("course-modal");
 var btn = document.querySelector('.total-hours__entry__course .total-hours__number');
@@ -64,7 +60,6 @@ function getDaySuffix(day) {
         default: return 'th';
     }
 }
-
 
 function populateModalData(courseId) {
     const course = data.courses[courseId];
