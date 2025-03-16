@@ -26,13 +26,42 @@ axios.get(url)
         document.querySelector('.total-hours__entry__course .total-hours__number').textContent = totalCourseHours;
 
 
+        const nominations = data.nominations;
+        const nominationCards = document.querySelector('.nomination-cards');
+        Object.values(nominations).forEach(nomination => {
+            if (nomination.isApproved) {
+                const nominationItem = document.createElement('div');
+                nominationItem.classList.add('nomination-item');
 
+                const courseImageElement = document.createElement('img');
+                courseImageElement.src = nomination.picture;
+                courseImageElement.alt = nomination.courseName;
+                courseImageElement.classList.add('course-image');
+                nominationItem.appendChild(courseImageElement);
+                
+                const textContainer = document.createElement('div');
+                textContainer.classList.add('text-container');
+
+                const nameElement = document.createElement('h4');
+                nameElement.textContent = nomination.empName;
+                textContainer.appendChild(nameElement);
+
+                const empIdElement = document.createElement('h6');
+                empIdElement.textContent = nomination.empId;
+                textContainer.appendChild(empIdElement);
+
+                const courseNameElement = document.createElement('h5');
+                courseNameElement.textContent = nomination.courseName;
+                textContainer.appendChild(courseNameElement);
+
+                nominationItem.appendChild(textContainer); // Append textContainer to nominationItem
+                nominationCards.appendChild(nominationItem); // Append nominationItem to nominationCards
+            }
+        });
     })
     .catch(error => {
         console.error('Axios Error:', error);
     });
-
-console.log(data);
 
 
 // var modal = document.getElementById("course-modal");
@@ -130,11 +159,3 @@ courseModalBackdrop.addEventListener("click", function (event) {
         closeCourseModal();
     }
 });
-
-
-
-
-
-
-
-
