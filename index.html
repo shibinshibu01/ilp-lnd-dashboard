@@ -4,13 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <title>Training Dashboard - L&D Dashboard</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="src/styles/style.css">
 </head>
 
 <body>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Main Dashboard Container -->
     <div class="dashboard-container">
@@ -96,8 +104,31 @@
                 <!-- Left content: Courses and Nominations -->
                 <section class="courses-nomination">
                     <!-- Courses Section Allocated to: Sebin -->
-                    <section class="courses">
-                        <h1>Course</h1>
+                    <section class="courses-available">
+                        <button id="prevBtn" class="slider-btn"></button>
+                        <p class="section-headings">courses</p>
+                        <div class="course-container">
+                            <div class="course-card" onclick="courseDetail()">
+                                <div class="course-type-badge">
+                                    <button id="courseType"></button>
+                                </div>
+                                <img class="course-img">
+                                <div class="course-content">
+                                    <div class="title-type">
+                                        <h3 id="courseTitle"></h3>
+                                        <!-- <button id="courseType"></button> -->
+                                    </div>
+                                    <p id="courseDesc"></p>
+                                    <p id="courseDuration"><span></span></p>
+                                    <p id="courseStartDate"><span></span></p>
+                                    <div class="coursestatus-mode">
+                                        <p id="courseStatus"><span></span></p>
+                                        <p id="courseMode"><span></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="nextBtn" class="slider-btn">❯</button>
                     </section>
 
                     <!-- Nominations Section Allocated to: Litto -->
@@ -111,10 +142,11 @@
 
                 <!-- Charts and Visualizations Allocated to: Shibin-->
                 <section class="charts">
+                    <p class="section-headings">categories</p>
                     <aside class="chart-1">
-                        <h1>Chart 1</h1>
+                        <canvas id="courseCategories"></canvas>
                     </aside>
-
+                    <p class="section-headings">categories</p>
                     <aside class="chart-2">
                         <h1>Chart 2</h1>
                     </aside>
@@ -126,7 +158,7 @@
                     <div class="course-modal__container">
                         <div class="course-modal__header">
                             <img class="course-modal__header-image" id="courseImage" src="" alt="Course Image">
-                            <div class="course-modal__tag" id="courseType"></div>
+                            <div class="course-modal__tag" id="modalCourseType"></div>
                         </div>
                         <div class="course-modal__content">
                             <h1 class="course-modal__title" id="courseName"></h1>
@@ -136,15 +168,15 @@
                                 <div class="course-modal__details-left">
                                     <div class="course-modal__detail-item">
                                         <span class="course-modal__detail-label">duration :</span>
-                                        <span class="course-modal__detail-value" id="courseDuration"></span>
+                                        <span class="course-modal__detail-value" id="modalCourseDuration"></span>
                                     </div>
                                     <div class="course-modal__detail-item">
                                         <span class="course-modal__detail-label">start date :</span>
-                                        <span class="course-modal__detail-value" id="courseStartDate"></span>
+                                        <span class="course-modal__detail-value" id="modalCourseStartDate"></span>
                                     </div>
                                     <div class="course-modal__detail-item">
                                         <span class="course-modal__detail-label">status:</span>
-                                        <span class="course-modal__detail-value" id="courseStatus"></span>
+                                        <span class="course-modal__detail-value" id="modalCourseStatus"></span>
                                     </div>
                                 </div>
                                 <div class="course-modal__details-right">
@@ -158,7 +190,7 @@
                                     </div>
                                     <div class="course-modal__detail-item">
                                         <span class="course-modal__detail-label">mode:</span>
-                                        <span class="course-modal__detail-value" id="courseMode"></span>
+                                        <span class="course-modal__detail-value" id="modalCourseMode"></span>
                                     </div>
                                 </div>
                             </div>
