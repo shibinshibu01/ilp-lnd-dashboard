@@ -125,7 +125,11 @@ function closeCourseModal() {
 }
 
 
-
+courseModalBackdrop.addEventListener("click", function (event) {
+    if (event.target === courseModalBackdrop) {
+        closeCourseModal();
+    }
+});
 
 
 
