@@ -5,102 +5,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Training Dashboard - L&D Dashboard</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="src/styles/style.css">
 </head>
 
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <section>
-        <div class="top-card">
-            <div class="top-card__header">
-                <h1>training dashboard</h1>
-                <h2>learning & development</h2>
-            </div>
-            <div class="total-hours-card">
-                <div class="total-hours">
-                    <div class="total-hours__entry__trainee">
-                        <p class="total-hours__number">1</p>
-                        <span class="total-hours__label">total trainee hrs</span>
-                    </div>
 
-                    <div class="total-hours__entry__course">
-                        <p class="total-hours__number"></p>
-                        <span class="total-hours__label">total course hrs</span>
-                    </div>
+    <!-- Main Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Left Sidebar Navigation Allocated to: Shibin -->
+        <nav class="sidebar">
+            <header class="sidebar-header">
+                <div class="logo">
+                    <h1>Sidebar</h1>
                 </div>
-            </div>
-        </div>
+                <div class="user-profile">
 
-
-
-        <button id="myBtn">Open Modal</button>
-
-        <!-- <div id="buttonContainer">
-            Buttons will be generated here
-        </div>
-     -->
-        <div class="course-modal__backdrop" id="courseModalBackdrop">
-            <div class="course-modal__container">
-                <div class="course-modal__header">
-                    <img class="course-modal__header-image" id="courseImage" src="" alt="Course Image">
-                    <div class="course-modal__tag" id="courseType"></div>
-                    <button class="course-modal__close-button">&times;</button>
                 </div>
-                <div class="course-modal__content">
-                    <h1 class="course-modal__title" id="courseName"></h1>
-                    <p class="course-modal__description" id="courseDescription"></p>
+            </header>
 
-                    <div class="course-modal__details">
-                        <div class="course-modal__details-left">
-                            <div class="course-modal__detail-item">
-                                <span class="course-modal__detail-label">duration :</span>
-                                <span class="course-modal__detail-value" id="courseDuration"></span>
-                            </div>
-                            <div class="course-modal__detail-item">
-                                <span class="course-modal__detail-label">start date :</span>
-                                <span class="course-modal__detail-value" id="courseStartDate"></span>
-                            </div>
-                            <div class="course-modal__detail-item">
-                                <span class="course-modal__detail-label">status:</span>
-                                <span class="course-modal__detail-value" id="courseStatus"></span>
-                            </div>
-                        </div>
-                        <div class="course-modal__details-right">
-                            <div class="course-modal__detail-item">
-                                <span class="course-modal__detail-label">trainer :</span>
-                                <span class="course-modal__detail-value" id="courseTrainer"></span>
-                            </div>
-                            <div class="course-modal__detail-item">
-                                <span class="course-modal__detail-label">type :</span>
-                                <span class="course-modal__detail-value" id="courseTypeDetails"></span>
-                            </div>
-                            <div class="course-modal__detail-item">
-                                <span class="course-modal__detail-label">mode:</span>
-                                <span class="course-modal__detail-value" id="courseMode"></span>
-                            </div>
-                        </div>
+            <ul class="nav-links">
+
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!--  Dashboard Header Section Allocated to: Aswin -->
+            <header class="header">
+                <div class="top-card">
+                    <div class="top-card__header">
+                        <h1>training dashboard</h1>
+                        <h2>learning & development</h2>
                     </div>
+                    <div class="total-hours-card">
+                        <div class="total-hours">
+                            <div class="total-hours__entry__trainee">
+                                <p class="total-hours__number">1</p>
+                                <span class="total-hours__label">total trainee hrs</span>
+                            </div>
 
-                    <div class="course-modal__metrics">
-                        <div class="course-modal__metric-item">
-                            <div class="course-modal__metric-value" id="courseFeedback"></div>
-                            <div class="course-modal__metric-label">feedback score</div>
-                        </div>
-                        <div class="course-modal__metric-item">
-                            <div class="course-modal__metric-value" id="courseEffectiveness"></div>
-                            <div class="course-modal__metric-label">effectiveness score</div>
-                        </div>
-                        <div class="course-modal__metric-item">
-                            <div class="course-modal__metric-value" id="courseAttendance"></div>
-                            <div class="course-modal__metric-label">attendance</div>
+                            <div class="total-hours__entry__course">
+                                <p class="total-hours__number"></p>
+                                <span class="total-hours__label">total course hrs</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </header>
 
-    </section>
-    <script src="src/services/script.js" type="module"></script>
+            <!--  Top Performance Section Allocated to: Mariyam-->
+            <section class="top-performance">
+                <h1>Top Performance</h1>
+            </section>
+
+            <!--  Courses, Nominations and Charts Layout Section -->
+            <section class="courses-nomination-charts">
+                <!-- Left content: Courses and Nominations -->
+                <section class="courses-nomination">
+                    <!-- Courses Section Allocated to: Sebin -->
+                    <section class="courses">
+                        <h1>Course</h1>
+                    </section>
+
+                    <!-- Nominations Section Allocated to: Litto -->
+                    <section class="nominations">
+                        <h1>Nominations</h1>
+                    </section>
+                </section>
+
+                <!-- Charts and Visualizations Allocated to: Shibin-->
+                <section class="charts">
+                    <aside class="chart-1">
+                        <h1>Chart 1</h1>
+                    </aside>
+
+                    <aside class="chart-2">
+                        <h1>Chart 2</h1>
+                    </aside>
+                </section>
+            </section>
+            <aside>
+                <div class="course-modal__backdrop" id="courseModalBackdrop">
+                    <div class="course-modal__container">
+                        <div class="course-modal__header">
+                            <img class="course-modal__header-image" id="courseImage" src="" alt="Course Image">
+                            <div class="course-modal__tag" id="courseType"></div>
+                            <button class="course-modal__close-button">&times;</button>
+                        </div>
+                        <div class="course-modal__content">
+                            <h1 class="course-modal__title" id="courseName"></h1>
+                            <p class="course-modal__description" id="courseDescription"></p>
+
+                            <div class="course-modal__details">
+                                <div class="course-modal__details-left">
+                                    <div class="course-modal__detail-item">
+                                        <span class="course-modal__detail-label">duration :</span>
+                                        <span class="course-modal__detail-value" id="courseDuration"></span>
+                                    </div>
+                                    <div class="course-modal__detail-item">
+                                        <span class="course-modal__detail-label">start date :</span>
+                                        <span class="course-modal__detail-value" id="courseStartDate"></span>
+                                    </div>
+                                    <div class="course-modal__detail-item">
+                                        <span class="course-modal__detail-label">status:</span>
+                                        <span class="course-modal__detail-value" id="courseStatus"></span>
+                                    </div>
+                                </div>
+                                <div class="course-modal__details-right">
+                                    <div class="course-modal__detail-item">
+                                        <span class="course-modal__detail-label">trainer :</span>
+                                        <span class="course-modal__detail-value" id="courseTrainer"></span>
+                                    </div>
+                                    <div class="course-modal__detail-item">
+                                        <span class="course-modal__detail-label">type :</span>
+                                        <span class="course-modal__detail-value" id="courseTypeDetails"></span>
+                                    </div>
+                                    <div class="course-modal__detail-item">
+                                        <span class="course-modal__detail-label">mode:</span>
+                                        <span class="course-modal__detail-value" id="courseMode"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="course-modal__metrics">
+                                <div class="course-modal__metric-item">
+                                    <div class="course-modal__metric-value" id="courseFeedback"></div>
+                                    <div class="course-modal__metric-label">feedback score</div>
+                                </div>
+                                <div class="course-modal__metric-item">
+                                    <div class="course-modal__metric-value" id="courseEffectiveness"></div>
+                                    <div class="course-modal__metric-label">effectiveness score</div>
+                                </div>
+                                <div class="course-modal__metric-item">
+                                    <div class="course-modal__metric-value" id="courseAttendance"></div>
+                                    <div class="course-modal__metric-label">attendance</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="src/services/script.js"></script>
 </body>
 
 </html>
