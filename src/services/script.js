@@ -1,4 +1,4 @@
-const url = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/.json"; // Ensure to fetch with .json
+const url = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/.json";
 let data = null;
 axios.get(url)
     .then(response => {
@@ -25,15 +25,57 @@ axios.get(url)
 
         document.querySelector('.total-hours__entry__course .total-hours__number').textContent = totalCourseHours;
 
+        // Category Chart creation
 
+        const courseCategoriesFunction = () => {
+            let technicalCourses = 0;
+            let softSkillsCourses = 0;
+            let behavioralCourses = 0;
+            if (data.courses) {
+                Object.values(data.courses).forEach(course => {
+                    if (course.courseType === 'Technical') {
+                        technicalCourses++;
+                    } else if (course.courseType === 'Softskills') {
+                        softSkillsCourses++;
+                    } else {
+                        behavioralCourses++;
+                    }
+                });
+            }
+            return [technicalCourses, softSkillsCourses, behavioralCourses];
+        };
+        const [technicalCourses, softSkillsCourses, behavioralCourses] = courseCategoriesFunction();
 
+        const courseCategoriesChart = document.getElementById('courseCategories').getContext('2d');
+        
+        const myChart = new Chart(courseCategoriesChart, {
+            type: 'bar',
+            data: {
+                labels: ['Technical', 'Soft Skills', 'Behavioral'],
+                datasets: [{
+                    data: [technicalCourses, softSkillsCourses, behavioralCourses],
+                    backgroundColor: ['#DC143B', '#DC143B', '#DC143B'],
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false 
+                    }
+                }
+            }
+        });
+        
     })
     .catch(error => {
         console.error('Axios Error:', error);
     });
-
-console.log(data);
-
 
 // var modal = document.getElementById("course-modal");
 var btn = document.querySelector('.total-hours__entry__course .total-hours__number');
@@ -64,7 +106,6 @@ function getDaySuffix(day) {
         default: return 'th';
     }
 }
-
 
 function populateModalData(courseId) {
     const course = data.courses[courseId];
