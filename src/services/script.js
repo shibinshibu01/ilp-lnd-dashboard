@@ -426,9 +426,9 @@ axios.get(url)
                 if (courseContainer.scrollLeft + courseContainer.clientWidth >= courseContainer.scrollWidth) {
                     setTimeout(() => {
                         courseContainer.scrollTo({ left: 0, behavior: 'smooth' });
-                    }, 500);
+                    }, 1500);
                 }
-            }, 2500);
+            }, 5000);
         }
 
         function stopAutoScroll() {

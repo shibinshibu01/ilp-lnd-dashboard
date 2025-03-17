@@ -1,3 +1,16 @@
+// $experion-red: #DC143B;
+
+// $light-theme-bg-bgcolor: #101212;
+// $light-theme-bg-textcolor: #FEFEFE;
+// $light-theme-bg-menu-textcolor: #E3FCF9;
+
+// $light-theme-inner-bgcolor: #2C2C2C;
+// $light-theme-inner-headcolor: #FEFEFE;
+// $light-theme-inner-lightcard-textcolor:#FEFEFE;
+// $light-theme-inner-lightcard-cardcolor:#101212;
+// $light-theme-inner-darkcard-textcolor:#FEFEFE;
+// $light-theme-inner-darkcard-cardcolor:#101212;
+
 $experion-red: #DC143B;
 
 $light-theme-bg-bgcolor: #2E4946;
@@ -6,11 +19,10 @@ $light-theme-bg-menu-textcolor: #E3FCF9;
 
 $light-theme-inner-bgcolor: #FEFEFE;
 $light-theme-inner-headcolor: #2E4946;
-$light-theme-inner-lightcard-textcolor: #101010;
-$light-theme-inner-lightcard-cardcolor: #FEFEFE;
-$light-theme-inner-darkcard-textcolor: #FEFEFE;
-$light-theme-inner-darkcard-cardcolor: #2E4946;
-
+$light-theme-inner-lightcard-textcolor:#101010;
+$light-theme-inner-lightcard-cardcolor:#FEFEFE;
+$light-theme-inner-darkcard-textcolor:#FEFEFE;
+$light-theme-inner-darkcard-cardcolor:#2E4946;
 
 * {
     margin: 0;
@@ -208,7 +220,7 @@ body {
 
 .top-card__header h1 {
     margin: 0;
-    color: $light-theme-bg-bgcolor;
+    color: $light-theme-inner-headcolor;
     font-family: poppins-semibold;
     font-size: 30px;
 }
@@ -216,7 +228,7 @@ body {
 .top-card__header h2 {
     margin-left: 4px;
     margin-top: -4px;
-    color: $light-theme-bg-bgcolor;
+    color: $light-theme-inner-headcolor;
     font-family: poppins-extra-light;
     font-size: 13.74px;
 
@@ -250,6 +262,7 @@ body {
     margin-bottom: -4px;
     font-family: poppins-semibold;
     font-size: 34.36px;
+    margin-left: 20px;
     color: $experion-red;
     &:hover {
         transform: scale3d(1.1, 1.5, 1.3); 
@@ -587,7 +600,7 @@ $course-padding:5px 30px 5px 30px;
    color: $fnt-color;
    border-radius: 20px;
    min-width: 220px;
-   box-shadow: 3px 3px 5px rgb(173, 173, 173);
+   box-shadow: 3px 3px 5px rgb(236, 226, 226);
    position: relative;
    overflow: hidden;
 }
@@ -622,7 +635,7 @@ $course-padding:5px 30px 5px 30px;
     margin-top: -10px;
     overflow-x:auto;
     scroll-behavior: smooth;
-    width: 600px;
+    width: 660px;
     // height: 400px;
     .course-card{
         @include course-card-content($light-theme-inner-lightcard-cardcolor,$light-theme-inner-lightcard-textcolor);

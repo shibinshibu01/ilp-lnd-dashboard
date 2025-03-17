@@ -215,6 +215,7 @@ body {
   margin-bottom: -4px;
   font-family: poppins-semibold;
   font-size: 34.36px;
+  margin-left: 20px;
   color: #DC143B;
 }
 .total-hours__number:hover {
@@ -547,14 +548,14 @@ body {
   margin-top: -10px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  width: 600px;
+  width: 660px;
 }
 .course-container .course-card {
   background-color: #FEFEFE;
   color: #101010;
   border-radius: 20px;
   min-width: 220px;
-  box-shadow: 3px 3px 5px rgb(173, 173, 173);
+  box-shadow: 3px 3px 5px rgb(236, 226, 226);
   position: relative;
   overflow: hidden;
   width: 300px;
