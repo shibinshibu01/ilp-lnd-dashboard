@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Poppins, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background: gray;
+    padding: 20px;
+}
+
+main {
+    display: flex;
+    flex: 1;
+}
+
+nav {
+    width: 60px;
+    background: #a6a077;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    .sidebar-header {
+        height: 50px;
+        background: #7c9969;
+    }
+    .sidebar-content {
+        flex: 1;
+        background: #5d638e;
+    }
+}
+
+.main-content {
+    flex: 1;
+    background: #936a86;
+}
