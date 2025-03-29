@@ -6,6 +6,11 @@ $sidebar-bg: #F3F3F2;
 $main-bg: #FFFFFF;
 $font-white: #F3F3F2;
 
+@mixin set-flex($direction, $gap) {
+    display: flex;
+    flex-direction: $direction;
+    gap: $gap;
+}
 * {
     margin: 0;
     padding: 0;
@@ -14,16 +19,21 @@ $font-white: #F3F3F2;
 
 body {
     font-family: Poppins, sans-serif;
-    display: flex;
-    flex-direction: column;
+    @include set-flex(column, 0);
     height: 100vh;
     padding: 0;
     margin: 0;
 }
 
 header {
-    background: gray;
+    @include set-flex(row, 922px);
+    background: $red;
     padding: 20px;
+    height: 50px;
+    padding: 12px 25px;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 main {
@@ -33,12 +43,11 @@ main {
 
 nav {
     width: 60px;
-    background: #a6a077;
+    background: $sidebar-bg;
 }
 
 .sidebar {
-    display: flex;
-    flex-direction: column;
+    @include set-flex(column, 0);
     width: 250px;
     .sidebar-header {
         height: 50px;
