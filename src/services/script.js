@@ -294,3 +294,102 @@ function applyFilter() {
             console.error("Error in filtering training data:", error);
         });
 }
+
+
+/////////////////////////////////////////////////////////////////////////
+// Global variable to store fetched data
+// Store filtered data
+
+function fetchTrainingsData() {
+    axios.get("https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings.json")
+        .then(response => {
+            trainingsData = response.data; // Store globally
+            console.log("Fetched Trainings Data:", trainingsData);
+
+            filteredTrainingsData = dayDate(trainingsData);
+            console.log("Initial Filtered Data:", filteredTrainingsData);
+            // Call filter function immediately after fetching data
+
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
+}
+
+
+
+function getFilterValues() {
+    let selects = document.querySelectorAll('.filter__select');
+    let values = {
+        year: selects[0]?.value || null,
+        month: selects[1]?.value || null,
+        quarter: selects[2]?.value || null,
+    };
+    console.log("Selected Filters:", values);
+    return values;
+}
+
+function dayDate(trainings) {
+    console.log("Raw Trainings Data:", trainings);
+
+    if (!trainings || Object.keys(trainings).length === 0) {
+        console.log("No training data available.");
+        return { trainings: {} };
+    }
+
+    let { year, month, quarter } = getFilterValues();
+    if (!year && !month && !quarter) {
+        console.log("No filters selected. Returning full dataset.");
+        return { trainings };
+    }
+
+    if (year == month == quarter == null) {
+        console.log("initial load");
+        return { trainings };
+    }
+
+    console.log(`Filtering for Year: ${year}, Month: ${month}, Quarter: ${quarter}`);
+
+    let quarterMonths = {
+        Q1: ["01", "02", "03"],
+        Q2: ["04", "05", "06"],
+        Q3: ["07", "08", "09"],
+        Q4: ["10", "11", "12"],
+    };
+
+    let filteredTrainings = Object.entries(trainings).reduce((acc, [id, training]) => {
+        if (!training.start_date || !training.start_date.includes("-")) {
+            console.log(`Training ${id} has an invalid start_date`, training);
+            return acc;
+        }
+
+        let [trainingYear, trainingMonth] = training.start_date.split("-");
+        trainingMonth = trainingMonth.padStart(2, "0"); // Ensure leading zero for single-digit months
+        console.log(`Training ${id}: Year = ${trainingYear}, Month = ${trainingMonth}`);
+
+        let match =
+            (year && !month && !quarter && trainingYear === year) ||
+            (year && month && trainingYear === year && trainingMonth === month) ||
+            (year && quarter && trainingYear === year && quarterMonths[quarter]?.includes(trainingMonth));
+
+        if (match) acc[id] = training;
+        return acc;
+    }, {});
+
+    console.log("Filtered Trainings:", filteredTrainings);
+    return { trainings: filteredTrainings };
+}
+
+function fetchAndFilterData() {
+    filteredTrainingsData = dayDate(trainingsData); // Store filtered data globally
+    console.log("Final Filtered Data:", filteredTrainingsData);
+}
+
+// Attach event listeners when DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.filter__select').forEach(select => {
+        select.addEventListener('change', fetchAndFilterData);
+    });
+
+    fetchTrainingsData(); // Fetch data initially and filter it
+});
