@@ -363,10 +363,15 @@ $text-color: #333333;
     align-items: center;
     justify-content: space-between;
     background-color: $white;
+    padding-right: 10px;
+    padding-left: 10px;
 
     &__title {
-        color: $primary-red; // Maroon color
-        margin: 0;
+        color: black; // Maroon color
+        margin: 10px;
+        font-family: Poppins, sans-serif;
+        font-size: 24px;
+        font-weight: 500;
     }
 
     &__filters {
