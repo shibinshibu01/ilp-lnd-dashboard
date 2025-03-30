@@ -61,5 +61,49 @@ nav {
 
 .main-content {
     flex: 1;
-    background: #936a86;
+    background: $main-bg;
 }
+
+.training-title {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: space-between;
+}
+
+.list-headings {
+  margin:10px;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: space-between;
+  p{
+    font-size: 10px;
+    font-weight: 600;
+    color: $font-dark;
+  }
+}
+
+.training-item{
+    @include set-flex(row, 0);
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 10px;
+    margin:10px;
+    border: 1px solid $navbar-bg;
+    box-shadow:grey;
+    border-radius: 5px;
+    #metrics{
+        color:red;
+        font-weight: 600;
+        font-size: 20px;
+      }
+      #type{
+        border: 1px solid $navbar-bg;
+        background-color: #DC143B;
+        text-align: center;
+      }
+}
+
+
+/*# sourceMappingURL=style.scss.map */
