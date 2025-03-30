@@ -32,7 +32,7 @@ function fetchData(type) {
                     return {
                         title: training.training_name,
                         type: training.training_type,
-                        duration: `${training.duration}hrs`,
+                        duration: `${training.duration} hrs`,
                         effectiveness: training.effectiveness_score,
                         trainer: trainerName,
                         employeesAttended: training.employees_attended,
@@ -156,7 +156,7 @@ function generateTableRow(data, category) {
     const headerMap = {
         'Training Programs': [
             'Title', 'Type', 'Duration', 'Effectiveness',
-            'Trainer', 'Employees Attended', 'Attendance %',
+            'Trainer', 'Employees Attended', 'Attendance',
             'Feedback Score', 'Mode', 'Status'
         ],
         'Employees': [
@@ -257,6 +257,7 @@ function applyFilter() {
                     'Total Training Days': () => parseInt(item.totalTrainingDays),
                     'Total Training Programs': () => parseInt(item.totalTrainingPrograms),
                     'Effectiveness Score': () => parseFloat(item.effectiveness)
+
                 };
 
                 const getItemValue = filterValueMap[secondFilter];
