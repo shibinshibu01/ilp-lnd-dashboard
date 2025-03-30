@@ -61,5 +61,26 @@ nav {
 
 .main-content {
     flex: 1;
-    background: #936a86;
+    background:#FFFFFF;
+    .course-title-metrics{
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        .course-metrics{
+            display: flex;
+            justify-content: space-between;
+            .metric-one,.metric-two,.metric-three,.metric-four{
+                margin-right: 20px;
+            }
+        }
+        .metric-value{
+            color:#DC143B;
+            text-align: center;
+        }
+        .metric-description{
+            font-size: 11px;
+            text-align: center;
+        }
+    }
 }
+
