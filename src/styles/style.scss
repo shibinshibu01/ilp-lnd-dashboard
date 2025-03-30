@@ -42,10 +42,51 @@ main {
     flex: 1;
 }
 
-nav {
-    width: 60px;
+.navbar {
+    width: 70px;
     background: $sidebar-bg;
+    display: flex;
+    justify-content: center;
+    padding: 14px;
+
+    .navbar-list {
+        @include set-flex(column, 5px); 
+        list-style: none;
+        
+        .navbar-list__items {
+            @include set-flex(column, 0px);
+        }
+    }
 }
+
+.navbar-list__link {
+    text-decoration: none;
+    color: $navbar-color;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 10px;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken($sidebar-bg, 10%); 
+        color: $red;
+    }
+
+    .navbar-list__icons {
+        color: $navbar-color;
+
+        &:hover {
+            color: $red;
+          }
+    }    
+    
+    .navbar-list__icons--active {
+        color: $red;
+    }           
+}
+
 
 .sidebar {
     @include set-flex(column, 0);
