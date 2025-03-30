@@ -300,21 +300,7 @@ function applyFilter() {
 // Global variable to store fetched data
 // Store filtered data
 
-function fetchTrainingsData() {
-    axios.get("https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings.json")
-        .then(response => {
-            trainingsData = response.data; // Store globally
-            console.log("Fetched Trainings Data:", trainingsData);
 
-            filteredTrainingsData = dayDate(trainingsData);
-            console.log("Initial Filtered Data:", filteredTrainingsData);
-            // Call filter function immediately after fetching data
-
-        })
-        .catch(error => {
-            console.error("Error fetching data:", error);
-        });
-}
 
 
 
@@ -391,5 +377,5 @@ document.addEventListener("DOMContentLoaded", () => {
         select.addEventListener('change', fetchAndFilterData);
     });
 
-    fetchTrainingsData(); // Fetch data initially and filter it
+    // fetchTrainingsData(); // Fetch data initially and filter it
 });
