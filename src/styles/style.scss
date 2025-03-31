@@ -541,7 +541,7 @@ $text-color: #333333;
 }
 
 .stats-homebar {
-    margin-top: 70px;
+    margin-top: 80px;
     position: relative;
 
     .stats-card {
@@ -565,6 +565,8 @@ $text-color: #333333;
             text-align: center;
             font-size: 12.41px;
             font-weight: 500;
+            line-height: 1.3;
+            display: block;
         }
     }
 }
