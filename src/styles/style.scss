@@ -163,20 +163,20 @@ main {
 }
 
 
-.sidebar {
-    @include set-flex(column, 0);
-    width: 250px;
+// .sidebar {
+//     @include set-flex(column, 0);
+//     width: 250px;
 
-    .sidebar-header {
-        height: 50px;
-        background: #7c9969;
-    }
+//     .sidebar-header {
+//         height: 50px;
+//         background: #7c9969;
+//     }
 
-    .sidebar-content {
-        flex: 1;
-        background: #5d638e;
-    }
-}
+//     .sidebar-content {
+//         flex: 1;
+//         background: #5d638e;
+//     }
+// }
 
 .main-content {
     flex: 1;
@@ -535,7 +535,8 @@ $text-color: #333333;
         }
     }
 }
-/* Sidebar Styles */
+
+/* Sidebar Styling of litto */
 .sidebar {
     background-color:$sidebar-bg;
     width: 300px;
