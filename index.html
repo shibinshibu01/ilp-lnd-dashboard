@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <header>
@@ -36,15 +37,45 @@
                 <li><img src="src/assets/input-icon.svg" alt="Home Icon"></li>
             </ul>
         </nav>
-        
+
         <div class="sidebar">
             <div class="sidebar-header">Sidebar Header</div>
             <div class="sidebar-content">Sidebar Content</div>
         </div>
 
         <div class="main-content">
-            Main Content
+            <div class="main-content--custom--filter">
+                <div class="filter-container">
+                    <div class="filter-header">Apply Filter</div>
+                    <div class="filter-wrapper">
+                        <select class="filter-select" id="mainCategory" onchange="updateSecondFilter()">
+                            <option>Select Category</option>
+                            <option>Training Programs</option>
+                            <option>Employees</option>
+                            <option>Trainers</option>
+                        </select>
+                        <select class="filter-select" id="secondFilter" onchange="updateThirdFilter()"">
+                            <option>Select condition</option>
+                        </select>
+                        <select class=" filter-select" id="thirdFilter">
+                            <option>Select condition</option>
+                        </select>
+                        <input type="text" placeholder="Value" class="filter-input" id="filterValue">
+                        <button class="filter-button" onclick="applyFilter()">Filter</button>
+                    </div>
+
+                    <table id="resultsTable" class="training-table">
+                        <thead id="tableHeader">
+                            <!-- Dynamically populated header -->
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Dynamically populated rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <section class="course-modal">
+                <button class="back-button">Back</button> 
                 <div class="course-title-metrics">
                     <div class="course-title">
                         <h1></h1>
@@ -52,19 +83,19 @@
                     <div class="course-metrics">
                         <div class="metric-one">
                             <h1 class="metric-value"></h1>
-                            <p class="metric-description"></p>
+                            <p class="metric-description">Attendance<br>Percentage</p>
                         </div>
                         <div class="metric-two">
                             <h1 class="metric-value"></h1>
-                            <p class="metric-description"></p>
+                            <p class="metric-description">Employees<br>Trained</p>
                         </div>
                         <div class="metric-three">
                             <h1 class="metric-value"></h1>
-                            <p class="metric-description"></p>
+                            <p class="metric-description">Feedback<br>Score</p>
                         </div>
                         <div class="metric-four">
                             <h1 class="metric-value"></h1>
-                            <p class="metric-description"></p>
+                            <p class="metric-description">Effectiveness<br>Score</p>
                         </div>
                     </div>
                 </div>
@@ -78,19 +109,19 @@
                             <p class="course-description"></p>
                         </div>
                         <div class="target-audience">
-                            <h3>Target Audience</h3>
+                            <h3 class="course-audience"><span class="course-audience-span"></span></h3>
                         </div>
                         <div class="course-date-duration">
-                            <h3 class="date-duration"></h3>
+                            <h3 class="date-duration"><span class="date-duration-span"></span></h3>
                         </div>
                         <div class="trainer">
-                            <h3 class="trainer-title">Trainer: <span class="trainer-name"></span></h3>
+                            <h3 class="trainer-title"><span class="trainer-name"></span></h3>
                         </div>
                         <div class="course-status">
-                            <h3>Status: <span class="course-status-label"></span></h3>
+                            <h3 class="status-title"><span class="course-status-label"></span></h3>
                         </div>
                         <div class="course-topics">
-                            <h3>Topics:</h3>
+                            <h3 class="topic-title"></h3>
                             <ul class="topics-list">
                                 <li class="topic-item"></li>
                             </ul>
@@ -100,12 +131,22 @@
                         <div class="employee-header">
                             <h2>Employees</h2>
                             <div class="employee-status">
-                                <p>Select Status</p>
+                                <div class="dropdown">
+                                    <button class="dropdown-btn"></button>
+                                    <ul class="dropdown-menu">
+                                        <li data-value="all"></li>
+                                        <li data-value="Marketing"></li>
+                                        <li data-value="Engineering"></li>
+                                        <li data-value="HR"></li>
+                                        <li data-value="Finance"></li>
+                                        <li data-value="Sales"></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div class="employee-card">
                             <div class="employee-image">
-                                <img src="./src/assets/user-pic.svg">
+                                <img src="./src/assets/employees-icon.svg">
                             </div>
                             <div class="employee-info">
                                 <h3 class="employee-name"></h3>
