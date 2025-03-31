@@ -5,6 +5,13 @@ $navbar-bg: #E7E5E4;
 $sidebar-bg: #F3F3F2;
 $main-bg: #FFFFFF;
 $font-white: #F3F3F2;
+$lang-color:#CAFDFF;
+$soft-skill-color:#FFD1DA;
+$tech-color:#C4D5FF;
+$completed:#10810A;
+$scheduled:#810A0C;
+$in-progress:#9CA011;
+
 
 @mixin set-flex($direction, $gap) {
     display: flex;
@@ -39,6 +46,8 @@ header {
 main {
     display: flex;
     flex: 1;
+    overflow: hidden;
+    scrollbar-width: none;
 }
 
 nav {
@@ -62,6 +71,7 @@ nav {
 .main-content {
     flex: 1;
     background: $main-bg;
+    overflow-y: auto;
 }
 
 .training-title {
@@ -69,41 +79,146 @@ nav {
   flex-direction: row;
   gap: 0;
   justify-content: space-between;
+  h1{
+    font-size: 30px;
+    font-weight: 700;
+    color: $font-dark;
+    margin: 10px;
+  }
 }
 
-.list-headings {
+.training-headings {
   margin:10px;
   display: flex;
   flex-direction: row;
-  gap: 0;
-  justify-content: space-between;
+  gap:10px;
+  margin: 10px;
+  // justify-content: space-between;
   p{
     font-size: 10px;
     font-weight: 600;
     color: $font-dark;
   }
+  #title-heading{
+    flex:2.5;
+  }
+  #type-heading{
+    flex:1;
+  }
+  #duration-heading,#target-heading{
+    flex:.7;
+  }
+  #trainer-heading{
+    flex:1;
+  }
+  #attendence-heading,#feedback-heading,#mode-heading{
+    flex:1;
+  }
+  #percentage-heading{
+    flex:.5;
+  }
+    #status-heading{
+        flex:1.2;
+        
+    }
 }
 
 .training-item{
-    @include set-flex(row, 0);
+    @include set-flex(row, 1);
     justify-content: space-between;
     box-sizing: border-box;
     padding: 10px;
-    margin:10px;
+    margin:5px;
     border: 1px solid $navbar-bg;
     box-shadow:grey;
     border-radius: 5px;
+    margin: 10px;
+    #training__title{
+        font-size: 18px;
+        font-weight: 550;
+        color: $red;
+        align-items: center;
+        margin: auto;
+        flex:2;
+    }
+    #type{
+        border: 1px solid $navbar-bg;
+        text-align: center;
+        margin:auto;
+        margin-left: 10px;
+        padding:5px;
+        border-radius: 5px;
+        flex:1;
+      }
+    #duration{
+        text-align: center;
+        margin:auto;
+        margin-left: 15px;;
+        padding:5px;
+        border-radius: 5px;
+        flex:.5;
+      }
+    
+    
+    #target_audience,#trainer{
+        flex: 1;
+        text-align: center;
+        margin:auto;
+        padding: 5px;
+    }
+
     #metrics{
-        color:red;
+       flex:.5;
+        color:$red;
+        padding:10px;
         font-weight: 600;
         font-size: 20px;
-      }
-      #type{
-        border: 1px solid $navbar-bg;
-        background-color: #DC143B;
+        margin:auto;
         text-align: center;
+      }
+
+    #mode{
+        border: 1px solid $red;;
+        text-align: center;
+        color:$red;
+        flex:1;
+        align-items: center;
+        padding: 5px;
+        margin:auto;
+        border-radius: 5px;
+      }
+      #status{
+        font-size: 15px;
+        text-align: center;
+        align-items: center;
+        margin:auto;
+        margin-left: 10px;
+        flex:1;
+        float: right;
       }
 }
 
-
+.soft-skills{
+  background-color: $soft-skill-color;
+}
+.language{
+  background-color: $lang-color;
+}
+.technical{
+  background-color: $tech-color;
+}
 /*# sourceMappingURL=style.scss.map */
+
+.completed{
+  color: $completed;
+}
+
+.scheduled{
+color: $scheduled;
+}
+
+.in-progress{
+    color: $in-progress;
+}
+
+.main-content::-webkit-scrollbar { display: none; }
