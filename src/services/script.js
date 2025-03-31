@@ -379,3 +379,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // fetchTrainingsData(); // Fetch data initially and filter it
 });
+
+
+
+//Homebar Stats
+
+let totalCourseHours = 0;
+
+if (data.courses) {
+    Object.values(data.courses).forEach(course => {
+        totalCourseHours += course.duration || 0;
+    });
+}
+
+document.querySelector('.total-hours__entry__course .total-hours__number').textContent = totalCourseHours
