@@ -163,21 +163,6 @@ main {
 }
 
 
-// .sidebar {
-//     @include set-flex(column, 0);
-//     width: 250px;
-
-//     .sidebar-header {
-//         height: 50px;
-//         background: #7c9969;
-//     }
-
-//     .sidebar-content {
-//         flex: 1;
-//         background: #5d638e;
-//     }
-// }
-
 .main-content {
     flex: 1;
     background: #936a86;
@@ -575,6 +560,19 @@ $text-color: #333333;
     position: relative;
 }
 
+.sidebar .sidebar-content {
+    overflow-y: auto;
+    height: 405px;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge, and Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
 .sidebar .sidebar-content .sidebar-section h4 {
     font-size: 15px;
     margin-bottom: 15px;
@@ -633,7 +631,7 @@ $text-color: #333333;
 .sidebar .sidebar-content .sidebar-section ul li .rank-label,
 .sidebar .sidebar-content .sidebar-section ul li .stat-label {
     font-size: 5px;
-    color: #6B7280;
+    color: $text-color;
     font-weight: 600;
     flex: row; 
     text-align: center; 
