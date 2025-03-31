@@ -15,9 +15,9 @@
 </head>
 
 <body>
-
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <header>
         <div class="logo">
             <img src="src/assets/logo-experion.svg" alt="Experion Technologies">
@@ -112,11 +112,37 @@
                             <option value="Q4">Q4</option>
                         </select>
                     </div>
-
-
-
                 </div>
             </div>
+            
+            <div class="stats-homebar">
+                <div class="stats-card">
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="ongoingTraining">0</p>
+                        <span class="training-stat__label">Ongoing<br>Trainings</span>
+                    </div>
+                
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="completedTraining">0</p>
+                        <span class="training-stat__label">Completed<br>Training</span>
+                    </div>
+                
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="employeesTrained">0</p>
+                        <span class="training-stat__label">Employees<br>Trained</span>
+                    </div>
+                
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="trainingDays">0</p>
+                        <span class="training-stat__label">Training<br> Days</span>
+                    </div>
+                
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="traineeDays">0</p>
+                        <span class="training-stat__label">Trainee<br>Days</span>
+                    </div>
+                </div>                                 
+            </div>           
 
             <div class="main-content--custom--filter">
                 <div class="filter-container">

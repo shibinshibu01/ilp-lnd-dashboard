@@ -566,3 +566,88 @@ function initializeDropdown() {
             dropdown.classList.remove("active");
         }
     });}
+
+
+
+//Homebar Stats
+const database = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/";
+
+const tables = ["trainings.json","employees.json","trainers.json","departments.json"];
+
+const getUrl = (table) => `${database}${table}`;
+
+const fetchDataFromFire = async (table) => {
+    try {
+        const response = await axios.get(getUrl(table));
+        return response.data; 
+    } catch (error) {
+        console.error('Axios Error:', error);
+        return null; 
+    }
+}
+
+const updateTrainings = async () => {
+    const trainingData = await fetchDataFromFire(tables[0]); 
+    let ongoingTrainings = 0;
+    let completedTrainings = 0;
+    let trainingDays = 0;
+
+    if (trainingData) {
+        Object.values(trainingData).forEach(trainings => {
+            if (trainings.status === "in-progress") {
+                ongoingTrainings++;
+            }else if (trainings.status === "completed") {
+                completedTrainings++;
+            }  
+            if (trainings.duration) {
+                trainingDays += parseInt(trainings.duration);
+            }
+        });
+    }
+
+    const ongoingTrainingElement = document.getElementById("ongoingTraining");
+    const completedTrainingElement = document.getElementById("completedTraining");
+    const trainingDaysElement = document.getElementById("trainingDays");
+    if (ongoingTrainingElement) {
+        ongoingTrainingElement.textContent = ongoingTrainings;
+    }
+    if (completedTrainingElement) {
+        completedTrainingElement.textContent = completedTrainings;
+    }
+    if (trainingDaysElement) {
+        trainingDaysElement.textContent = trainingDays/8;
+    }
+};
+
+const updateEmployees = async () => {
+    const employeeData = await fetchDataFromFire(tables[1]);
+    let trainedEmployeesCount = 0;
+    let traineeDays = 0;
+
+    if (employeeData) {
+        Object.values(employeeData).forEach(employee => {
+            if (employee.total_training_days > 0) {
+                trainedEmployeesCount++;
+            }
+            if (employee.total_training_days) {
+                traineeDays += parseInt(employee.total_training_days);
+            }
+        });
+    }
+
+    const trainedEmployeesElement = document.getElementById("employeesTrained");
+    const traineeDaysElement = document.getElementById("traineeDays");
+    if (trainedEmployeesElement) {
+        trainedEmployeesElement.textContent = trainedEmployeesCount;
+    }
+    if (traineeDaysElement) {
+        traineeDaysElement.textContent = traineeDays/8;
+    }
+}
+window.onload = () => {
+    updateTrainings();
+    updateEmployees();
+    
+    setInterval(updateTrainings, 2000);
+    setInterval(updateEmployees, 2000);
+};
