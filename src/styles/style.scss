@@ -542,5 +542,11 @@ $text-color: #333333;
 
 .stats-homebar {
     margin-top: 70px;
-    
+    position: relative;
+
+    .stats-card {
+        position: absolute;
+        @include set-flex(row,20px);
+        right: 70px;
+    }
 }
