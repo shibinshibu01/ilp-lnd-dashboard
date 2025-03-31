@@ -544,27 +544,27 @@ $text-color: #333333;
 .filter-container {
     background-color: $white;
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    padding: 20px 30px;
+    width: 97%;
+    padding: 30px 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
-
 .filter-header {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     color: $text-color;
     display: inline-block;
-    margin-right: 20px;
     vertical-align: middle;
 }
 
 .filter-wrapper {
+    margin-top: 20px;
     display: inline-flex;
-    gap: 15px;
+    gap: 8px;
     align-items: center;
     flex-wrap: wrap;
     vertical-align: middle;
+    margin-right: 4px;
 }
-
 .filter-select {
     position: relative;
     min-width: 150px;
@@ -824,13 +824,7 @@ $text-color: #333333;
     margin-top: 160px;
 }
 
-.filter-container {
-    background-color: $white;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-    padding: 10px;
-    padding-right: -50px;
-}
+
 
 .filter-header {
     font-size: 22px;
@@ -842,14 +836,7 @@ $text-color: #333333;
     vertical-align: top;
 }
 
-.filter-wrapper {
-    display: inline-flex;
-    gap: 15px;
-    align-items: center;
-    flex-wrap: wrap;
-    vertical-align: middle;
-    margin-right: 4px;
-}
+
 
 .filter-select {
     position: relative;

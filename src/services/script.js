@@ -590,7 +590,7 @@ const updateTrainings = async () => {
     const trainingData = await fetchDataFromFire(tables[0]); 
     let ongoingTrainings = 0;
     let completedTrainings = 0;
-    let trainingDays = 0;
+    let trainingHours = 0;
 
     if (trainingData) {
         Object.values(trainingData).forEach(trainings => {
@@ -600,23 +600,34 @@ const updateTrainings = async () => {
                 completedTrainings++;
             }  
             if (trainings.duration) {
-                trainingDays += parseInt(trainings.duration);
+                trainingHours += parseInt(trainings.duration);
             }
         });
     }
 
     const ongoingTrainingElement = document.getElementById("ongoingTraining");
     const completedTrainingElement = document.getElementById("completedTraining");
-    const trainingDaysElement = document.getElementById("trainingDays");
+    const trainingHoursElement = document.getElementById("trainingHours");
     if (ongoingTrainingElement) {
         ongoingTrainingElement.textContent = ongoingTrainings;
     }
     if (completedTrainingElement) {
         completedTrainingElement.textContent = completedTrainings;
     }
-    if (trainingDaysElement) {
-        trainingDaysElement.textContent = trainingDays/8;
+    if (trainingHoursElement) {
+        trainingHoursElement.textContent = Math.round(trainingHours / 8);
     }
+    let isOriginalState = true;
+    trainingHoursElement.parentElement.addEventListener("click", () => {
+        if (isOriginalState) {
+            trainingHoursElement.textContent = trainingHours; 
+            document.getElementById("trainingHoursLabel").innerHTML = "Training<br>Hours";
+        } else {
+            trainingHoursElement.textContent = Math.round(trainingHours / 8);
+            document.getElementById("trainingHoursLabel").innerHTML = "Training<br>Days";
+        }
+        isOriginalState = !isOriginalState; 
+    });
 };
 
 const updateEmployees = async () => {
@@ -641,13 +652,21 @@ const updateEmployees = async () => {
         trainedEmployeesElement.textContent = trainedEmployeesCount;
     }
     if (traineeDaysElement) {
-        traineeDaysElement.textContent = traineeDays/8;
+        traineeDaysElement.textContent = traineeDays;
     }
+    let isOriginalState = true;
+    traineeDaysElement.parentElement.addEventListener("click", () => {
+        if (isOriginalState) {
+            traineeDaysElement.textContent = traineeDays; 
+            document.getElementById("traineeDaysLabel").innerHTML = "Trainee<br>Days";
+        } else {
+            traineeDaysElement.textContent = traineeDays*8; 
+            document.getElementById("traineeDaysLabel").innerHTML = "Trainee<br>Hours";
+        }
+        isOriginalState = !isOriginalState; 
+    });
 }
 window.onload = () => {
     updateTrainings();
     updateEmployees();
-    
-    setInterval(updateTrainings, 2000);
-    setInterval(updateEmployees, 2000);
 };
