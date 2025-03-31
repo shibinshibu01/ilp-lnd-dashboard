@@ -11,6 +11,7 @@ $font-white: #F3F3F2;
     flex-direction: $direction;
     gap: $gap;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -33,7 +34,7 @@ header {
     padding: 12px 25px;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 main {
@@ -45,21 +46,361 @@ nav {
     width: 60px;
     background: $sidebar-bg;
 }
-
-.sidebar {
-    @include set-flex(column, 0);
-    width: 250px;
-    .sidebar-header {
-        height: 50px;
-        background: #7c9969;
-    }
-    .sidebar-content {
-        flex: 1;
-        background: #5d638e;
-    }
-}
-
 .main-content {
     flex: 1;
     background: #936a86;
 }
+
+.main-content--custom--filter {
+    background-color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+:root {
+    --primary-red: #E31E54;
+    --soft-skills-pink: #FFE5E5;
+    --language-training-blue: #E5F6FF;
+    --online-blue: #0075FF;
+    --offline-yellow: #FFC700;
+    --upcoming-red: #E31E54;
+    --ongoing-yellow: #FFC700;
+}
+
+/* Base & Table Styles */
+/* Table styles */
+.training-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Table header */
+.training-table thead th {
+    color: #6B7280;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+/* Table body */
+.training-table tbody tr {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.training-table tbody tr:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.training-table tbody td {
+    padding: 16px;
+    vertical-align: middle;
+}
+
+/* Title column styling */
+.training-table tbody td:first-child {
+    color: #E31E54;
+    font-weight: 600;
+}
+
+/* Type tag styling */
+.type-tag {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Type-specific styling */
+.type-tag.type-type-soft-skills {
+    background-color: #FFE5E5;
+    color: #D32F2F;
+}
+
+.type-tag.type-type-language-training {
+    background-color: #E5F6FF;
+    color: #0075FF;
+}
+
+/* Mode styling */
+.type-tag.type-mode-online,
+.type-tag.type-mode-offline,
+.type-tag.type-mode-hybrid {
+    color: #D32F2F;
+    border: 1px solid #D32F2F;
+    background-color: white;
+}
+
+
+/* Status styling */
+.type-tag.type-status-upcoming {
+    color: #E31E54;
+    font-weight: 600;
+    background-color: transparent;
+    padding: 0;
+}
+
+.type-tag.type-status-ongoing {
+    color: #FFC700;
+    font-weight: 600;
+    background-color: transparent;
+    padding: 0;
+}
+
+/* Number styling for attendance, feedback, etc. */
+.training-table td:nth-child(4),
+.training-table td:nth-child(7),
+.training-table td:nth-child(8) {
+    font-size: 20px;
+    font-weight: 600;
+    color: #E31E54;
+}
+
+/* Hours text styling */
+.training-table td:nth-child(3) {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.training-table td:nth-child(5) {
+    font-size: 12px;
+    // font-weight: 600;
+}
+
+/* Filter container styles */
+// Variables
+$primary-red: #E31E54;
+$background-color: #f5f5f5;
+$white: #ffffff;
+$border-color: #e0e0e0;
+$text-color: #333333;
+
+// Variables
+$primary-red: #E31E54;
+$background-color: #f5f5f5;
+$white: #ffffff;
+$border-color: #e0e0e0;
+$text-color: #333333;
+
+// Filter component styles
+.main-content--custom--filter {
+    padding: 20px;
+    margin: 0px;;
+}
+
+.filter-container {
+    background-color: $white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px 30px;
+}
+
+.filter-header {
+    font-size: 22px;
+    font-weight: 600;
+    color: $text-color;
+    display: inline-block;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+.filter-wrapper {
+    display: inline-flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    vertical-align: middle;
+}
+
+.filter-select {
+    position: relative;
+    min-width: 150px;
+    padding: 12px 15px;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    background-color: $background-color;
+    font-size: 12px;
+    color: $text-color;
+    appearance: none;
+    cursor: pointer;
+    padding-right: 35px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' fill='none'%3E%3Cpath fill='%23E31E54' d='M6 6 0 0h12L6 6Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+}
+
+.filter-input {
+    min-width: 120px;
+    padding: 12px 15px;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    background-color: $background-color;
+    font-size: 14px;
+    color: $text-color;
+}
+
+.filter-button {
+    padding: 12px 25px;
+    background-color: $primary-red;
+    color: $white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: darken($primary-red, 8%);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .training-table thead {
+        display: none;
+    }
+
+    .training-table tbody,
+    .training-table tr,
+    .training-table td {
+        display: block;
+    }
+
+    .training-table tr {
+        margin-bottom: 12px;
+    }
+
+    .training-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .training-table td:before {
+        content: attr(data-label);
+        font-weight: 500;
+        color: #6B7280;
+    }
+}
+/* Sidebar Styles */
+.sidebar {
+    background-color:$sidebar-bg;
+    width: 300px;
+    padding: 20px;
+    height: 100%;
+}
+
+.sidebar .sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar .sidebar-header img {
+    width: 45px;
+    height: 45px;
+}
+
+.sidebar .sidebar-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: #2C2C2C;
+}
+
+.sidebar .sidebar-header p {
+    font-size: 12px;
+    color: #E31E54;
+    margin: 0;
+}
+
+.sidebar .sidebar-content .sidebar-section {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.sidebar .sidebar-content .sidebar-section h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #2C2C2C;
+    font-weight: 600;
+}
+
+.sidebar .sidebar-section .view-all {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    font-size: 12px;
+    color: #E31E54;
+    text-decoration: none;
+}
+
+.sidebar .sidebar-content .sidebar-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar .sidebar-content .sidebar-section ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar .sidebar-content .sidebar-section ul li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .sidebar-content .sidebar-section ul li .header-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; // Ensure full width for alignment
+    margin-bottom: 5px; // Spacing below the header row
+}
+
+.sidebar .sidebar-content .sidebar-section ul li .value-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; // Align items vertically in the center
+    width: 100%; // Ensure full width for alignment
+    margin-top: 5px; // Spacing above the value row
+}
+
+.sidebar .sidebar-content .sidebar-section ul li .rank-label,
+.sidebar .sidebar-content .sidebar-section ul li .stat-label {
+    font-size: 5px;
+    color: #6B7280;
+    font-weight: 600;
+    flex: row; // Equal width for alignment
+    text-align: center; // Center-align text
+}
+
+.sidebar .sidebar-content .sidebar-section ul li .rank-number,
+.sidebar .sidebar-content .sidebar-section ul li .department-name,
+.sidebar .sidebar-content .sidebar-section ul li .stat-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: #2C2C2C;
+    text-align: center; // Center-align text
+    flex: 1; // Equal width for alignment
+    text-wrap:nowrap; // Prevent text wrapping
+}
+

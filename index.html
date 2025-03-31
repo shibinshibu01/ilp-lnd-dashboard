@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <header>
@@ -36,14 +37,71 @@
                 <li><img src="src/assets/input-icon.svg" alt="Home Icon"></li>
             </ul>
         </nav>
-        
+
         <div class="sidebar">
-            <div class="sidebar-header">Sidebar Header</div>
-            <div class="sidebar-content">Sidebar Content</div>
+            <div class="sidebar-header">
+                <img src="src/assets/user-pic.svg" alt="User Avatar">
+                <div>
+                    <h3>Jordan S Ben</h3>
+                    <p>Associate - L&D</p>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <h4>Departments</h4>
+                    <a href="#" class="view-all">View all</a>
+                    <ul id="topDepartments">
+                        <!-- Dynamically populated -->
+                    </ul>
+                </div>
+                <div class="sidebar-section">
+                    <h4>Trainees</h4>
+                    <a href="#" class="view-all">View all</a>
+                    <ul id="topTrainees">
+                        <!-- Dynamically populated -->
+                    </ul>
+                </div>
+                <div class="sidebar-section">
+                    <h4>Trainers</h4>
+                    <a href="#" class="view-all">View all</a>
+                    <ul id="topTrainers">
+                        <!-- Dynamically populated -->
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="main-content">
-            Main Content
+            <div class="main-content--custom--filter">
+                <div class="filter-container">
+                    <div class="filter-header">Apply Filter</div>
+                    <div class="filter-wrapper">
+                        <select class="filter-select" id="mainCategory" onchange="updateSecondFilter()">
+                            <option>Select Category</option>
+                            <option>Training Programs</option>
+                            <option>Employees</option>
+                            <option>Trainers</option>
+                        </select>
+                        <select class="filter-select" id="secondFilter" onchange="updateThirdFilter()">
+                            <option>Select condition</option>
+                        </select>
+                        <select class="filter-select" id="thirdFilter">
+                            <option>Select condition</option>
+                        </select>
+                        <input type="text" placeholder="Value" class="filter-input" id="filterValue">
+                        <button class="filter-button" onclick="applyFilter()">Filter</button>
+                    </div>
+
+                    <table id="resultsTable" class="training-table">
+                        <thead id="tableHeader">
+                            <!-- Dynamically populated header -->
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Dynamically populated rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </main>
 
