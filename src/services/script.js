@@ -379,6 +379,193 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // fetchTrainingsData(); // Fetch data initially and filter it
 });
+//training program modal
+// JavaScript for the Training Modal
+const trainingModalurl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings.json";
+const trainersUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainers.json";
+const employeesUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/employees.json";
+const departmentsUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/departments.json";
+
+let data = null;
+let trainers = null;
+let employees = null;
+let departments = null;
+
+Promise.all([
+    axios.get(trainingModalurl),
+    axios.get(trainersUrl),
+    axios.get(employeesUrl),
+    axios.get(departmentsUrl)
+])
+.then(([trainingsResponse, trainersResponse, employeesResponse, departmentsResponse]) => {
+    data = trainingsResponse.data;
+    trainers = trainersResponse.data;
+    employees = employeesResponse.data;
+    departments = departmentsResponse.data;
+
+    console.log("Fetched trainings:", data);
+    console.log("Fetched trainers:", trainers);
+    console.log("Fetched employees:", employees);
+    console.log("Fetched departments:", departments);
+    
+    loadTrainingDetails(trainingId);
+    initializeDropdown();
+})
+.catch(error => console.error('Error fetching data:', error));
+
+function loadTrainingDetails(trainingId) {
+    if (!data || !trainers || !employees || !departments) {
+        console.error("Data not available yet.");
+        return;
+    }
+
+    const training = data[trainingId];
+    if (!training) {
+        console.error("Training ID not found:", trainingId);
+        return;
+    }
+
+    const trainerId = training.trainer;
+    const trainerName = trainers[trainerId] ? trainers[trainerId].name : "Unknown Trainer";
+
+    console.log("Loading training details for:", trainingId, training);
+
+    const trainingContainer = document.querySelector('.course-modal-details');
+    const titleMetricsContainer = document.querySelector('.course-title-metrics');
+
+    trainingContainer.innerHTML = '';
+
+    
+    titleMetricsContainer.querySelector('.course-title h1').textContent = training.training_name;
+    titleMetricsContainer.querySelector('.metric-one .metric-value').textContent = training.attendance + "%";
+    titleMetricsContainer.querySelector('.metric-two .metric-value').textContent = training.employees_attended;
+    titleMetricsContainer.querySelector('.metric-three .metric-value').textContent = training.feedback_score;
+    titleMetricsContainer.querySelector('.metric-four .metric-value').textContent = training.effectiveness_score;
+
+    const trainingElement = document.createElement('div');
+    trainingElement.className = 'course-details';
+    trainingElement.innerHTML = `
+        <div class="type-mode">
+            <button class="btn-type" data-type="${training.training_type}">${training.training_type}</button>
+            <button class="btn-mode">${training.mode}</button>
+        </div>
+        <div class="description">
+            <p class="course-description">${training.training_description}</p>
+        </div>
+        <div class="target-audience">
+            <h3 class="course-audience">Target Audience: <span class="course-audience-span">${"DU" + parseInt(training.target_audience.replace("dept", ""), 10)}</span></h3>
+        </div>
+        <div class="course-date-duration">
+            <h3 class="date-duration">Date: <span class="date-duration-span">${training.start_date} to ${training.end_date} (${training.duration} hrs)</span></h3>
+        </div>
+        <div class="trainer">
+            <h3 class="trainer-title">Trainer: <span class="trainer-name">${trainerName}</span></h3>
+        </div>
+        <div class="course-status">
+            <h3 class="status-title">Status: <span class="course-status-label" data-status="${training.status}">${training.status}</span></h3>
+        </div>
+        <div class="course-topics">
+            <h3 class="topic-title">Topics:</h3>
+            <ul class="topics-list">
+                ${training.topics.map(topic => `<li class="topic-item">${topic}</li>`).join('')}
+            </ul>
+        </div>
+    `;
+
+    trainingContainer.appendChild(trainingElement);
+
+    const employeeListHTML = training.attendees.map(empId => {
+        const employee = employees[empId] || {};
+        const empName = employee.emp_name || "Unknown Employee";
+        const empDepartmentId = employee.emp_department || "Unknown Department";
+        const empAttendance = employee.trainings_done?.[trainingId]?.attendance || "N/A";
+        const empDepartment = departments[empDepartmentId]?.department_name || "Unknown";
+
+        return `
+            <div class="employee-card" data-department="${empDepartment}">
+                <div class="employee-image">
+                    <img src="./src/assets/employees-icon.svg">
+                </div>
+                <div class="employee-info">
+                    <h3 class="employee-name">${empName}</h3>
+                    <p class="employee-attendance">Attendance: ${empAttendance}%</p>
+                </div>
+                <div class="employee-department">
+                    <p class="department-label">Department</p>
+                    <h3 class="department-name">${empDepartment}</h3>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    const employeeDetailsElement = document.createElement('div');
+    employeeDetailsElement.className = 'employee-details';
+    employeeDetailsElement.innerHTML = `
+        <div class="employee-header">
+            <h2>Employees</h2>
+            <div class="employee-status">
+                <div class="dropdown">
+                    <button class="dropdown-btn">Select Status</button>
+                    <ul class="dropdown-menu">
+                        <li data-value="all">All</li>
+                        <li data-value="Marketing">Marketing</li>
+                        <li data-value="Engineering">Engineering</li>
+                        <li data-value="HR">HR</li>
+                        <li data-value="Finance">Finance</li>
+                        <li data-value="Sales">Sales</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="employeeList">${employeeListHTML}</div>
+    `;
+
+    trainingContainer.appendChild(employeeDetailsElement);
+
+    document.addEventListener("click", (event) => {
+        if (event.target.classList.contains("back-button")) {
+            document.querySelector(".course-modal").style.display = "none";
+        }
+    });
+}
+function initializeDropdown() {
+    const dropdown = document.querySelector(".dropdown");
+    const dropdownBtn = document.querySelector(".dropdown-btn");
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+    const employeeCards = document.querySelectorAll(".employee-card");
+
+    if (!dropdown || !dropdownBtn || !dropdownMenu) {
+        console.error("Dropdown elements not found.");
+        return;
+    }
+
+    dropdownBtn.addEventListener("click", function(event) {
+        event.stopPropagation();
+        dropdown.classList.toggle("active");
+    });
+
+    dropdownMenu.addEventListener("click", function(event) {
+        if (event.target.tagName === "LI") {
+            const selectedDepartment = event.target.getAttribute("data-value");
+            dropdownBtn.textContent = event.target.textContent;
+
+            employeeCards.forEach(card => {
+                if (selectedDepartment === "all" || card.dataset.department === selectedDepartment) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            dropdown.classList.remove("active"); 
+        }
+    });
+
+    document.addEventListener("click", function(event) {
+        if (!dropdown.contains(event.target)) {
+            dropdown.classList.remove("active");
+        }
+    });}
 
 
 
