@@ -1,4 +1,5 @@
 $red: #DC143B;
+$red-lighter: #FFDEE4;
 $font-dark: #2C2C2C;
 $navbar-color: #5C5C5C;
 $navbar-bg: #E7E5E4;
@@ -27,7 +28,7 @@ body {
 }
 
 header {
-    @include set-flex(row, 922px);
+    @include set-flex(row, 10px);
     background: $red;
     padding: 20px;
     height: 60px;
@@ -37,6 +38,75 @@ header {
     align-items: center;
     position: fixed;
     z-index: 100;
+
+    .logo {
+        flex: 1;
+    }
+
+    .search-bar {
+        flex: 0.7;
+        @include set-flex(row, 0px);
+
+        .global-search {
+            width: 500px;
+            height: 40px;
+            padding: 10px 0px 10px 50px;
+            border-radius: 5px 0px 0px 5px;
+            border: none;
+            font-size: 14px;
+            color: $red;
+            background-color: $red-lighter;
+            background-image: url('../assets/search-icon.svg');
+            background-size: 22px;
+            background-repeat: no-repeat;
+            background-position: 15px center;
+
+            &::placeholder {
+                color: $red;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .global-search__dropdown {
+            position: relative;
+            display: inline-block;
+            width: 200px;
+            height: 40px;
+            padding: 0px 20px;
+            border-radius: 0 5px 5px 0;
+            border: none;
+            background-color: $font-dark;
+            color: $font-white;
+            font-size: 12px;
+            font-weight: 500;
+            appearance: none;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' fill='none'%3E%3Cpath fill='%23E31E54' d='M6 6 0 0h12L6 6Z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 10px;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: darken($font-dark, 10%);
+            }
+
+            &:focus {
+                outline: none;
+                background-color: darken($font-dark, 10%);
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            option {
+                background: $font-dark;
+                color: $font-white;
+                font-size: 12px;
+                font-weight: 500;
+            }
+        }
+    }    
 }
 
 main {
@@ -467,4 +537,3 @@ $text-color: #333333;
     }
 }
 
-///asw
