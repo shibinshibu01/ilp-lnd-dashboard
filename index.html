@@ -23,18 +23,46 @@
             <img src="src/assets/logo-experion.svg" alt="Experion Technologies">
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Search">
-            <button>Search</button>
+            <input type="text" placeholder="Search" class="global-search">
+            <select class="global-search__dropdown">
+                <option value="Training Programs">Training Programs</option>
+                <option value="Employees">Employees</option>
+                <option value="Trainers">Trainers</option>
+            </select>
         </div>
     </header>
 
     <main>
-        <nav>
-            <ul>
-                <li><img src="src/assets/home-icon.svg" alt="Home Icon"></li>
-                <li><img src="src/assets/training-icon.svg" alt="Home Icon"></li>
-                <li><img src="src/assets/employees-icon.svg" alt="Home Icon"></li>
-                <li><img src="src/assets/input-icon.svg" alt="Home Icon"></li>
+        <nav class="navbar">
+            <ul class="navbar-list">
+                <li class="navbar-list__items">
+                    <a href="#" class="navbar-list__link" id="homeLink">
+                        <svg class="navbar-list__icons navbar-list__icons--active" width="44" height="48">
+                            <use xlink:href="src/assets/icons.svg#home"></use>
+                        </svg>
+                    </a>
+                </li>
+                <li class="navbar-list__items">
+                    <a href="#" class="navbar-list__link" id="trainingsLink">
+                        <svg class="navbar-list__icons" width="44" height="48">
+                            <use xlink:href="src/assets/icons.svg#trainings"></use>
+                        </svg>        
+                    </a>
+                </li>
+                <li class="navbar-list__items">
+                    <a href="#" class="navbar-list__link" id="employeesLink">
+                        <svg class="navbar-list__icons" width="44" height="48">
+                            <use xlink:href="src/assets/icons.svg#employees"></use>
+                        </svg>  
+                    </a>
+                </li>
+                <li class="navbar-list__items">
+                    <a href="#" class="navbar-list__link" id="inputLink">
+                        <svg class="navbar-list__icons" width="44" height="48">
+                            <use xlink:href="src/assets/icons.svg#input"></use>
+                        </svg>                          
+                    </a>
+                </li>
             </ul>
         </nav>
 
@@ -44,6 +72,52 @@
         </div>
 
         <div class="main-content">
+            <div class="dashboard-header">
+                <h1 class="dashboard-header__title">L&D Dashboard</h1>
+                <div class="dashboard-header__filters">
+                    <div class="filter">
+                        <select class="filter__select">
+                            <option value="">Select Year</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <select class="filter__select">
+                            <option value="">Select Month</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <select class="filter__select">
+                            <option value="">Select Quarter</option>
+                            <option value="Q1">Q1</option>
+                            <option value="Q2">Q2</option>
+                            <option value="Q3">Q3</option>
+                            <option value="Q4">Q4</option>
+                        </select>
+                    </div>
+
+
+
+                </div>
+            </div>
+
             <div class="main-content--custom--filter">
                 <div class="filter-container">
                     <div class="filter-header">Apply Filter</div>
@@ -60,7 +134,7 @@
                         <select class=" filter-select" id="thirdFilter">
                             <option>Select condition</option>
                         </select>
-                        <input type="text" placeholder="Value" class="filter-input" id="filterValue">
+                        <input type="number" step="0.1" placeholder="Value" class="filter-input" id="filterValue">
                         <button class="filter-button" onclick="applyFilter()">Filter</button>
                     </div>
 
