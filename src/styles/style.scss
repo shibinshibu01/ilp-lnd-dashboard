@@ -646,35 +646,3 @@ $text-color: #333333;
     text-align: center;
     text-wrap:nowrap; 
 }
-
-.metrics-container {
-    display: flex;
-    justify-content: space-between;
-    margin: 0px;
-    padding: 0px;
-    background-color: $main-bg;
-    
-}
-.metric-section{
-    margin-left:390px;
-    @include set-flex(row, 0);
-}
-
-.metric {
-    text-align: center;
-    flex: 1;
-    margin: 0 10px;
-}
-
-.metric h2 {
-    font-size: 22px;
-    font-weight: 600;
-    color: $red;
-    margin-bottom: 5px;
-}
-
-.metric p {
-    font-size: 10px;
-    font-weight: 400;
-    color: $font-dark;
-}

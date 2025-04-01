@@ -761,35 +761,3 @@ function populateSidebar() {
 // Call the function on page load
 document.addEventListener('DOMContentLoaded', populateSidebar);
 
-function updateMetrics() {
-    axios.get("https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings.json")
-        .then(response => {
-            const trainings = response.data;
-
-            let ongoingTrainings = 0;
-            let completedTrainings = 0;
-            let employeesTrained = 0;
-            let trainingDays = 0;
-            let traineeDays = 0;
-
-            Object.values(trainings).forEach(training => {
-                if (training.status === "in-progress") ongoingTrainings++;
-                if (training.status === "completed") completedTrainings++;
-                employeesTrained += parseInt(training.employees_attended || 0);
-                trainingDays += parseInt(training.duration || 0);
-                traineeDays += (parseInt(training.duration || 0) * (training.attendees?.length || 0));
-            });
-
-            document.getElementById("ongoingTrainings").textContent = ongoingTrainings;
-            document.getElementById("completedTrainings").textContent = completedTrainings;
-            document.getElementById("employeesTrained").textContent = employeesTrained;
-            document.getElementById("trainingDays").textContent = trainingDays;
-            document.getElementById("traineeDays").textContent = traineeDays;
-        })
-        .catch(error => {
-            console.error("Error fetching training data for metrics:", error);
-        });
-}
-
-// Call the function on page load
-document.addEventListener('DOMContentLoaded', updateMetrics);
