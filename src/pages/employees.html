@@ -67,8 +67,33 @@
         </nav>
 
         <div class="sidebar">
-            <div class="sidebar-header">Sidebar Header</div>
-            <div class="sidebar-content">Sidebar Content</div>
+            <div class="sidebar-header">
+                <img src="../assets/user-pic.svg" alt="User Profile">
+                <div>
+                    <h3>Jordan S Ben</h3>
+                    <p>Associate - L&D</p>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <div class="sidebar-name-filter">
+                        <h4>Employees</h4>
+                        <div class="employee-filter">
+                            <select id="employeeDepartmentFilter" class="filter__select">
+                                <option value="all">All</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="hr">HR</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="finance">Finance</option>
+                                <option value="sales">Sales</option>
+                            </select>
+                        </div>
+                    </div>
+                    <ul id="employeeList">
+                        <!-- Dynamically populated -->
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="main-content">
