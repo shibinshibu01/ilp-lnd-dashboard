@@ -571,9 +571,7 @@ function initializeDropdown() {
 
 //Homebar Stats
 const database = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/";
-
 const tables = ["trainings.json","employees.json","trainers.json","departments.json"];
-
 const getUrl = (table) => `${database}${table}`;
 
 const fetchDataFromFire = async (table) => {
@@ -666,7 +664,257 @@ const updateEmployees = async () => {
         isOriginalState = !isOriginalState; 
     });
 }
+
+//Charts
+
+const updateTrainingCompliance = async () => {
+    const trainingComplianceData = await fetchDataFromFire(tables[0]); 
+    let finishedTrainings = 0;
+    let totalTrainings = 0;
+
+    if (trainingComplianceData) {
+        Object.values(trainingComplianceData).forEach(training => {
+            if (training.status === "completed") {
+                finishedTrainings++;
+            }
+            totalTrainings++; 
+        });
+    }
+
+    const compliancePercentage =Math.round((finishedTrainings / totalTrainings) * 100);
+    const ctx = document.getElementById("complianceChart").getContext("2d");
+
+    if (window.complianceChart && typeof window.complianceChart.destroy === "function") {
+        window.complianceChart.destroy();
+    }
+
+    window.complianceChart = new Chart(ctx, {
+        type: "pie", 
+        data: {
+            labels: ["Completed Trainings", "Pending Trainings"],
+            datasets: [{
+                data: [finishedTrainings, totalTrainings - finishedTrainings],
+                backgroundColor: ["#DC143B", "#E7E5E4"], 
+                borderWidth: 0,
+                cutout: "35%",
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: { display: false },
+                tooltip: { enabled: true }
+            }
+        },
+        plugins: [{
+            id: 'centerText',
+            beforeDraw: function(chart) {
+                const width = chart.width,
+                      height = chart.height,
+                      ctx = chart.ctx;
+
+                ctx.restore();
+                ctx.font = "bold 24px Poppins";
+                ctx.fillStyle = "#DC143B"; 
+                ctx.textBaseline = "middle";
+
+                const text = `${compliancePercentage}%`;
+                const textX = Math.round((width - ctx.measureText(text).width) / 2);
+                const textY = height / 2;
+
+                ctx.fillText(text, textX, textY);
+                ctx.save();
+            }
+        }]
+    });
+    document.getElementById("plannedTrainings").textContent = totalTrainings;
+    document.getElementById("completedTrainings").textContent = finishedTrainings;
+};
+
+const updateDepartmentChart = async () => {
+    const departmentData = await fetchDataFromFire(tables[3]); 
+
+    if (!departmentData) return; 
+
+    let engineeringTrainingHours = 0;
+    let hrTrainingHours = 0;
+    let financeTrainingHours = 0;
+    let marketingTrainingHours = 0;
+    let salesTrainingHours = 0;
+
+    Object.values(departmentData).forEach(department => {
+        switch (department.department_name) { 
+            case "Engineering":
+                engineeringTrainingHours += department.total_training_hours || 0;
+                break;
+            case "HR":
+                hrTrainingHours += department.total_training_hours || 0;
+                break;
+            case "Finance":
+                financeTrainingHours += department.total_training_hours || 0;
+                break;
+            case "Marketing":
+                marketingTrainingHours += department.total_training_hours || 0;
+                break;
+            case "Sales":
+                salesTrainingHours += department.total_training_hours || 0;
+                break;
+        }
+    });
+
+    const departmentDataChart = document.getElementById('departmentOverviewChart').getContext('2d');
+
+    if (window.departmentChart && typeof window.departmentChart.destroy === "function") {
+        window.departmentChart.destroy();
+    }
+
+    window.departmentChart = new Chart(departmentDataChart, {
+        type: 'line',
+        data: {
+            labels: ['HR', 'Marketing', 'Engineering', 'Sales', 'Finance'],
+            datasets: [{
+                data: [hrTrainingHours, marketingTrainingHours, engineeringTrainingHours, salesTrainingHours, financeTrainingHours],
+                backgroundColor: "#DC143B",
+                borderColor: "#DC143B",
+                fill: false,
+                tension: 0.5, 
+                pointRadius: 5,
+                pointBackgroundColor: "#DC143B",
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Number of Training Hours in Each Department',
+                    font: { size: 9 }
+                }
+            }
+        }
+    });
+};
+
+const updateTrainingProgramChart = async () => {
+    const trainingData = await fetchDataFromFire(tables[0]);
+
+    if (!trainingData) return;
+
+    let technicalCourses = 0;
+    let softSkillsCourses = 0;
+    let behavioralCourses = 0;
+
+    Object.values(trainingData).forEach(training => {
+        switch (training.training_type) {
+            case "technical":
+                technicalCourses++;
+                break;
+            case "softskills":
+                softSkillsCourses++;
+                break;
+            default:
+                behavioralCourses++;
+                break;
+        }
+    });
+
+    const trainingProgramChart = document.getElementById('trainingProgramChart').getContext('2d');
+
+    if (window.categoryChart && typeof window.categoryChart.destroy === "function") {
+        window.categoryChart.destroy();
+    }
+
+    window.categoryChart = new Chart(trainingProgramChart, {
+        type: 'bar',
+        data: {
+            labels: ['Technical', 'Soft Skills', 'Behavioral'],
+            datasets: [{
+                data: [technicalCourses, softSkillsCourses, behavioralCourses],
+                backgroundColor: ["#DC143B"],
+                borderRadius: 5, 
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false 
+                },
+                title: {
+                    display: true,
+                    text: 'Number of Trainings in Each Category',
+                    font: { size: 8 }
+                }
+            }
+        }
+    });
+};
+
+const updateTopTraining = async () => {
+    const trainingsData = await fetchDataFromFire(tables[0]); 
+    if (trainingsData) {
+        const sortedByFeedbackTrainings = Object.values(trainingsData)
+            .sort((a, b) => b.feedback_score - a.feedback_score)
+            .slice(0, 3); 
+        
+        const sortedByEffectivenesTrainings = Object.values(trainingsData)
+            .sort((a, b) => b.effectiveness_score - a.effectiveness_score)
+            .slice(0, 3); 
+
+        const topFeedbackContainer = document.getElementById("topFeedbackTrainingChart");
+        topFeedbackContainer.innerHTML = "<p>Based on Feedback Score.</p><br>"; 
+
+        sortedByFeedbackTrainings.forEach(training => {
+            const trainingElement = document.createElement("div");
+            trainingElement.className = "top-training-item";
+            trainingElement.innerHTML = `
+                <h3 class="course-name">${training.training_name}</h3>
+                <span class="course-score">${training.feedback_score}</span>
+            `;
+            topFeedbackContainer.appendChild(trainingElement);
+        });
+
+        const topEffectivenessContainer = document.getElementById("topEffectivenessTrainingChart");
+        topEffectivenessContainer.innerHTML = "<p>Based on Effectiveness Score.</p><br>"; 
+
+        sortedByEffectivenesTrainings.forEach(training => {
+            const trainingElement = document.createElement("div");
+            trainingElement.className = "top-training-item";
+            trainingElement.innerHTML = `
+                <h3 class="course-name">${training.training_name}</h3>
+                <span class="course-score">${training.effectiveness_score}</span>
+            `;
+            topEffectivenessContainer.appendChild(trainingElement);
+        });
+    }
+    
+};
+
 window.onload = () => {
     updateTrainings();
     updateEmployees();
+    updateTrainingCompliance();
+    updateDepartmentChart();
+    updateTrainingProgramChart();
+    updateTopTraining();
 };
+
+
+    
+
