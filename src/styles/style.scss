@@ -123,7 +123,7 @@ main {
 
 .navbar {
     width: 70px;
-    background: $sidebar-bg;
+    background: $navbar-bg;
     display: flex;
     justify-content: center;
     padding: 14px;
@@ -1200,22 +1200,24 @@ $text-color: #333333;
 .sidebar {
     background-color:$sidebar-bg;
     width: 300px;
-    padding: 20px;
+    padding: 10px 20px 20px 20px;
     height: 100%;
 }
 
 .sidebar .sidebar-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
+    gap: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+    padding-top: 0px;
+    margin-top: 0px;;
     border-bottom: 1px solid $border-color;
 }
 
 .sidebar .sidebar-header img {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
 }
 
 .sidebar .sidebar-header h3 {
@@ -1238,7 +1240,7 @@ $text-color: #333333;
 
 .sidebar .sidebar-content {
     overflow-y: auto;
-    height: 405px;
+    height: 500px;
 
     &::-webkit-scrollbar {
         display: none;
