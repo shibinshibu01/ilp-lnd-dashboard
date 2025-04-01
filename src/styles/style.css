@@ -1149,7 +1149,7 @@ main {
   align-items: flex-start;
   background: #FFFFFF;
   border-radius: 12px;
-  padding: 15px 20px;
+  padding: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -1237,8 +1237,10 @@ main {
   font-weight: 450;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-left: 25px;
 }
 .trainer-card__right .trainer-type__value {
+  text-align: center;
   font-size: 17px;
   color: #2C2C2C;
   font-weight: 600;
@@ -1266,6 +1268,80 @@ main {
   outline: none;
   cursor: pointer;
   background-color: #FFFFFF;
+}
+
+.employee-filter {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 25px;
+}
+.employee-filter .filter__select {
+  height: 90%;
+  width: 90%;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  background-color: #FFFFFF;
+}
+
+.employee-sidebar-card {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 0px;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.employee-sidebar-card__left {
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0px;
+}
+.employee-sidebar-card__left h5 {
+  font-size: 12px;
+  font-weight: 500;
+}
+.employee-sidebar-card__left .trainings-attended {
+  font-size: 10px;
+  color: #2C2C2C;
+  font-weight: 450;
+}
+.employee-sidebar-card__left .trainings-attended__value {
+  font-size: 10px;
+  color: #2C2C2C;
+  font-weight: 500;
+}
+
+.employee-sidebar-card__right {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  overflow: hidden;
+  font-size: 8px;
+  text-align: left;
+  color: #2C2C2C;
+  font-weight: 450;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 15px;
+}
+.employee-sidebar-card__right .employee-sidebar-card__value {
+  text-align: left;
+  font-size: 15px;
+  color: #2C2C2C;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1246,7 +1246,7 @@ $text-color: #333333;
     align-items: flex-start;
     background: $main-bg;
     border-radius: 12px;
-    padding: 15px 20px;
+    padding: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -1330,8 +1330,9 @@ $text-color: #333333;
         font-weight: 450;
         text-overflow: ellipsis; 
         white-space: nowrap; 
-    
+        margin-left:25px;
     .trainer-type__value {
+        text-align: center;
         font-size: 17px;
         color: $font-dark;
         font-weight: 600;
@@ -1356,5 +1357,75 @@ $text-color: #333333;
         outline: none;
         cursor: pointer;
         background-color: $main-bg;
+    }
+}
+.employee-filter {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    margin-left:25px;
+    .filter__select {
+        height: 90%;
+        width: 90%;
+        padding: 5px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        outline: none;
+        cursor: pointer;
+        background-color: $main-bg;
+    }
+}
+
+.employee-sidebar-card {
+    @include set-flex(row, 0px);
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    overflow: hidden; 
+    padding: 0px; 
+    box-sizing: border-box; 
+    max-width: 100%;
+}
+
+.employee-sidebar-card__left {
+    text-wrap: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    margin: 0px;
+    h5 {
+        font-size: 12px;
+        font-weight: 500;
+    }
+    .trainings-attended {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 450;
+    }
+    .trainings-attended__value {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 500;
+    }
+}
+
+.employee-sidebar-card__right {
+    @include set-flex(column, 0px);
+    overflow: hidden;
+        font-size: 8px;
+        text-align: left;
+        color: $font-dark;
+        font-weight: 450;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+        margin-left: 15px;
+    
+    .employee-sidebar-card__value{
+        text-align: left;
+        font-size: 15px;
+        color: $font-dark;
+        font-weight: 600;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
     }
 }

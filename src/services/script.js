@@ -1358,3 +1358,72 @@ function populateTrainerSidebar() {
 
 // Call the function on page load
 document.addEventListener('DOMContentLoaded', populateTrainerSidebar);
+
+function populateEmployeeSidebar() {
+    const employeeList = document.getElementById('employeeList');
+    const employeeDepartmentFilter = document.getElementById('employeeDepartmentFilter');
+
+    let allEmployees = []; // Store all employees for filtering
+    let departmentMap = {}; // Map department IDs to names
+
+    // Fetch department data
+    axios.get("https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/departments.json")
+        .then(response => {
+            departmentMap = Object.fromEntries(
+                Object.entries(response.data).map(([id, dept]) => [id, dept.department_name])
+            );
+        })
+        .catch(error => {
+            console.error("Error fetching department data:", error);
+        });
+
+    // Fetch employee data
+    axios.get("https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/employees.json")
+        .then(response => {
+            allEmployees = Object.entries(response.data).map(([id, employee]) => ({
+                id,
+                ...employee,
+                departmentName: departmentMap[employee.emp_department] || "Unknown"
+            }));
+            renderEmployees(allEmployees); // Render all employees initially
+        })
+        .catch(error => {
+            console.error("Error fetching employees data:", error);
+        });
+
+    // Render employees based on filter
+    function renderEmployees(employees) {
+        employeeList.innerHTML = ''; // Clear the list
+        employees.forEach(employee => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <div class="employee-sidebar-card">
+                    <div class="employee-sidebar-card__left">
+                        <h5 class="employee-sidebar-card-name">${employee.emp_name}</h5>
+                        <span class="trainings-attended">Trainings Attended: </span>
+                        <span class="trainings-count">${employee.trainings_done ? Object.keys(employee.trainings_done).length : 0}</span>
+                    </div>
+                    <div class="employee-sidebar-card__right">
+                        <span class="employee-sidebar-card-department">Department</span>
+                        <span class="employee-sidebar-card__value">${employee.departmentName}</span>
+                    </div>
+                </div>
+            `;
+            employeeList.appendChild(li);
+        });
+    }
+
+    // Filter employees on dropdown change
+    employeeDepartmentFilter.addEventListener('change', () => {
+        const selectedDepartment = employeeDepartmentFilter.value;
+        if (selectedDepartment === 'all') {
+            renderEmployees(allEmployees); // Show all employees
+        } else {
+            const filteredEmployees = allEmployees.filter(employee => employee.departmentName.toLowerCase() === selectedDepartment.toLowerCase());
+            renderEmployees(filteredEmployees); // Show filtered employees
+        }
+    });
+}
+
+// Call the function on page load
+document.addEventListener('DOMContentLoaded', populateEmployeeSidebar);
