@@ -522,7 +522,6 @@ main {
 
 .training-table td:nth-child(5) {
   font-size: 12px;
-  font-weight: 600;
 }
 
 /* Filter container styles */
@@ -1330,23 +1329,6 @@ main {
   outline: none;
   cursor: pointer;
   background-color: #FFFFFF;
-}
-
-#searchTraining {
-  width: 40px;
-  height: 40px;
-  margin-top: 5px;
-}
-
-#searchInput {
-  height: 75%;
-  width: 75%;
-  border-radius: 5px;
-  position: relative;
-}
-
-.main-content::-webkit-scrollbar {
-  display: none;
 }
 
 .employee-filter {
