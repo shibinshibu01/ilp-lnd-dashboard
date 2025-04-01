@@ -38,7 +38,7 @@ function fetchData(type) {
                         employeesAttended: training.employees_attended,
                         attendancePercentage: `${training.attendance}%`,
                         feedbackScore: training.feedback_score,
-                        mode: training.mode,
+                        // mode: training.mode,
                         status: training.status,
                         topics: training.topics
                     };
@@ -128,7 +128,7 @@ function setTableHeader(category) {
         'Training Programs': [
             'Title', 'Type', 'Duration', 'Effectiveness',
             'Trainer', 'Employees Attended', 'Attendance %',
-            'Feedback Score', 'Mode', 'Status'
+            'Feedback Score', 'Status'
         ],
         'Employees': [
             'Name', 'Department', 'Total Training Days',
@@ -157,7 +157,7 @@ function generateTableRow(data, category) {
         'Training Programs': [
             'Title', 'Type', 'Duration', 'Effectiveness',
             'Trainer', 'Employees Attended', 'Attendance',
-            'Feedback Score', 'Mode', 'Status'
+            'Feedback Score', 'Status'
         ],
         'Employees': [
             'Name', 'Department', 'Total Training Days',
@@ -178,7 +178,7 @@ function generateTableRow(data, category) {
             data.employeesAttended,
             data.attendancePercentage,
             data.feedbackScore,
-            createTypeTag(data.mode, 'mode'),
+            //createTypeTag(data.mode, 'mode'),
             createTypeTag(data.status, 'status')
         ],
         'Employees': [
@@ -248,7 +248,7 @@ function applyFilter() {
         .then(dataSet => {
             let filteredData = dataSet.filter(item => {
                 if (secondFilter === 'Select condition' || filterValue === '') return true;
-                //console.log("Effectiveness Values:", dataSet.map(item => item.effectiveness));
+
                 const filterValueMap = {
                     'Feedback Score': () => parseFloat(item.feedbackScore),
                     'Duration': () => parseInt(item.duration),
@@ -257,7 +257,6 @@ function applyFilter() {
                     'Total Training Days': () => parseInt(item.totalTrainingDays),
                     'Total Training Programs': () => parseInt(item.totalTrainingPrograms),
                     'Effectiveness Score': () => parseFloat(item.effectiveness)
-
                 };
 
                 const getItemValue = filterValueMap[secondFilter];
@@ -284,8 +283,16 @@ function applyFilter() {
             // Populate table with filtered data
             filteredData.forEach(item => {
                 const row = generateTableRow(item, mainCategory);
+
+                // Add click event listener to the row
+                row.addEventListener('click', () => {
+                    const trainingId = item.id; // Assuming `id` is the unique identifier for each training
+                    loadTrainingDetails(item.key); // Call the function with the training ID
+                });
+
                 tableBody.appendChild(row);
             });
+
             resultsTable.classList.add('training-table');
             // Show/hide table based on results
             resultsTable.classList.toggle('visible', filteredData.length > 0);
@@ -297,8 +304,7 @@ function applyFilter() {
 
 
 /////////////////////////////////////////////////////////////////////////
-// Global variable to store fetched data
-// Store filtered data
+
 
 
 
@@ -397,11 +403,11 @@ Promise.all([
     axios.get(employeesUrl),
     axios.get(departmentsUrl)
 ])
-.then(([trainingsResponse, trainersResponse, employeesResponse, departmentsResponse]) => {
-    data = trainingsResponse.data;
-    trainers = trainersResponse.data;
-    employees = employeesResponse.data;
-    departments = departmentsResponse.data;
+    .then(([trainingsResponse, trainersResponse, employeesResponse, departmentsResponse]) => {
+        data = trainingsResponse.data;
+        trainers = trainersResponse.data;
+        employees = employeesResponse.data;
+        departments = departmentsResponse.data;
 
     console.log("Fetched trainings:", data);
     console.log("Fetched trainers:", trainers);
@@ -432,7 +438,7 @@ function loadTrainingDetails(trainingId) {
 
     trainingContainer.innerHTML = '';
 
-    
+
     titleMetricsContainer.querySelector('.course-title h1').textContent = training.training_name;
     titleMetricsContainer.querySelector('.metric-one .metric-value').textContent = training.attendance + "%";
     titleMetricsContainer.querySelector('.metric-two .metric-value').textContent = training.employees_attended;
@@ -518,46 +524,42 @@ function loadTrainingDetails(trainingId) {
     `;
     trainingContainer.appendChild(employeeDetailsElement);
 
-    document.getElementById("departmentFilter").addEventListener("change", function () {
-        const selectedDepartment = this.value;
-        document.querySelectorAll(".employee-card").forEach(card => {
-            if (selectedDepartment === "all" || card.dataset.department === selectedDepartment) {
-                card.style.display = "flex";
-            } else {
-                card.style.display = "none";
-            }
-        });
-    });
-
     document.addEventListener("click", (event) => {
         if (event.target.classList.contains("back-button")) {
             document.querySelector(".course-modal").style.display = "none";
         }
     });
 }
-function handleEmployeeClick(empId) {
-    document.querySelector(".course-modal").style.display = "none";
-    displayEmployeeTrainings(empId, employees, data);
-}
+
+document.getElementById("departmentFilter").addEventListener("change", function () {
+    const selectedDepartment = this.value;
+    document.querySelectorAll(".employee-card").forEach(card => {
+        if (selectedDepartment === "all" || card.dataset.department === selectedDepartment) {
+            card.style.display = "flex";
+        } else {
+            card.style.display = "none";
+        }
+    });
+
 
 
 //Homebar Stats
 const database = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/";
-const tables = ["trainings.json","employees.json","trainers.json","departments.json"];
+const tables = ["trainings.json", "employees.json", "trainers.json", "departments.json"];
 const getUrl = (table) => `${database}${table}`;
 
 const fetchDataFromFire = async (table) => {
     try {
         const response = await axios.get(getUrl(table));
-        return response.data; 
+        return response.data;
     } catch (error) {
         console.error('Axios Error:', error);
-        return null; 
+        return null;
     }
 }
 
 const updateTrainings = async () => {
-    const trainingData = await fetchDataFromFire(tables[0]); 
+    const trainingData = await fetchDataFromFire(tables[0]);
     let ongoingTrainings = 0;
     let completedTrainings = 0;
     let trainingHours = 0;
@@ -566,9 +568,9 @@ const updateTrainings = async () => {
         Object.values(trainingData).forEach(trainings => {
             if (trainings.status === "in-progress") {
                 ongoingTrainings++;
-            }else if (trainings.status === "completed") {
+            } else if (trainings.status === "completed") {
                 completedTrainings++;
-            }  
+            }
             if (trainings.duration) {
                 trainingHours += parseInt(trainings.duration);
             }
@@ -590,13 +592,13 @@ const updateTrainings = async () => {
     let isOriginalState = true;
     trainingHoursElement.parentElement.addEventListener("click", () => {
         if (isOriginalState) {
-            trainingHoursElement.textContent = trainingHours; 
+            trainingHoursElement.textContent = trainingHours;
             document.getElementById("trainingHoursLabel").innerHTML = "Training<br>Hours";
         } else {
             trainingHoursElement.textContent = Math.round(trainingHours / 8);
             document.getElementById("trainingHoursLabel").innerHTML = "Training<br>Days";
         }
-        isOriginalState = !isOriginalState; 
+        isOriginalState = !isOriginalState;
     });
 };
 
@@ -627,20 +629,20 @@ const updateEmployees = async () => {
     let isOriginalState = true;
     traineeDaysElement.parentElement.addEventListener("click", () => {
         if (isOriginalState) {
-            traineeDaysElement.textContent = traineeDays; 
+            traineeDaysElement.textContent = traineeDays;
             document.getElementById("traineeDaysLabel").innerHTML = "Trainee<br>Days";
         } else {
-            traineeDaysElement.textContent = traineeDays*8; 
+            traineeDaysElement.textContent = traineeDays * 8;
             document.getElementById("traineeDaysLabel").innerHTML = "Trainee<br>Hours";
         }
-        isOriginalState = !isOriginalState; 
+        isOriginalState = !isOriginalState;
     });
 }
 
 //Charts
 
 const updateTrainingCompliance = async () => {
-    const trainingComplianceData = await fetchDataFromFire(tables[0]); 
+    const trainingComplianceData = await fetchDataFromFire(tables[0]);
     let finishedTrainings = 0;
     let totalTrainings = 0;
 
@@ -649,11 +651,11 @@ const updateTrainingCompliance = async () => {
             if (training.status === "completed") {
                 finishedTrainings++;
             }
-            totalTrainings++; 
+            totalTrainings++;
         });
     }
 
-    const compliancePercentage =Math.round((finishedTrainings / totalTrainings) * 100);
+    const compliancePercentage = Math.round((finishedTrainings / totalTrainings) * 100);
     const ctx = document.getElementById("complianceChart").getContext("2d");
 
     if (window.complianceChart && typeof window.complianceChart.destroy === "function") {
@@ -661,12 +663,12 @@ const updateTrainingCompliance = async () => {
     }
 
     window.complianceChart = new Chart(ctx, {
-        type: "pie", 
+        type: "pie",
         data: {
             labels: ["Completed Trainings", "Pending Trainings"],
             datasets: [{
                 data: [finishedTrainings, totalTrainings - finishedTrainings],
-                backgroundColor: ["#DC143B", "#E7E5E4"], 
+                backgroundColor: ["#DC143B", "#E7E5E4"],
                 borderWidth: 0,
                 cutout: "35%",
             }]
@@ -681,14 +683,14 @@ const updateTrainingCompliance = async () => {
         },
         plugins: [{
             id: 'centerText',
-            beforeDraw: function(chart) {
+            beforeDraw: function (chart) {
                 const width = chart.width,
-                      height = chart.height,
-                      ctx = chart.ctx;
+                    height = chart.height,
+                    ctx = chart.ctx;
 
                 ctx.restore();
                 ctx.font = "bold 24px Poppins";
-                ctx.fillStyle = "#DC143B"; 
+                ctx.fillStyle = "#DC143B";
                 ctx.textBaseline = "middle";
 
                 const text = `${compliancePercentage}%`;
@@ -705,9 +707,9 @@ const updateTrainingCompliance = async () => {
 };
 
 const updateDepartmentChart = async () => {
-    const departmentData = await fetchDataFromFire(tables[3]); 
+    const departmentData = await fetchDataFromFire(tables[3]);
 
-    if (!departmentData) return; 
+    if (!departmentData) return;
 
     let engineeringTrainingHours = 0;
     let hrTrainingHours = 0;
@@ -716,7 +718,7 @@ const updateDepartmentChart = async () => {
     let salesTrainingHours = 0;
 
     Object.values(departmentData).forEach(department => {
-        switch (department.department_name) { 
+        switch (department.department_name) {
             case "Engineering":
                 engineeringTrainingHours += department.total_training_hours || 0;
                 break;
@@ -750,7 +752,7 @@ const updateDepartmentChart = async () => {
                 backgroundColor: "#DC143B",
                 borderColor: "#DC143B",
                 fill: false,
-                tension: 0.5, 
+                tension: 0.5,
                 pointRadius: 5,
                 pointBackgroundColor: "#DC143B",
             }]
@@ -813,7 +815,7 @@ const updateTrainingProgramChart = async () => {
             datasets: [{
                 data: [technicalCourses, softSkillsCourses, behavioralCourses],
                 backgroundColor: ["#DC143B"],
-                borderRadius: 5, 
+                borderRadius: 5,
             }]
         },
         options: {
@@ -826,7 +828,7 @@ const updateTrainingProgramChart = async () => {
             },
             plugins: {
                 legend: {
-                    display: false 
+                    display: false
                 },
                 title: {
                     display: true,
@@ -839,18 +841,18 @@ const updateTrainingProgramChart = async () => {
 };
 
 const updateTopTraining = async () => {
-    const trainingsData = await fetchDataFromFire(tables[0]); 
+    const trainingsData = await fetchDataFromFire(tables[0]);
     if (trainingsData) {
         const sortedByFeedbackTrainings = Object.values(trainingsData)
             .sort((a, b) => b.feedback_score - a.feedback_score)
-            .slice(0, 3); 
-        
+            .slice(0, 3);
+
         const sortedByEffectivenesTrainings = Object.values(trainingsData)
             .sort((a, b) => b.effectiveness_score - a.effectiveness_score)
-            .slice(0, 3); 
+            .slice(0, 3);
 
         const topFeedbackContainer = document.getElementById("topFeedbackTrainingChart");
-        topFeedbackContainer.innerHTML = "<p>Based on Feedback Score.</p><br>"; 
+        topFeedbackContainer.innerHTML = "<p>Based on Feedback Score.</p><br>";
 
         sortedByFeedbackTrainings.forEach(training => {
             const trainingElement = document.createElement("div");
@@ -863,7 +865,7 @@ const updateTopTraining = async () => {
         });
 
         const topEffectivenessContainer = document.getElementById("topEffectivenessTrainingChart");
-        topEffectivenessContainer.innerHTML = "<p>Based on Effectiveness Score.</p><br>"; 
+        topEffectivenessContainer.innerHTML = "<p>Based on Effectiveness Score.</p><br>";
 
         sortedByEffectivenesTrainings.forEach(training => {
             const trainingElement = document.createElement("div");
@@ -875,7 +877,7 @@ const updateTopTraining = async () => {
             topEffectivenessContainer.appendChild(trainingElement);
         });
     }
-    
+
 };
 
 window.onload = () => {
@@ -888,5 +890,5 @@ window.onload = () => {
 };
 
 
-    
+
 
