@@ -458,6 +458,7 @@ main {
 .training-table tbody td:first-child {
   color: #E31E54;
   font-weight: 600;
+  font-size: 15px;
 }
 
 /* Type tag styling */
@@ -473,11 +474,13 @@ main {
 .type-tag.type-type-soft-skills {
   background-color: #FFE5E5;
   color: #D32F2F;
+  align-items: center;
 }
 
 .type-tag.type-type-language-training {
   background-color: #E5F6FF;
   color: #0075FF;
+  align-items: center;
 }
 
 /* Mode styling */
@@ -487,6 +490,16 @@ main {
   color: #D32F2F;
   border: 1px solid #D32F2F;
   background-color: white;
+}
+
+.mode {
+  color: #D32F2F;
+  border: 1px solid #D32F2F;
+  border: 1px solid #DC143B;
+  text-align: center;
+  border-radius: 5px;
+  margin: auto;
+  padding: 10px;
 }
 
 /* Status styling */
@@ -521,6 +534,7 @@ main {
 
 .training-table td:nth-child(5) {
   font-size: 12px;
+  font-weight: 600;
 }
 
 /* Filter container styles */
@@ -724,6 +738,8 @@ main {
   background-color: transparent;
   padding: 7px;
   background-color: #8d96e1;
+  text-align: center;
+  justify-content: center;
 }
 
 .type-tag.type-type-softskills {
@@ -732,6 +748,7 @@ main {
   background-color: transparent;
   padding: 7px;
   background-color: #8de1cd;
+  align-self: center;
 }
 
 .type-tag.type-type-technical {
@@ -784,6 +801,12 @@ main {
 
 .training-table td:nth-child(5) {
   font-size: 12px;
+  font-weight: 600;
+}
+
+.training-table td:nth-child(6) {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 /* Filter container styles */
@@ -1090,15 +1113,21 @@ main {
 }
 
 .completed {
-  color: #DC143B;
+  color: #5ce31e;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .scheduled {
-  color: #DC143B;
+  color: #FFC700;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .in-progress {
-  color: #DC143B;
+  color: #E31E54;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 /*# sourceMappingURL=style.css.map */
