@@ -407,9 +407,6 @@ Promise.all([
     console.log("Fetched trainers:", trainers);
     console.log("Fetched employees:", employees);
     console.log("Fetched departments:", departments);
-    
-    loadTrainingDetails(trainingId);
-    initializeDropdown();
 })
 .catch(error => console.error('Error fetching data:', error));
 
@@ -442,11 +439,13 @@ function loadTrainingDetails(trainingId) {
     titleMetricsContainer.querySelector('.metric-three .metric-value').textContent = training.feedback_score;
     titleMetricsContainer.querySelector('.metric-four .metric-value').textContent = training.effectiveness_score;
 
+    const trainingTypeFormatted = training.training_type.charAt(0).toUpperCase() + training.training_type.slice(1);
+    const trainingStatusFormatted = training.status.charAt(0).toUpperCase() + training.status.slice(1);
     const trainingElement = document.createElement('div');
     trainingElement.className = 'course-details';
     trainingElement.innerHTML = `
         <div class="type-mode">
-            <button class="btn-type" data-type="${training.training_type}">${training.training_type}</button>
+            <button class="btn-type" data-type="${training.training_type}">${trainingTypeFormatted}</button>
             <button class="btn-mode">${training.mode}</button>
         </div>
         <div class="description">
@@ -462,7 +461,7 @@ function loadTrainingDetails(trainingId) {
             <h3 class="trainer-title">Trainer: <span class="trainer-name">${trainerName}</span></h3>
         </div>
         <div class="course-status">
-            <h3 class="status-title">Status: <span class="course-status-label" data-status="${training.status}">${training.status}</span></h3>
+            <h3 class="status-title">Status: <span class="course-status-label" data-status="${training.status}">${trainingStatusFormatted}</span></h3>
         </div>
         <div class="course-topics">
             <h3 class="topic-title">Topics:</h3>
@@ -482,7 +481,7 @@ function loadTrainingDetails(trainingId) {
         const empDepartment = departments[empDepartmentId]?.department_name || "Unknown";
 
         return `
-            <div class="employee-card" data-department="${empDepartment}">
+            <div class="employee-card" data-department="${empDepartment}" onclick="handleEmployeeClick('${empId}')">
                 <div class="employee-image">
                     <img src="./src/assets/employees-icon.svg">
                 </div>
@@ -504,23 +503,31 @@ function loadTrainingDetails(trainingId) {
         <div class="employee-header">
             <h2>Employees</h2>
             <div class="employee-status">
-                <div class="dropdown">
-                    <button class="dropdown-btn">Select Status</button>
-                    <ul class="dropdown-menu">
-                        <li data-value="all">All</li>
-                        <li data-value="Marketing">Marketing</li>
-                        <li data-value="Engineering">Engineering</li>
-                        <li data-value="HR">HR</li>
-                        <li data-value="Finance">Finance</li>
-                        <li data-value="Sales">Sales</li>
-                    </ul>
-                </div>
+                <select id="departmentFilter" class="custom-select">
+                    <option value="" disabled selected>Select Status</option>
+                    <option value="all">All</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="HR">HR</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Sales">Sales</option>
+                </select>
             </div>
         </div>
         <div id="employeeList">${employeeListHTML}</div>
     `;
-
     trainingContainer.appendChild(employeeDetailsElement);
+
+    document.getElementById("departmentFilter").addEventListener("change", function () {
+        const selectedDepartment = this.value;
+        document.querySelectorAll(".employee-card").forEach(card => {
+            if (selectedDepartment === "all" || card.dataset.department === selectedDepartment) {
+                card.style.display = "flex";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    });
 
     document.addEventListener("click", (event) => {
         if (event.target.classList.contains("back-button")) {
@@ -528,45 +535,10 @@ function loadTrainingDetails(trainingId) {
         }
     });
 }
-function initializeDropdown() {
-    const dropdown = document.querySelector(".dropdown");
-    const dropdownBtn = document.querySelector(".dropdown-btn");
-    const dropdownMenu = document.querySelector(".dropdown-menu");
-    const employeeCards = document.querySelectorAll(".employee-card");
-
-    if (!dropdown || !dropdownBtn || !dropdownMenu) {
-        console.error("Dropdown elements not found.");
-        return;
-    }
-
-    dropdownBtn.addEventListener("click", function(event) {
-        event.stopPropagation();
-        dropdown.classList.toggle("active");
-    });
-
-    dropdownMenu.addEventListener("click", function(event) {
-        if (event.target.tagName === "LI") {
-            const selectedDepartment = event.target.getAttribute("data-value");
-            dropdownBtn.textContent = event.target.textContent;
-
-            employeeCards.forEach(card => {
-                if (selectedDepartment === "all" || card.dataset.department === selectedDepartment) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-
-            dropdown.classList.remove("active"); 
-        }
-    });
-
-    document.addEventListener("click", function(event) {
-        if (!dropdown.contains(event.target)) {
-            dropdown.classList.remove("active");
-        }
-    });}
-
+function handleEmployeeClick(empId) {
+    document.querySelector(".course-modal").style.display = "none";
+    displayEmployeeTrainings(empId, employees, data);
+}
 
 
 //Homebar Stats
