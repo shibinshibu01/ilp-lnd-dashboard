@@ -371,19 +371,31 @@ function dayDate(trainings) {
     return { trainings: filteredTrainings };
 }
 
-function fetchAndFilterData() {
-    filteredTrainingsData = dayDate(trainingsData); // Store filtered data globally
-    console.log("Final Filtered Data:", filteredTrainingsData);
-}
 
 // Attach event listeners when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     document.querySelectorAll('.filter__select').forEach(select => {
         select.addEventListener('change', fetchAndFilterData);
     });
 
-    // fetchTrainingsData(); // Fetch data initially and filter it
+    // Load charts with full dataset on initial load
+    await fetchAndFilterData();
 });
+///////////////////////////////added 1-4-25
+
+async function fetchAndFilterData() {
+    const trainingData = await fetchDataFromFire(tables[0]);
+
+    if (!trainingData) return;
+
+    const { trainings: filteredTrainings } = dayDate(trainingData);
+
+    updateTrainingProgramChart(filteredTrainings);
+    updateTopTraining(filteredTrainings);
+    updateTrainingCompliance(filteredTrainings);
+    updateTrainings(filteredTrainings);
+}
+///////////////////////////////added 1-4-25
 //training program modal
 // JavaScript for the Training Modal
 const trainingModalurl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings.json";
@@ -590,8 +602,7 @@ const fetchDataFromFire = async (table) => {
     }
 }
 
-const updateTrainings = async () => {
-    const trainingData = await fetchDataFromFire(tables[0]);
+const updateTrainings = async (trainingData) => {
     let ongoingTrainings = 0;
     let completedTrainings = 0;
     let trainingHours = 0;
@@ -612,6 +623,7 @@ const updateTrainings = async () => {
     const ongoingTrainingElement = document.getElementById("ongoingTraining");
     const completedTrainingElement = document.getElementById("completedTraining");
     const trainingHoursElement = document.getElementById("trainingHours");
+
     if (ongoingTrainingElement) {
         ongoingTrainingElement.textContent = ongoingTrainings;
     }
@@ -621,6 +633,7 @@ const updateTrainings = async () => {
     if (trainingHoursElement) {
         trainingHoursElement.textContent = Math.round(trainingHours / 8);
     }
+
     let isOriginalState = true;
     trainingHoursElement.parentElement.addEventListener("click", () => {
         if (isOriginalState) {
@@ -671,10 +684,7 @@ const updateEmployees = async () => {
     });
 }
 
-//Charts
-
-const updateTrainingCompliance = async () => {
-    const trainingComplianceData = await fetchDataFromFire(tables[0]);
+const updateTrainingCompliance = async (trainingComplianceData) => {
     let finishedTrainings = 0;
     let totalTrainings = 0;
 
@@ -687,10 +697,10 @@ const updateTrainingCompliance = async () => {
         });
     }
 
-    const compliancePercentage = Math.round((finishedTrainings / totalTrainings) * 100);
+    const compliancePercentage = totalTrainings > 0 ? Math.round((finishedTrainings / totalTrainings) * 100) : 0;
     const ctx = document.getElementById("complianceChart").getContext("2d");
 
-    if (window.complianceChart && typeof window.complianceChart.destroy === "function") {
+    if (window.complianceChart?.destroy) {
         window.complianceChart.destroy();
     }
 
@@ -734,6 +744,7 @@ const updateTrainingCompliance = async () => {
             }
         }]
     });
+
     document.getElementById("plannedTrainings").textContent = totalTrainings;
     document.getElementById("completedTrainings").textContent = finishedTrainings;
 };
@@ -811,9 +822,7 @@ const updateDepartmentChart = async () => {
     });
 };
 
-const updateTrainingProgramChart = async () => {
-    const trainingData = await fetchDataFromFire(tables[0]);
-
+const updateTrainingProgramChart = async (trainingData) => {
     if (!trainingData) return;
 
     let technicalCourses = 0;
@@ -836,7 +845,7 @@ const updateTrainingProgramChart = async () => {
 
     const trainingProgramChart = document.getElementById('trainingProgramChart').getContext('2d');
 
-    if (window.categoryChart && typeof window.categoryChart.destroy === "function") {
+    if (window.categoryChart?.destroy) {
         window.categoryChart.destroy();
     }
 
@@ -846,7 +855,7 @@ const updateTrainingProgramChart = async () => {
             labels: ['Technical', 'Soft Skills', 'Behavioral'],
             datasets: [{
                 data: [technicalCourses, softSkillsCourses, behavioralCourses],
-                backgroundColor: ["#DC143B"],
+                backgroundColor: ["#DC143B", "#DC143B", "#DC143B"],
                 borderRadius: 5,
             }]
         },
@@ -854,32 +863,24 @@ const updateTrainingProgramChart = async () => {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                y: {
-                    beginAtZero: true
-                }
+                y: { beginAtZero: true }
             },
             plugins: {
-                legend: {
-                    display: false
-                },
-                title: {
-                    display: true,
-                    text: 'Number of Trainings in Each Category',
-                    font: { size: 8 }
-                }
+                legend: { display: false },
+                title: { display: true, text: 'Number of Trainings in Each Category', font: { size: 8 } }
             }
         }
     });
 };
 
-const updateTopTraining = async () => {
-    const trainingsData = await fetchDataFromFire(tables[0]);
+
+const updateTopTraining = async (trainingsData) => {
     if (trainingsData) {
         const sortedByFeedbackTrainings = Object.values(trainingsData)
             .sort((a, b) => b.feedback_score - a.feedback_score)
             .slice(0, 3);
 
-        const sortedByEffectivenesTrainings = Object.values(trainingsData)
+        const sortedByEffectivenessTrainings = Object.values(trainingsData)
             .sort((a, b) => b.effectiveness_score - a.effectiveness_score)
             .slice(0, 3);
 
@@ -899,7 +900,7 @@ const updateTopTraining = async () => {
         const topEffectivenessContainer = document.getElementById("topEffectivenessTrainingChart");
         topEffectivenessContainer.innerHTML = "<p>Based on Effectiveness Score.</p><br>";
 
-        sortedByEffectivenesTrainings.forEach(training => {
+        sortedByEffectivenessTrainings.forEach(training => {
             const trainingElement = document.createElement("div");
             trainingElement.className = "top-training-item";
             trainingElement.innerHTML = `
@@ -909,8 +910,8 @@ const updateTopTraining = async () => {
             topEffectivenessContainer.appendChild(trainingElement);
         });
     }
-
 };
+
 
 window.onload = () => {
     updateTrainings();
@@ -964,7 +965,7 @@ function fetchData(type) {
                         employeesAttended: training.employees_attended,
                         attendancePercentage: `${training.attendance}%`,
                         feedbackScore: training.feedback_score,
-                
+
                         status: training.status,
                         topics: training.topics
                     };
