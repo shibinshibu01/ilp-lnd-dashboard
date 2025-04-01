@@ -248,7 +248,7 @@ function applyFilter() {
         .then(dataSet => {
             let filteredData = dataSet.filter(item => {
                 if (secondFilter === 'Select condition' || filterValue === '') return true;
-                //console.log("Effectiveness Values:", dataSet.map(item => item.effectiveness));
+
                 const filterValueMap = {
                     'Feedback Score': () => parseFloat(item.feedbackScore),
                     'Duration': () => parseInt(item.duration),
@@ -257,7 +257,6 @@ function applyFilter() {
                     'Total Training Days': () => parseInt(item.totalTrainingDays),
                     'Total Training Programs': () => parseInt(item.totalTrainingPrograms),
                     'Effectiveness Score': () => parseFloat(item.effectiveness)
-
                 };
 
                 const getItemValue = filterValueMap[secondFilter];
@@ -284,8 +283,16 @@ function applyFilter() {
             // Populate table with filtered data
             filteredData.forEach(item => {
                 const row = generateTableRow(item, mainCategory);
+
+                // Add click event listener to the row
+                row.addEventListener('click', () => {
+                    const trainingId = item.id; // Assuming `id` is the unique identifier for each training
+                    loadTrainingDetails(); // Call the function with the training ID
+                });
+
                 tableBody.appendChild(row);
             });
+
             resultsTable.classList.add('training-table');
             // Show/hide table based on results
             resultsTable.classList.toggle('visible', filteredData.length > 0);
@@ -297,8 +304,7 @@ function applyFilter() {
 
 
 /////////////////////////////////////////////////////////////////////////
-// Global variable to store fetched data
-// Store filtered data
+
 
 
 
