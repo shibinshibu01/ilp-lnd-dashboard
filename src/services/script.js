@@ -414,6 +414,7 @@ Promise.all([
     console.log("Fetched employees:", employees);
     console.log("Fetched departments:", departments);
 })
+
 .catch(error => console.error('Error fetching data:', error));
 
 function loadTrainingDetails(trainingId) {
@@ -540,16 +541,11 @@ function loadTrainingDetails(trainingId) {
         }
     });
 }
+
 function handleEmployeeClick(empId) {
     document.querySelector(".course-modal").style.display = "none";
     displayEmployeeTrainings(empId, employees, data);
 }
-
-    
-
-    
-        
-    
 
 
 
