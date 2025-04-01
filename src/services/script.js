@@ -38,7 +38,6 @@ function fetchData(type) {
                         employeesAttended: training.employees_attended,
                         attendancePercentage: `${training.attendance}%`,
                         feedbackScore: training.feedback_score,
-                        mode: training.mode,
                         status: training.status,
                         topics: training.topics
                     };
@@ -958,7 +957,7 @@ function fetchData(type) {
                         employeesAttended: training.employees_attended,
                         attendancePercentage: `${training.attendance}%`,
                         feedbackScore: training.feedback_score,
-                        mode: training.mode,
+                
                         status: training.status,
                         topics: training.topics
                     };
@@ -1048,7 +1047,7 @@ function setTableHeader(category) {
         'Training Programs': [
             'Title', 'Type', 'Duration', 'Effectiveness',
             'Trainer', 'Employees Attended', 'Attendance %',
-            'Feedback Score', 'Mode', 'Status'
+            'Feedback Score', 'Status'
         ],
         'Employees': [
             'Name', 'Department', 'Total Training Days',
@@ -1077,7 +1076,7 @@ function generateTableRow(data, category) {
         'Training Programs': [
             'Title', 'Type', 'Duration', 'Effectiveness',
             'Trainer', 'Employees Attended', 'Attendance %',
-            'Feedback Score', 'Mode', 'Status'
+            'Feedback Score', 'Status'
         ],
         'Employees': [
             'Name', 'Department', 'Total Training Days',
@@ -1098,7 +1097,7 @@ function generateTableRow(data, category) {
             data.employeesAttended,
             data.attendancePercentage,
             data.feedbackScore,
-            createTypeTag(data.mode, 'mode'),
+            //createTypeTag(data.mode, 'mode'),
             createTypeTag(data.status, 'status')
         ],
         'Employees': [
