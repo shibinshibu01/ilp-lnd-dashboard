@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Training Dashboard - L&D Dashboard</title>
-    <link rel="shortcut icon" href="src/assets/favicon.svg" type="image/svg">
-    <link rel="stylesheet" href="./src/styles/style.css">
+    <link rel="shortcut icon" href="../assets/favicon.svg" type="image/svg">
+    <link rel="stylesheet" href="../styles/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -20,7 +20,7 @@
 
     <header>
         <div class="logo">
-            <img src="src/assets/logo-experion.svg" alt="Experion Technologies">
+            <img src="../assets/logo-experion.svg" alt="Experion Technologies">
         </div>
         <div class="search-bar">
             <input type="text" placeholder="Search" class="global-search">
@@ -36,30 +36,30 @@
         <nav class="navbar">
             <ul class="navbar-list">
                 <li class="navbar-list__items">
-                    <a href="#" class="navbar-list__link" id="homeLink">
-                        <svg class="navbar-list__icons navbar-list__icons--active" width="44" height="48">
-                            <use xlink:href="src/assets/icons.svg#home"></use>
+                    <a href="../../index.html" class="navbar-list__link" id="homeLink">
+                        <svg class="navbar-list__icons" width="44" height="48">
+                            <use xlink:href="../assets/icons.svg#home"></use>
                         </svg>
                     </a>
                 </li>
                 <li class="navbar-list__items">
-                    <a href="src\pages\training.html" class="navbar-list__link" id="trainingsLink">
-                        <svg class="navbar-list__icons" width="44" height="48">
-                            <use xlink:href="src/assets/icons.svg#trainings"></use>
+                    <a href="..\pages\training.html" class="navbar-list__link" id="trainingsLink">
+                        <svg class="navbar-list__icons  navbar-list__icons--active" width="44" height="48">
+                            <use xlink:href="../assets/icons.svg#trainings"></use>
                         </svg>
                     </a>
                 </li>
                 <li class="navbar-list__items">
-                    <a href="src/pages/employees.html" class="navbar-list__link" id="employeesLink">
+                    <a href="../pages/employees.html" class="navbar-list__link" id="employeesLink">
                         <svg class="navbar-list__icons" width="44" height="48">
-                            <use xlink:href="src/assets/icons.svg#employees"></use>
+                            <use xlink:href="../assets/icons.svg#employees"></use>
                         </svg>
                     </a>
                 </li>
                 <li class="navbar-list__items">
                     <a href="#" class="navbar-list__link" id="inputLink">
                         <svg class="navbar-list__icons" width="44" height="48">
-                            <use xlink:href="src/assets/icons.svg#input"></use>
+                            <use xlink:href="../assets/icons.svg#input"></use>
                         </svg>
                     </a>
                 </li>
@@ -67,36 +67,8 @@
         </nav>
 
         <div class="sidebar">
-            <div class="sidebar-header">
-                <img src="src/assets/user-pic.svg" alt="User Avatar">
-                <div>
-                    <h3>Jordan S Ben</h3>
-                    <p>Associate - L&D</p>
-                </div>
-            </div>
-            <div class="sidebar-content">
-                <div class="sidebar-section">
-                    <h4>Departments</h4>
-                    <a href="#" class="view-all">View all</a>
-                    <ul id="topDepartments">
-                        <!-- Dynamically populated -->
-                    </ul>
-                </div>
-                <div class="sidebar-section">
-                    <h4>Trainees</h4>
-                    <a href="#" class="view-all">View all</a>
-                    <ul id="topTrainees">
-                        <!-- Dynamically populated -->
-                    </ul>
-                </div>
-                <div class="sidebar-section">
-                    <h4>Trainers</h4>
-                    <a href="#" class="view-all">View all</a>
-                    <ul id="topTrainers">
-                        <!-- Dynamically populated -->
-                    </ul>
-                </div>
-            </div>
+            <div class="sidebar-header">Sidebar Header</div>
+            <div class="sidebar-content">Sidebar Content</div>
         </div>
 
         <div class="main-content">
@@ -143,121 +115,10 @@
                 </div>
             </div>
 
-            <div class="stats-homebar">
-                <div class="stats-card">
-                    <div class="training-stat">
-                        <p class="training-stat__number" id="ongoingTraining">0</p>
-                        <span class="training-stat__label">Ongoing<br>Trainings</span>
-                    </div>
-
-                    <div class="training-stat">
-                        <p class="training-stat__number" id="completedTraining">0</p>
-                        <span class="training-stat__label">Completed<br>Training</span>
-                    </div>
-
-                    <div class="training-stat">
-                        <p class="training-stat__number" id="employeesTrained">0</p>
-                        <span class="training-stat__label">Employees<br>Trained</span>
-                    </div>
-
-                    <div class="training-stat">
-                        <p class="training-stat__number" id="trainingHours">0</p>
-                        <span class="training-stat__label" id="trainingHoursLabel">Training<br> Days</span>
-                    </div>
-
-                    <div class="training-stat">
-                        <p class="training-stat__number" id="traineeDays">0</p>
-                        <span class="training-stat__label" id="traineeDaysLabel">Trainee<br>Days</span>
-                    </div>
-                </div>
-            </div>
 
 
-            <div class="main-content--custom--filter">
-                <div class="filter-container">
-                    <div class="filter-header">Apply Filter</div>
-                    <div class="filter-wrapper">
-                        <select class="filter-select" id="mainCategory" onchange="updateSecondFilter()">
-                            <option>Select Category</option>
-                            <option>Training Programs</option>
-                            <option>Employees</option>
-                            <option>Trainers</option>
-                        </select>
-                        <select class="filter-select" id="secondFilter" onchange="updateThirdFilter()"">
-                            <option>Select condition</option>
-                        </select>
-                        <select class=" filter-select" id="thirdFilter">
-                            <option>Select condition</option>
-                        </select>
-                        <input type="number" step="0.1" placeholder="Value" class="filter-input" id="filterValue">
-                        <button class="filter-button" onclick="applyFilter()">Filter</button>
-                    </div>
 
-                    <table id="resultsTable" class="training-table">
-                        <thead id="tableHeader">
-                            <!-- Dynamically populated header -->
-                        </thead>
-                        <tbody id="tableBody">
-                            <!-- Dynamically populated rows -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
 
-            <div class="dashboard">
-                <div class="card-container-top">
-                    <!-- <div class="card training-compliance">
-                        <h3 class="dash-title">Training Compliance</h3>
-                        <div class="chart-content">
-                        </div>
-                    </div>             -->
-
-                    <div class="card department-overview">
-                        <h3 class="dash-title">Department Overview</h3>
-                        <div class="chart-content">
-                            <canvas id="departmentOverviewChart"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="card traing-programs">
-                        <h3 class="dash-title">Training Programs</h3>
-                        <div class="chart-content">
-                            <canvas id="trainingProgramChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-container-bottom">
-                    <div class="card training-compliance">
-                        <h3 class="dash-title">Training Compliance</h3>
-                        <div class="chart-content">
-                            <canvas id="complianceChart"></canvas>
-                            <div class="training-details">
-                                <p>
-                                    <span class="label">Planned Trainings :</span>
-                                    <span id="plannedTrainings" class="trainingsNumber">0</span>
-                                </p>
-                                <p>
-                                    <span class="label">Completed Trainings :</span>
-                                    <span id="completedTrainings" class="trainingsNumber">0</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card top-feedback">
-                        <h3 class="dash-title">Top Training</h3>
-                        <div class="chart-content top-train" id="topFeedbackTrainingChart">
-                        </div>
-                    </div>
-
-                    <div class="card top-effectiveness">
-                        <h3 class="dash-title">Top Training</h3>
-                        <div class="chart-content top-train" id="topEffectivenessTrainingChart">
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
             <section class="course-modal">
@@ -332,7 +193,7 @@
                         </div>
                         <div class="employee-card">
                             <div class="employee-image">
-                                <img src="./src/assets/employees-icon.svg">
+                                <img src="../assets/employees-icon.svg">
                             </div>
                             <div class="employee-info">
                                 <h3 class="employee-name"></h3>
@@ -349,7 +210,7 @@
         </div>
     </main>
 
-    <script src="src/services/script.js"></script>
+    <script src="../services/script.js"></script>
 </body>
 
-</html>
+</html>`
