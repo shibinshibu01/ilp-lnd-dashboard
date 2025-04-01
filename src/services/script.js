@@ -287,7 +287,7 @@ function applyFilter() {
                 // Add click event listener to the row
                 row.addEventListener('click', () => {
                     const trainingId = item.id; // Assuming `id` is the unique identifier for each training
-                    loadTrainingDetails(); // Call the function with the training ID
+                    loadTrainingDetails(item.key); // Call the function with the training ID
                 });
 
                 tableBody.appendChild(row);
