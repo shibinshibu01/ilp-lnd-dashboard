@@ -1076,4 +1076,29 @@ main {
   color: #2C2C2C;
 }
 
+.training-title {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: space-between;
+}
+.training-title h1 {
+  font-size: 30px;
+  font-weight: 700;
+  color: #2C2C2C;
+  margin: 10px;
+}
+
+.completed {
+  color: #DC143B;
+}
+
+.scheduled {
+  color: #DC143B;
+}
+
+.in-progress {
+  color: #DC143B;
+}
+
 /*# sourceMappingURL=style.css.map */

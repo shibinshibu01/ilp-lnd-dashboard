@@ -923,5 +923,74 @@ window.onload = () => {
 };
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    const trainingDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings/.json";
+    const employeesDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/employees/.json"; // Add employees URL here
+    
+    
+    axios.all([
+        axios.get(trainingDataUrl),
+        axios.get(employeesDataUrl)
+    ])
+    .then(axios.spread((trainingsResponse, employeesResponse) => {
+        const trainingsData = trainingsResponse.data;
+        const employeesData = employeesResponse.data;
 
+        const filteredTrainingData = dayDate(trainingsData);  
+        const filteredEmployeesData = dayDate(employeesData);  
+ 
+        displayTrainings(filteredTrainingData);
+    }))
+    .catch(error => console.error("Error fetching data:", error));
+});
+
+
+function displayTrainings(trainings) {
+    const trainingList = document.getElementById("training-list");
+    if (!trainingList) {
+        console.error("Element with ID 'training-list' not found.");
+        return;
+    }
+
+    trainingList.innerHTML = ""; 
+
+    Object.keys(trainings).forEach(trainingId => {
+        const training = trainings[trainingId];
+        
+        let typeClass = "";
+        if (training.training_type === "softskills") {
+            typeClass = "type-tag type-type-softskills";
+        } else if (training.training_type === "language") {
+            typeClass = "type-tag type-type-language";
+        } else if (training.training_type === "technical") {
+            typeClass = "type-tag type-type-technical";
+        }
+       
+        let statusClass = "";
+        if (training.status === "completed") {
+            statusClass = "completed";
+        } else if (training.status === "in-progress") {
+            statusClass = "in-progress";
+        } else if (training.status === "scheduled") {
+            statusClass = "scheduled";
+        }
+
+
+        let tableRow = `
+        <tr>
+            <td id="training-title">${training.training_name}</td>
+            <td class="${typeClass}">${training.training_type}</td>
+            <td>${training.duration} hrs</td>
+            <td>${training.target_audience}</td>
+            <td>${training.trainer}</td>
+            <td>${training.employees_attended}</td>
+            <td>${training.attendance}%</td>
+            <td>${training.effectiveness_score}</td>
+            <td id="mode">${training.mode}</td>
+            <td class="${statusClass}" id="status">${training.status}</td>
+        </tr>`;
+
+        trainingList.insertAdjacentHTML("beforeend", tableRow);
+    });
+}
 
