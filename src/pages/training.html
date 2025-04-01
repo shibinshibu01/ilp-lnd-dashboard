@@ -69,7 +69,7 @@
         <div class="sidebar">
             <div class="sidebar-header">
                 <img src="../assets/user-pic.svg" alt="User Profile">
-                <div>
+                <div class="sidebar-header__info">
                     <h3>Jordan S Ben</h3>
                     <p>Associate - L&D</p>
                 </div>
@@ -137,13 +137,41 @@
                 </div>
             </div>
 
+            <div class="stats-homebar">
+                <div class="stats-card">
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="ongoingTraining">0</p>
+                        <span class="training-stat__label">Ongoing<br>Trainings</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="completedTraining">0</p>
+                        <span class="training-stat__label">Completed<br>Training</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="employeesTrained">0</p>
+                        <span class="training-stat__label">Employees<br>Trained</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="trainingHours">0</p>
+                        <span class="training-stat__label" id="trainingHoursLabel">Training<br> Days</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="traineeDays">0</p>
+                        <span class="training-stat__label" id="traineeDaysLabel">Trainee<br>Days</span>
+                    </div>
+                </div>
+            </div>
 
             <section class="trainings_list">
                 <div class="training-title">
-                    <h1>Training Programs</h1>
+                    <p class="content-title">Training Programs</p>
                     <div class="training-search">
-                    <input type="text" id="searchInput" placeholder="Search Training...">
-                    <img src="..\assets\search-icon.svg" alt="Search Icon" id="searchTraining" onclick="searchTrainings()">
+                        <input type="text" id="searchInput" placeholder="Search Training..." class="train-search">
+                        <img src="..\assets\search-icon.svg" alt="Search Icon" id="searchTraining" onclick="searchTrainings()">
                     </div>
                 </div>
                 <table class="training-table">
