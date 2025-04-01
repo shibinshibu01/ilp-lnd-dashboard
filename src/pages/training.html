@@ -138,11 +138,33 @@
             </div>
 
 
-
-
-
-
-
+            <section class="trainings_list">
+                <div class="training-title">
+                    <h1>Training Programs</h1>
+                    <div class="training-search">
+                    <input type="text" id="searchInput" placeholder="Search Training...">
+                    <img src="..\assets\search-icon.svg" alt="Search Icon" id="searchTraining" onclick="searchTrainings()">
+                    </div>
+                </div>
+                <table class="training-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Type</th>
+                            <th>Duration</th>
+                            <th>Target Audience</th>
+                            <th>Trainer</th>
+                            <th>Employee Attendance</th>
+                            <th>Attendance Percentage</th>
+                            <th>Feedback Score</th>
+                            <th>Mode</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="training-list"></tbody>
+                </table>
+            </section>
+            
             <section class="course-modal">
                 <button class="back-button">Back</button>
                 <div class="course-title-metrics">

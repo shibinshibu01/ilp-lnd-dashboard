@@ -301,14 +301,6 @@ function applyFilter() {
         });
 }
 
-
-/////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
 function getFilterValues() {
     let selects = document.querySelectorAll('.filter__select');
     let year = selects[0]?.value || null;
@@ -406,7 +398,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Load charts with full dataset on initial load
     await fetchAndFilterData();
 });
-///////////////////////////////added 1-4-25
 
 async function fetchAndFilterData() {
     const trainingData = await fetchDataFromFire(tables[0]);
@@ -420,7 +411,6 @@ async function fetchAndFilterData() {
     updateTrainingCompliance(filteredTrainings);
     updateTrainings(filteredTrainings);
 }
-///////////////////////////////added 1-4-25
 //training program modal
 // JavaScript for the Training Modal
 const trainingModalurl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings.json";
@@ -1329,8 +1319,304 @@ function populateSidebar() {
         });
 }
 
-// Call the function on page load
+
 document.addEventListener('DOMContentLoaded', populateSidebar);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const trainingDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings/.json";
+    const employeesDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/employees/.json";
+    const trainersDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainers/.json";
+    
+    axios.all([
+        axios.get(trainingDataUrl),
+        axios.get(employeesDataUrl),
+        axios.get(trainersDataUrl) 
+    ])
+    .then(axios.spread((trainingsResponse, employeesResponse, trainersResponse) => {
+        const trainingsData = trainingsResponse.data;
+        const employeesData = employeesResponse.data;
+        const trainersData = trainersResponse.data; 
+
+        displayTrainings(trainingsData, trainersData);
+        displayEmployeeTrainings("emp001", employeesData, trainingsData,trainersData);
+    }))
+    .catch(error => console.error("Error fetching data:", error));
+});
+
+function displayTrainings(trainings, trainers) {
+    const trainingList = document.getElementById("training-list");
+    if (!trainingList) {
+        console.error("Element with ID 'training-list' not found.");
+        return;
+    }
+
+    trainingList.innerHTML = "";
+
+    Object.keys(trainings).forEach(trainingId => {
+        const training = trainings[trainingId];
+        
+        let typeClass = "";
+        if (training.training_type === "softskills") {
+            typeClass = "type-tag type-type-softskills";
+        } else if (training.training_type === "language") {
+            typeClass = "type-tag type-type-language";
+        } else if (training.training_type === "technical") {
+            typeClass = "type-tag type-type-technical";
+        }
+        
+        let statusClass = "";
+        if (training.status === "completed") {
+            statusClass = "completed";
+        } else if (training.status === "in-progress") {
+            statusClass = "in-progress";
+        } else if (training.status === "scheduled") {
+            statusClass = "scheduled";
+        }
+        
+    
+        let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "No Trainer";
+        
+        let tableRow = `
+        <tr>
+            <td id="training-title">${training.training_name}</td>
+            <td class="${typeClass}">${training.training_type}</td>
+            <td>${training.duration} hrs</td>
+            <td>${training.target_audience.replace(/^dept0*/, "DU")}</td>
+            <td>${trainerName}</td>
+            <td>${training.employees_attended}</td>
+            <td>${training.attendance}%</td>
+            <td>${training.effectiveness_score}</td>
+            <td ><p class="mode">${training.mode}<p></td>
+            <td class="${statusClass}">${training.status}</td>
+        </tr>`;
+
+        trainingList.insertAdjacentHTML("beforeend", tableRow);
+    });
+}
+
+
+function displayEmployeeTrainings(empId, employees, trainings, trainers) {
+    const employeeList = document.getElementById("employeetraining-list");
+    if (!employeeList) {
+        console.error("Element with ID 'employee-training-list' not found.");
+        return;
+    }
+
+    const employee = employees[empId]; 
+    if (!employee) {
+        console.error(`Employee with ID ${empId} not found.`);
+        return;
+    }
+
+    const attendedTrainings = employee.trainings_done;
+    if (!attendedTrainings) {
+        console.error(`No trainings found for employee ${empId}.`);
+        return;
+    }
+
+    employeeList.innerHTML = ""; 
+
+    Object.keys(attendedTrainings).forEach(trainingId => {
+        const training = trainings[trainingId]; 
+        if (!training) return;
+
+        let typeClass = "";
+        if (training.training_type === "softskills") {
+            typeClass = "type-tag type-type-softskills";
+        } else if (training.training_type === "language") {
+            typeClass = "type-tag type-type-language";
+        } else if (training.training_type === "technical") {
+            typeClass = "type-tag type-type-technical";
+        }
+
+        let statusClass = "";
+        if (training.status === "completed") {
+            statusClass = "completed";
+        } else if (training.status === "in-progress") {
+            statusClass = "in-progress";
+        } else if (training.status === "scheduled") {
+            statusClass = "scheduled";
+        }
+
+      
+        let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "Placeholder";
+
+        let tableRow = `
+        <tr>
+            <td id="training-title">${training.training_name}</td>
+            <td class="${typeClass}">${training.training_type}</td>
+            <td>${training.duration} hrs</td>
+            <td>${training.target_audience.replace(/^dept0*/, "DU")}</td>
+            <td>${trainerName}</td>
+            <td>${training.employees_attended}</td>
+            <td>${training.attendance}%</td>
+            <td>${training.effectiveness_score}</td>
+            <td ><p class="mode">${training.mode}<p></td>
+            <td class="${statusClass}">${training.status}</td>
+        </tr>`;
+
+        employeeList.insertAdjacentHTML("beforeend", tableRow);
+    });
+}
+
+
+function searchTrainings() {
+    let input = document.getElementById("searchInput").value.toLowerCase(); // Get input value
+    let rows = document.querySelectorAll("#training-list tr"); // Get all table rows
+
+    rows.forEach(row => {
+        let trainingTitle = row.querySelector("td:first-child").textContent.toLowerCase(); // Get first column (Training Title)
+        row.style.display = trainingTitle.includes(input) ? "" : "none"; // Show or hide row based on match
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const trainingDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings/.json";
+    const employeesDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/employees/.json";
+    const trainersDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainers/.json";
+    
+    axios.all([
+        axios.get(trainingDataUrl),
+        axios.get(employeesDataUrl),
+        axios.get(trainersDataUrl) 
+    ])
+    .then(axios.spread((trainingsResponse, employeesResponse, trainersResponse) => {
+        const trainingsData = trainingsResponse.data;
+        const employeesData = employeesResponse.data;
+        const trainersData = trainersResponse.data; 
+
+        displayTrainings(trainingsData, trainersData);
+        displayEmployeeTrainings("emp001", employeesData, trainingsData,trainersData);
+    }))
+    .catch(error => console.error("Error fetching data:", error));
+});
+
+function displayTrainings(trainings, trainers) {
+    const trainingList = document.getElementById("training-list");
+    if (!trainingList) {
+        console.error("Element with ID 'training-list' not found.");
+        return;
+    }
+
+    trainingList.innerHTML = "";
+
+    Object.keys(trainings).forEach(trainingId => {
+        const training = trainings[trainingId];
+        
+        let typeClass = "";
+        if (training.training_type === "softskills") {
+            typeClass = "type-tag type-type-softskills";
+        } else if (training.training_type === "language") {
+            typeClass = "type-tag type-type-language";
+        } else if (training.training_type === "technical") {
+            typeClass = "type-tag type-type-technical";
+        }
+        
+        let statusClass = "";
+        if (training.status === "completed") {
+            statusClass = "completed";
+        } else if (training.status === "in-progress") {
+            statusClass = "in-progress";
+        } else if (training.status === "scheduled") {
+            statusClass = "scheduled";
+        }
+        
+    
+        let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "No Trainer";
+        
+        let tableRow = `
+        <tr>
+            <td id="training-title">${training.training_name}</td>
+            <td class="${typeClass}">${training.training_type}</td>
+            <td>${training.duration} hrs</td>
+            <td>${training.target_audience.replace(/^dept0*/, "DU")}</td>
+            <td>${trainerName}</td>
+            <td>${training.employees_attended}</td>
+            <td>${training.attendance}%</td>
+            <td>${training.effectiveness_score}</td>
+            <td ><p class="mode">${training.mode}<p></td>
+            <td class="${statusClass}">${training.status}</td>
+        </tr>`;
+
+        trainingList.insertAdjacentHTML("beforeend", tableRow);
+    });
+}
+
+
+function displayEmployeeTrainings(empId, employees, trainings, trainers) {
+    const employeeList = document.getElementById("employeetraining-list");
+    if (!employeeList) {
+        console.error("Element with ID 'employee-training-list' not found.");
+        return;
+    }
+
+    const employee = employees[empId]; 
+    if (!employee) {
+        console.error(`Employee with ID ${empId} not found.`);
+        return;
+    }
+
+    const attendedTrainings = employee.trainings_done;
+    if (!attendedTrainings) {
+        console.error(`No trainings found for employee ${empId}.`);
+        return;
+    }
+
+    employeeList.innerHTML = ""; 
+
+    Object.keys(attendedTrainings).forEach(trainingId => {
+        const training = trainings[trainingId]; 
+        if (!training) return;
+
+        let typeClass = "";
+        if (training.training_type === "softskills") {
+            typeClass = "type-tag type-type-softskills";
+        } else if (training.training_type === "language") {
+            typeClass = "type-tag type-type-language";
+        } else if (training.training_type === "technical") {
+            typeClass = "type-tag type-type-technical";
+        }
+
+        let statusClass = "";
+        if (training.status === "completed") {
+            statusClass = "completed";
+        } else if (training.status === "in-progress") {
+            statusClass = "in-progress";
+        } else if (training.status === "scheduled") {
+            statusClass = "scheduled";
+        }
+
+      
+        let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "Placeholder";
+
+        let tableRow = `
+        <tr>
+            <td id="training-title">${training.training_name}</td>
+            <td class="${typeClass}">${training.training_type}</td>
+            <td>${training.duration} hrs</td>
+            <td>${training.target_audience.replace(/^dept0*/, "DU")}</td>
+            <td>${trainerName}</td>
+            <td>${training.employees_attended}</td>
+            <td>${training.attendance}%</td>
+            <td>${training.effectiveness_score}</td>
+            <td ><p class="mode">${training.mode}<p></td>
+            <td class="${statusClass}">${training.status}</td>
+        </tr>`;
+
+        employeeList.insertAdjacentHTML("beforeend", tableRow);
+    });
+}
+
+
+function searchTrainings() {
+    let input = document.getElementById("searchInput").value.toLowerCase(); // Get input value
+    let rows = document.querySelectorAll("#training-list tr"); // Get all table rows
+
+    rows.forEach(row => {
+        let trainingTitle = row.querySelector("td:first-child").textContent.toLowerCase(); // Get first column (Training Title)
+        row.style.display = trainingTitle.includes(input) ? "" : "none"; // Show or hide row based on match
+    });
+}
 
 function populateTrainerSidebar() {
     const trainersList = document.getElementById('trainersList');
