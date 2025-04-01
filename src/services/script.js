@@ -311,14 +311,39 @@ function applyFilter() {
 
 function getFilterValues() {
     let selects = document.querySelectorAll('.filter__select');
-    let values = {
-        year: selects[0]?.value || null,
-        month: selects[1]?.value || null,
-        quarter: selects[2]?.value || null,
-    };
+    let year = selects[0]?.value || null;
+    let month = selects[1]?.value || null;
+    let quarter = selects[2]?.value || null;
+
+    // Lock out the Quarter or Month dropdown when one is selected
+    if (month && quarter) {
+        const lastChanged = document.querySelector('.filter__select:focus');
+        if (lastChanged === selects[1]) {
+            quarter = null; // If month was changed, reset quarter
+        } else {
+            month = null; // If quarter was changed, reset month
+        }
+    }
+
+    // Disable the select options accordingly
+    if (month) {
+        selects[2].disabled = true; // Disable Quarter select
+    } else {
+        selects[2].disabled = false; // Enable Quarter select if Month is not selected
+    }
+
+    if (quarter) {
+        selects[1].disabled = true; // Disable Month select
+    } else {
+        selects[1].disabled = false; // Enable Month select if Quarter is not selected
+    }
+
+    let values = { year, month, quarter };
     console.log("Selected Filters:", values);
     return values;
 }
+
+
 
 function dayDate(trainings) {
     console.log("Raw Trainings Data:", trainings);
