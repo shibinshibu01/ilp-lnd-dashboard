@@ -602,7 +602,7 @@ function initializeDropdown() {
 
 
 
-//Homebar Stats
+//Stats
 const database = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/";
 const tables = ["trainings.json", "employees.json", "trainers.json", "departments.json"];
 const getUrl = (table) => `${database}${table}`;
