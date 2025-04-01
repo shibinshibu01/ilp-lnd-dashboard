@@ -1306,3 +1306,35 @@ function populateSidebar() {
 // Call the function on page load
 document.addEventListener('DOMContentLoaded', populateSidebar);
 
+function populateTrainerSidebar() {
+    const trainersList = document.getElementById('trainersList');
+
+    axios.get("https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainers.json")
+        .then(response => {
+            const trainers = Object.entries(response.data)
+                .map(([id, trainer]) => ({ id, ...trainer }));
+            trainers.forEach((trainer) => {
+                const li = document.createElement('li');
+                li.innerHTML=`
+                    <div class="trainer-card">
+                        <div class="trainer-card__left">
+                            <h5 class="trainer-name">${trainer.name}</h5>
+                            <span class="trainings-conducted">Trainings Provided: </span>
+                            <span class="trainings-count">${trainer.trainings_conducted ? trainer.trainings_conducted.length : 0}</span>
+                        </div>
+                        <div class="trainer-card__right">
+                            <span class="trainer-type">Type</span>
+                            <span class="trainer-type__value">${trainer.type}</span>
+                        </div>
+                    </div>
+                `;
+                trainersList.appendChild(li);
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching trainers data:", error);
+        });
+}
+
+// Call the function on page load
+document.addEventListener('DOMContentLoaded', populateTrainerSidebar);

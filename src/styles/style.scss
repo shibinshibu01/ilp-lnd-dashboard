@@ -168,22 +168,6 @@ main {
     }
 }
 
-
-// .sidebar {
-//     @include set-flex(column, 0);
-//     width: 350px;
-
-//     .sidebar-header {
-//         height: 50px;
-//         background: #7c9969;
-//     }
-
-//     .sidebar-content {
-//         flex: 1;
-//         background: #5d638e;
-//     }
-// }
-
 .main-content {
     flex: 1;
     background: #FFFFFF;
@@ -457,12 +441,10 @@ main {
     padding: 20px;
 }
 
-
 .main-content--custom--filter {
     background-color: white;
     margin-left: 20px;
     margin-right: 20px;
-    
 }
 
 :root {
@@ -484,9 +466,6 @@ main {
     font-family: 'Poppins', sans-serif;
 }
 
-
-
-
 /* Table header */
 .training-table thead th {
     color: #6B7280;
@@ -496,9 +475,6 @@ main {
     padding: 10px 16px;
     border-bottom: 1px solid #E5E7EB;
 }
-
-
-
 
 /* Table body */
 .training-table tbody tr {
@@ -551,7 +527,6 @@ main {
     background-color: white;
 }
 
-
 /* Status styling */
 .type-tag.type-status-upcoming {
     color: #E31E54;
@@ -584,18 +559,9 @@ main {
 
 .training-table td:nth-child(5) {
     font-size: 12px;
-    // font-weight: 600;
 }
 
 /* Filter container styles */
-// Variables
-$primary-red: #E31E54;
-$background-color: #f5f5f5;
-$white: #ffffff;
-$border-color: #e0e0e0;
-$text-color: #333333;
-
-// Variables
 $primary-red: #E31E54;
 $background-color: #f5f5f5;
 $white: #ffffff;
@@ -719,12 +685,8 @@ $text-color: #333333;
     }
 }
 
-///asw
-
 .main-content--custom--filter {
     background-color: $main-bg;
-    // margin-left: 20px;
-    // margin-right: 20px;
     width: 98.5%;
 }
 
@@ -817,7 +779,6 @@ $text-color: #333333;
     background-color: transparent;
     padding: 7px;
     background-color: #8d96e1;
-    //border: 1px solid black;
 }
 
 .type-tag.type-type-softskills {
@@ -826,7 +787,6 @@ $text-color: #333333;
     background-color: transparent;
     padding: 7px;
     background-color: #8de1cd;
-    //border: 1px solid black;
 }
 
 .type-tag.type-type-technical {
@@ -835,7 +795,6 @@ $text-color: #333333;
     background-color: transparent;
     padding: 7px;
     background-color: #e1b18d;
-    //border: 1px solid black;
 }
 
 /* Status styling */
@@ -880,18 +839,9 @@ $text-color: #333333;
 
 .training-table td:nth-child(5) {
     font-size: 12px;
-    // font-weight: 600;
 }
 
 /* Filter container styles */
-// Variables
-$primary-red: #E31E54;
-$background-color: #f5f5f5;
-$white: #ffffff;
-$border-color: #e0e0e0;
-$text-color: #333333;
-
-// Variables
 $primary-red: #E31E54;
 $background-color: #f5f5f5;
 $white: #ffffff;
@@ -906,8 +856,6 @@ $text-color: #333333;
     margin-top: 160px;
 }
 
-
-
 .filter-header {
     font-size: 16px;
     font-weight: 600;
@@ -917,8 +865,6 @@ $text-color: #333333;
     margin-left: 4px;
     vertical-align: top;
 }
-
-
 
 .filter-select {
     position: relative;
@@ -1098,9 +1044,6 @@ $text-color: #333333;
 }
 
 .dashboard {
-    // display: grid;
-    // grid-template-columns: 1.5fr 1fr 1fr;
-    // grid-template-rows: auto auto;
     @include set-flex(column, 30px);
     gap: 15px;
     padding: 20px;
@@ -1214,6 +1157,7 @@ $text-color: #333333;
         }
     }
 }
+
 /* Sidebar Styling of litto */
 .sidebar {
     background-color:$sidebar-bg;
@@ -1236,6 +1180,7 @@ $text-color: #333333;
 .sidebar .sidebar-header img {
     width: 40px;
     height: 40px;
+    margin-right: 10px;
 }
 
 .sidebar .sidebar-header h3 {
@@ -1253,6 +1198,7 @@ $text-color: #333333;
 
 .sidebar .sidebar-content .sidebar-section {
     margin-bottom: 25px;
+    margin-top: 10px;
     position: relative;
 }
 
@@ -1341,4 +1287,55 @@ $text-color: #333333;
     color: $font-dark;
     text-align: center;
     text-wrap:nowrap; 
+}
+
+.trainer-card {
+    @include set-flex(row, 0px);
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    overflow: hidden; 
+    padding: 0px; 
+    box-sizing: border-box; 
+    max-width: 100%;
+}
+
+.trainer-card__left {
+    text-wrap: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    h5 {
+        font-size: 11px;
+        font-weight: 650;
+    }
+    .trainings-conducted {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 450;
+    }
+    .trainings-conducted__value {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 500;
+    }
+}
+
+.trainer-card__right {
+    @include set-flex(column, 0px);
+    overflow: hidden;
+        font-size: 8px;
+        text-align: center;
+        color: $font-dark;
+        font-weight: 450;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+    
+    .trainer-type__value {
+        font-size: 17px;
+        color: $font-dark;
+        font-weight: 600;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+    }
 }
