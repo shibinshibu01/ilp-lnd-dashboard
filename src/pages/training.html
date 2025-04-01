@@ -67,8 +67,30 @@
         </nav>
 
         <div class="sidebar">
-            <div class="sidebar-header">Sidebar Header</div>
-            <div class="sidebar-content">Sidebar Content</div>
+            <div class="sidebar-header">
+                <img src="../assets/user-pic.svg" alt="User Profile">
+                <div>
+                    <h3>Jordan S Ben</h3>
+                    <p>Associate - L&D</p>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <div class="sidebar-name-filter">
+                        <h4>Trainers</h4>
+                        <div class="trainer-filter">
+                            <select id="trainerTypeFilter" class="filter__select">
+                                <option value="all">All</option>
+                                <option value="internal">Internal</option>
+                                <option value="external">External</option>
+                            </select>
+                        </div>
+                    </div>
+                    <ul id="trainersList">
+                        <!-- Dynamically populated -->
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="main-content">
@@ -235,4 +257,4 @@
     <script src="../services/script.js"></script>
 </body>
 
-</html>`
+</html>

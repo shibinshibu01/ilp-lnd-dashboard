@@ -1147,6 +1147,7 @@ main {
 .sidebar .sidebar-header img {
   width: 40px;
   height: 40px;
+  margin-right: 10px;
 }
 
 .sidebar .sidebar-header h3 {
@@ -1164,6 +1165,7 @@ main {
 
 .sidebar .sidebar-content .sidebar-section {
   margin-bottom: 25px;
+  margin-top: 10px;
   position: relative;
 }
 
@@ -1250,6 +1252,82 @@ main {
   color: #2C2C2C;
   text-align: center;
   text-wrap: nowrap;
+}
+
+.trainer-card {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 0px;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.trainer-card__left {
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.trainer-card__left h5 {
+  font-size: 11px;
+  font-weight: 650;
+}
+.trainer-card__left .trainings-conducted {
+  font-size: 10px;
+  color: #2C2C2C;
+  font-weight: 450;
+}
+.trainer-card__left .trainings-conducted__value {
+  font-size: 10px;
+  color: #2C2C2C;
+  font-weight: 500;
+}
+
+.trainer-card__right {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  overflow: hidden;
+  font-size: 8px;
+  text-align: center;
+  color: #2C2C2C;
+  font-weight: 450;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.trainer-card__right .trainer-type__value {
+  font-size: 17px;
+  color: #2C2C2C;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-name-filter {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+}
+
+.trainer-filter {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 45px;
+}
+.trainer-filter .filter__select {
+  height: 90%;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  background-color: #FFFFFF;
 }
 
 #searchTraining {
