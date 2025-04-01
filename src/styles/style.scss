@@ -119,6 +119,7 @@ main {
     display: flex;
     flex: 1;
     margin-top: 60px;
+    overflow: hidden;
 }
 
 .navbar {
@@ -171,6 +172,7 @@ main {
 .main-content {
     flex: 1;
     background: #FFFFFF;
+    overflow-y: auto;
 }
 
 .course-modal {
@@ -496,6 +498,7 @@ main {
 .training-table tbody td:first-child {
     color: #E31E54;
     font-weight: 600;
+    font-size: 15px;
 }
 
 /* Type tag styling */
@@ -505,26 +508,40 @@ main {
     border-radius: 4px;
     font-size: 12px;
     font-weight: 500;
+
 }
 
 /* Type-specific styling */
 .type-tag.type-type-soft-skills {
     background-color: #FFE5E5;
     color: #D32F2F;
+    align-items: center;
 }
 
 .type-tag.type-type-language-training {
     background-color: #E5F6FF;
     color: #0075FF;
+    align-items: center;
 }
 
 /* Mode styling */
+
 .type-tag.type-mode-online,
 .type-tag.type-mode-offline,
-.type-tag.type-mode-hybrid {
+.type-tag.type-mode-hybrid{
     color: #D32F2F;
     border: 1px solid #D32F2F;
     background-color: white;
+}
+
+.mode {
+    color: #D32F2F;
+    border: 1px solid #D32F2F;
+    border: 1px solid $red;
+    text-align: center;
+    border-radius: 5px;
+    margin: auto;
+    padding:10px;
 }
 
 /* Status styling */
@@ -540,7 +557,7 @@ main {
     font-weight: 600;
     background-color: transparent;
     padding: 0;
-}
+   }
 
 /* Number styling for attendance, feedback, etc. */
 .training-table td:nth-child(4),
@@ -559,6 +576,7 @@ main {
 
 .training-table td:nth-child(5) {
     font-size: 12px;
+    // font-weight: 600;
 }
 
 /* Filter container styles */
@@ -744,6 +762,8 @@ $text-color: #333333;
     font-weight: 600;
 }
 
+
+
 /* Type tag styling */
 .type-tag {
     display: inline-block;
@@ -779,6 +799,9 @@ $text-color: #333333;
     background-color: transparent;
     padding: 7px;
     background-color: #8d96e1;
+    text-align: center;
+    // margin: auto;
+    justify-content: center;
 }
 
 .type-tag.type-type-softskills {
@@ -787,6 +810,8 @@ $text-color: #333333;
     background-color: transparent;
     padding: 7px;
     background-color: #8de1cd;
+    align-self: center;
+    //border: 1px solid black;
 }
 
 .type-tag.type-type-technical {
@@ -839,6 +864,12 @@ $text-color: #333333;
 
 .training-table td:nth-child(5) {
     font-size: 12px;
+    font-weight: 600;
+}
+
+.training-table td:nth-child(6) {
+    font-size: 20px;
+    font-weight: 600;
 }
 
 /* Filter container styles */
@@ -1156,6 +1187,45 @@ $text-color: #333333;
             color: $font-dark;
         }
     }
+}
+
+.training-title {
+    margin-top: 80px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    justify-content: space-between;
+    h1{
+      font-size: 30px;
+      font-weight: 700;
+      color: $font-dark;
+      margin: 10px;
+    }
+  }
+
+  .employee-title{
+    margin-top: 80px;
+  }
+
+
+.completed{
+    color: #5ce31e;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  
+  .scheduled{
+  color: #FFC700;
+  font-size: 13px;
+  font-weight: 600;
+  }
+  
+  .in-progress{
+      color: #E31E54;
+      font-size: 13px;
+      font-weight: 600;
+  }
 }
 
 /* Sidebar Styling of litto */

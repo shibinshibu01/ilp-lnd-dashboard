@@ -301,24 +301,41 @@ function applyFilter() {
         });
 }
 
-
-/////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
 function getFilterValues() {
     let selects = document.querySelectorAll('.filter__select');
-    let values = {
-        year: selects[0]?.value || null,
-        month: selects[1]?.value || null,
-        quarter: selects[2]?.value || null,
-    };
+    let year = selects[0]?.value || null;
+    let month = selects[1]?.value || null;
+    let quarter = selects[2]?.value || null;
+
+    // Lock out the Quarter or Month dropdown when one is selected
+    if (month && quarter) {
+        const lastChanged = document.querySelector('.filter__select:focus');
+        if (lastChanged === selects[1]) {
+            quarter = null; // If month was changed, reset quarter
+        } else {
+            month = null; // If quarter was changed, reset month
+        }
+    }
+
+    // Disable the select options accordingly
+    if (month) {
+        selects[2].disabled = true; // Disable Quarter select
+    } else {
+        selects[2].disabled = false; // Enable Quarter select if Month is not selected
+    }
+
+    if (quarter) {
+        selects[1].disabled = true; // Disable Month select
+    } else {
+        selects[1].disabled = false; // Enable Month select if Quarter is not selected
+    }
+
+    let values = { year, month, quarter };
     console.log("Selected Filters:", values);
     return values;
 }
+
+
 
 function dayDate(trainings) {
     console.log("Raw Trainings Data:", trainings);
@@ -371,19 +388,29 @@ function dayDate(trainings) {
     return { trainings: filteredTrainings };
 }
 
-function fetchAndFilterData() {
-    filteredTrainingsData = dayDate(trainingsData); // Store filtered data globally
-    console.log("Final Filtered Data:", filteredTrainingsData);
-}
 
 // Attach event listeners when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     document.querySelectorAll('.filter__select').forEach(select => {
         select.addEventListener('change', fetchAndFilterData);
     });
 
-    // fetchTrainingsData(); // Fetch data initially and filter it
+    // Load charts with full dataset on initial load
+    await fetchAndFilterData();
 });
+
+async function fetchAndFilterData() {
+    const trainingData = await fetchDataFromFire(tables[0]);
+
+    if (!trainingData) return;
+
+    const { trainings: filteredTrainings } = dayDate(trainingData);
+
+    updateTrainingProgramChart(filteredTrainings);
+    updateTopTraining(filteredTrainings);
+    updateTrainingCompliance(filteredTrainings);
+    updateTrainings(filteredTrainings);
+}
 //training program modal
 // JavaScript for the Training Modal
 const trainingModalurl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings.json";
@@ -590,8 +617,7 @@ const fetchDataFromFire = async (table) => {
     }
 }
 
-const updateTrainings = async () => {
-    const trainingData = await fetchDataFromFire(tables[0]);
+const updateTrainings = async (trainingData) => {
     let ongoingTrainings = 0;
     let completedTrainings = 0;
     let trainingHours = 0;
@@ -612,6 +638,7 @@ const updateTrainings = async () => {
     const ongoingTrainingElement = document.getElementById("ongoingTraining");
     const completedTrainingElement = document.getElementById("completedTraining");
     const trainingHoursElement = document.getElementById("trainingHours");
+
     if (ongoingTrainingElement) {
         ongoingTrainingElement.textContent = ongoingTrainings;
     }
@@ -621,6 +648,7 @@ const updateTrainings = async () => {
     if (trainingHoursElement) {
         trainingHoursElement.textContent = Math.round(trainingHours / 8);
     }
+
     let isOriginalState = true;
     trainingHoursElement.parentElement.addEventListener("click", () => {
         if (isOriginalState) {
@@ -671,10 +699,7 @@ const updateEmployees = async () => {
     });
 }
 
-//Charts
-
-const updateTrainingCompliance = async () => {
-    const trainingComplianceData = await fetchDataFromFire(tables[0]);
+const updateTrainingCompliance = async (trainingComplianceData) => {
     let finishedTrainings = 0;
     let totalTrainings = 0;
 
@@ -687,10 +712,10 @@ const updateTrainingCompliance = async () => {
         });
     }
 
-    const compliancePercentage = Math.round((finishedTrainings / totalTrainings) * 100);
+    const compliancePercentage = totalTrainings > 0 ? Math.round((finishedTrainings / totalTrainings) * 100) : 0;
     const ctx = document.getElementById("complianceChart").getContext("2d");
 
-    if (window.complianceChart && typeof window.complianceChart.destroy === "function") {
+    if (window.complianceChart?.destroy) {
         window.complianceChart.destroy();
     }
 
@@ -734,6 +759,7 @@ const updateTrainingCompliance = async () => {
             }
         }]
     });
+
     document.getElementById("plannedTrainings").textContent = totalTrainings;
     document.getElementById("completedTrainings").textContent = finishedTrainings;
 };
@@ -811,9 +837,7 @@ const updateDepartmentChart = async () => {
     });
 };
 
-const updateTrainingProgramChart = async () => {
-    const trainingData = await fetchDataFromFire(tables[0]);
-
+const updateTrainingProgramChart = async (trainingData) => {
     if (!trainingData) return;
 
     let technicalCourses = 0;
@@ -836,7 +860,7 @@ const updateTrainingProgramChart = async () => {
 
     const trainingProgramChart = document.getElementById('trainingProgramChart').getContext('2d');
 
-    if (window.categoryChart && typeof window.categoryChart.destroy === "function") {
+    if (window.categoryChart?.destroy) {
         window.categoryChart.destroy();
     }
 
@@ -846,7 +870,7 @@ const updateTrainingProgramChart = async () => {
             labels: ['Technical', 'Soft Skills', 'Behavioral'],
             datasets: [{
                 data: [technicalCourses, softSkillsCourses, behavioralCourses],
-                backgroundColor: ["#DC143B"],
+                backgroundColor: ["#DC143B", "#DC143B", "#DC143B"],
                 borderRadius: 5,
             }]
         },
@@ -854,32 +878,24 @@ const updateTrainingProgramChart = async () => {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                y: {
-                    beginAtZero: true
-                }
+                y: { beginAtZero: true }
             },
             plugins: {
-                legend: {
-                    display: false
-                },
-                title: {
-                    display: true,
-                    text: 'Number of Trainings in Each Category',
-                    font: { size: 8 }
-                }
+                legend: { display: false },
+                title: { display: true, text: 'Number of Trainings in Each Category', font: { size: 8 } }
             }
         }
     });
 };
 
-const updateTopTraining = async () => {
-    const trainingsData = await fetchDataFromFire(tables[0]);
+
+const updateTopTraining = async (trainingsData) => {
     if (trainingsData) {
         const sortedByFeedbackTrainings = Object.values(trainingsData)
             .sort((a, b) => b.feedback_score - a.feedback_score)
             .slice(0, 3);
 
-        const sortedByEffectivenesTrainings = Object.values(trainingsData)
+        const sortedByEffectivenessTrainings = Object.values(trainingsData)
             .sort((a, b) => b.effectiveness_score - a.effectiveness_score)
             .slice(0, 3);
 
@@ -899,7 +915,7 @@ const updateTopTraining = async () => {
         const topEffectivenessContainer = document.getElementById("topEffectivenessTrainingChart");
         topEffectivenessContainer.innerHTML = "<p>Based on Effectiveness Score.</p><br>";
 
-        sortedByEffectivenesTrainings.forEach(training => {
+        sortedByEffectivenessTrainings.forEach(training => {
             const trainingElement = document.createElement("div");
             trainingElement.className = "top-training-item";
             trainingElement.innerHTML = `
@@ -909,8 +925,8 @@ const updateTopTraining = async () => {
             topEffectivenessContainer.appendChild(trainingElement);
         });
     }
-
 };
+
 
 window.onload = () => {
     updateTrainings();
@@ -964,7 +980,7 @@ function fetchData(type) {
                         employeesAttended: training.employees_attended,
                         attendancePercentage: `${training.attendance}%`,
                         feedbackScore: training.feedback_score,
-                
+
                         status: training.status,
                         topics: training.topics
                     };
@@ -1303,8 +1319,304 @@ function populateSidebar() {
         });
 }
 
-// Call the function on page load
+
 document.addEventListener('DOMContentLoaded', populateSidebar);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const trainingDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings/.json";
+    const employeesDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/employees/.json";
+    const trainersDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainers/.json";
+    
+    axios.all([
+        axios.get(trainingDataUrl),
+        axios.get(employeesDataUrl),
+        axios.get(trainersDataUrl) 
+    ])
+    .then(axios.spread((trainingsResponse, employeesResponse, trainersResponse) => {
+        const trainingsData = trainingsResponse.data;
+        const employeesData = employeesResponse.data;
+        const trainersData = trainersResponse.data; 
+
+        displayTrainings(trainingsData, trainersData);
+        displayEmployeeTrainings("emp001", employeesData, trainingsData,trainersData);
+    }))
+    .catch(error => console.error("Error fetching data:", error));
+});
+
+function displayTrainings(trainings, trainers) {
+    const trainingList = document.getElementById("training-list");
+    if (!trainingList) {
+        console.error("Element with ID 'training-list' not found.");
+        return;
+    }
+
+    trainingList.innerHTML = "";
+
+    Object.keys(trainings).forEach(trainingId => {
+        const training = trainings[trainingId];
+        
+        let typeClass = "";
+        if (training.training_type === "softskills") {
+            typeClass = "type-tag type-type-softskills";
+        } else if (training.training_type === "language") {
+            typeClass = "type-tag type-type-language";
+        } else if (training.training_type === "technical") {
+            typeClass = "type-tag type-type-technical";
+        }
+        
+        let statusClass = "";
+        if (training.status === "completed") {
+            statusClass = "completed";
+        } else if (training.status === "in-progress") {
+            statusClass = "in-progress";
+        } else if (training.status === "scheduled") {
+            statusClass = "scheduled";
+        }
+        
+    
+        let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "No Trainer";
+        
+        let tableRow = `
+        <tr>
+            <td id="training-title">${training.training_name}</td>
+            <td class="${typeClass}">${training.training_type}</td>
+            <td>${training.duration} hrs</td>
+            <td>${training.target_audience.replace(/^dept0*/, "DU")}</td>
+            <td>${trainerName}</td>
+            <td>${training.employees_attended}</td>
+            <td>${training.attendance}%</td>
+            <td>${training.effectiveness_score}</td>
+            <td ><p class="mode">${training.mode}<p></td>
+            <td class="${statusClass}">${training.status}</td>
+        </tr>`;
+
+        trainingList.insertAdjacentHTML("beforeend", tableRow);
+    });
+}
+
+
+function displayEmployeeTrainings(empId, employees, trainings, trainers) {
+    const employeeList = document.getElementById("employeetraining-list");
+    if (!employeeList) {
+        console.error("Element with ID 'employee-training-list' not found.");
+        return;
+    }
+
+    const employee = employees[empId]; 
+    if (!employee) {
+        console.error(`Employee with ID ${empId} not found.`);
+        return;
+    }
+
+    const attendedTrainings = employee.trainings_done;
+    if (!attendedTrainings) {
+        console.error(`No trainings found for employee ${empId}.`);
+        return;
+    }
+
+    employeeList.innerHTML = ""; 
+
+    Object.keys(attendedTrainings).forEach(trainingId => {
+        const training = trainings[trainingId]; 
+        if (!training) return;
+
+        let typeClass = "";
+        if (training.training_type === "softskills") {
+            typeClass = "type-tag type-type-softskills";
+        } else if (training.training_type === "language") {
+            typeClass = "type-tag type-type-language";
+        } else if (training.training_type === "technical") {
+            typeClass = "type-tag type-type-technical";
+        }
+
+        let statusClass = "";
+        if (training.status === "completed") {
+            statusClass = "completed";
+        } else if (training.status === "in-progress") {
+            statusClass = "in-progress";
+        } else if (training.status === "scheduled") {
+            statusClass = "scheduled";
+        }
+
+      
+        let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "Placeholder";
+
+        let tableRow = `
+        <tr>
+            <td id="training-title">${training.training_name}</td>
+            <td class="${typeClass}">${training.training_type}</td>
+            <td>${training.duration} hrs</td>
+            <td>${training.target_audience.replace(/^dept0*/, "DU")}</td>
+            <td>${trainerName}</td>
+            <td>${training.employees_attended}</td>
+            <td>${training.attendance}%</td>
+            <td>${training.effectiveness_score}</td>
+            <td ><p class="mode">${training.mode}<p></td>
+            <td class="${statusClass}">${training.status}</td>
+        </tr>`;
+
+        employeeList.insertAdjacentHTML("beforeend", tableRow);
+    });
+}
+
+
+function searchTrainings() {
+    let input = document.getElementById("searchInput").value.toLowerCase(); // Get input value
+    let rows = document.querySelectorAll("#training-list tr"); // Get all table rows
+
+    rows.forEach(row => {
+        let trainingTitle = row.querySelector("td:first-child").textContent.toLowerCase(); // Get first column (Training Title)
+        row.style.display = trainingTitle.includes(input) ? "" : "none"; // Show or hide row based on match
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const trainingDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings/.json";
+    const employeesDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/employees/.json";
+    const trainersDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainers/.json";
+    
+    axios.all([
+        axios.get(trainingDataUrl),
+        axios.get(employeesDataUrl),
+        axios.get(trainersDataUrl) 
+    ])
+    .then(axios.spread((trainingsResponse, employeesResponse, trainersResponse) => {
+        const trainingsData = trainingsResponse.data;
+        const employeesData = employeesResponse.data;
+        const trainersData = trainersResponse.data; 
+
+        displayTrainings(trainingsData, trainersData);
+        displayEmployeeTrainings("emp001", employeesData, trainingsData,trainersData);
+    }))
+    .catch(error => console.error("Error fetching data:", error));
+});
+
+function displayTrainings(trainings, trainers) {
+    const trainingList = document.getElementById("training-list");
+    if (!trainingList) {
+        console.error("Element with ID 'training-list' not found.");
+        return;
+    }
+
+    trainingList.innerHTML = "";
+
+    Object.keys(trainings).forEach(trainingId => {
+        const training = trainings[trainingId];
+        
+        let typeClass = "";
+        if (training.training_type === "softskills") {
+            typeClass = "type-tag type-type-softskills";
+        } else if (training.training_type === "language") {
+            typeClass = "type-tag type-type-language";
+        } else if (training.training_type === "technical") {
+            typeClass = "type-tag type-type-technical";
+        }
+        
+        let statusClass = "";
+        if (training.status === "completed") {
+            statusClass = "completed";
+        } else if (training.status === "in-progress") {
+            statusClass = "in-progress";
+        } else if (training.status === "scheduled") {
+            statusClass = "scheduled";
+        }
+        
+    
+        let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "No Trainer";
+        
+        let tableRow = `
+        <tr>
+            <td id="training-title">${training.training_name}</td>
+            <td class="${typeClass}">${training.training_type}</td>
+            <td>${training.duration} hrs</td>
+            <td>${training.target_audience.replace(/^dept0*/, "DU")}</td>
+            <td>${trainerName}</td>
+            <td>${training.employees_attended}</td>
+            <td>${training.attendance}%</td>
+            <td>${training.effectiveness_score}</td>
+            <td ><p class="mode">${training.mode}<p></td>
+            <td class="${statusClass}">${training.status}</td>
+        </tr>`;
+
+        trainingList.insertAdjacentHTML("beforeend", tableRow);
+    });
+}
+
+
+function displayEmployeeTrainings(empId, employees, trainings, trainers) {
+    const employeeList = document.getElementById("employeetraining-list");
+    if (!employeeList) {
+        console.error("Element with ID 'employee-training-list' not found.");
+        return;
+    }
+
+    const employee = employees[empId]; 
+    if (!employee) {
+        console.error(`Employee with ID ${empId} not found.`);
+        return;
+    }
+
+    const attendedTrainings = employee.trainings_done;
+    if (!attendedTrainings) {
+        console.error(`No trainings found for employee ${empId}.`);
+        return;
+    }
+
+    employeeList.innerHTML = ""; 
+
+    Object.keys(attendedTrainings).forEach(trainingId => {
+        const training = trainings[trainingId]; 
+        if (!training) return;
+
+        let typeClass = "";
+        if (training.training_type === "softskills") {
+            typeClass = "type-tag type-type-softskills";
+        } else if (training.training_type === "language") {
+            typeClass = "type-tag type-type-language";
+        } else if (training.training_type === "technical") {
+            typeClass = "type-tag type-type-technical";
+        }
+
+        let statusClass = "";
+        if (training.status === "completed") {
+            statusClass = "completed";
+        } else if (training.status === "in-progress") {
+            statusClass = "in-progress";
+        } else if (training.status === "scheduled") {
+            statusClass = "scheduled";
+        }
+
+      
+        let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "Placeholder";
+
+        let tableRow = `
+        <tr>
+            <td id="training-title">${training.training_name}</td>
+            <td class="${typeClass}">${training.training_type}</td>
+            <td>${training.duration} hrs</td>
+            <td>${training.target_audience.replace(/^dept0*/, "DU")}</td>
+            <td>${trainerName}</td>
+            <td>${training.employees_attended}</td>
+            <td>${training.attendance}%</td>
+            <td>${training.effectiveness_score}</td>
+            <td ><p class="mode">${training.mode}<p></td>
+            <td class="${statusClass}">${training.status}</td>
+        </tr>`;
+
+        employeeList.insertAdjacentHTML("beforeend", tableRow);
+    });
+}
+
+
+function searchTrainings() {
+    let input = document.getElementById("searchInput").value.toLowerCase(); // Get input value
+    let rows = document.querySelectorAll("#training-list tr"); // Get all table rows
+
+    rows.forEach(row => {
+        let trainingTitle = row.querySelector("td:first-child").textContent.toLowerCase(); // Get first column (Training Title)
+        row.style.display = trainingTitle.includes(input) ? "" : "none"; // Show or hide row based on match
+    });
+}
 
 function populateTrainerSidebar() {
     const trainersList = document.getElementById('trainersList');
