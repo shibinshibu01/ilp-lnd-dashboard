@@ -119,7 +119,10 @@
             <section class="trainings_list">
                 <div class="training-title">
                     <h1>Training Programs</h1>
-                    <img src="src/assets/search-icon.svg" alt="Search Icon" class="search-icon" width="20px" height="20px">
+                    <div class="training-search">
+                    <input type="text" id="searchInput" placeholder="Search Training...">
+                    <img src="..\assets\search-icon.svg" alt="Search Icon" id="searchTraining" onclick="searchTrainings()">
+                    </div>
                 </div>
                 <table class="training-table">
                     <thead>
@@ -134,13 +137,12 @@
                             <th>Feedback Score</th>
                             <th>Mode</th>
                             <th>Status</th>
-                        </tr> 
+                        </tr>
                     </thead>
-                    <tbody id="training-list">
-                    </tbody>
+                    <tbody id="training-list"></tbody>
                 </table>
             </section>
-
+            
             <section class="course-modal">
                 <button class="back-button">Back</button>
                 <div class="course-title-metrics">

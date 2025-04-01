@@ -100,7 +100,6 @@ main {
   display: flex;
   flex: 1;
   margin-top: 60px;
-  overflow: hidden;
 }
 
 .navbar {
@@ -148,10 +147,24 @@ main {
   color: #DC143B;
 }
 
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 350px;
+}
+.sidebar .sidebar-header {
+  height: 50px;
+  background: #7c9969;
+}
+.sidebar .sidebar-content {
+  flex: 1;
+  background: #5d638e;
+}
+
 .main-content {
   flex: 1;
   background: #FFFFFF;
-  overflow-y: auto;
 }
 
 .course-modal {
@@ -394,7 +407,6 @@ main {
 .main-content--custom--filter {
   background-color: white;
   margin-left: 20px;
-  margin-right: 20px;
 }
 
 :root {
@@ -446,7 +458,6 @@ main {
 .training-table tbody td:first-child {
   color: #E31E54;
   font-weight: 600;
-  font-size: 15px;
 }
 
 /* Type tag styling */
@@ -462,13 +473,11 @@ main {
 .type-tag.type-type-soft-skills {
   background-color: #FFE5E5;
   color: #D32F2F;
-  align-items: center;
 }
 
 .type-tag.type-type-language-training {
   background-color: #E5F6FF;
   color: #0075FF;
-  align-items: center;
 }
 
 /* Mode styling */
@@ -478,16 +487,6 @@ main {
   color: #D32F2F;
   border: 1px solid #D32F2F;
   background-color: white;
-}
-
-.mode {
-  color: #D32F2F;
-  border: 1px solid #D32F2F;
-  border: 1px solid #DC143B;
-  text-align: center;
-  border-radius: 5px;
-  margin: auto;
-  padding: 10px;
 }
 
 /* Status styling */
@@ -522,7 +521,6 @@ main {
 
 .training-table td:nth-child(5) {
   font-size: 12px;
-  font-weight: 600;
 }
 
 /* Filter container styles */
@@ -537,11 +535,10 @@ main {
   padding: 30px 30px 40px 30px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   position: relative;
-  overflow-y: auto;
   max-height: 550px;
-  /* Hide scrollbar for IE, Edge, and Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .filter-container::-webkit-scrollbar {
   display: none;
@@ -727,8 +724,6 @@ main {
   background-color: transparent;
   padding: 7px;
   background-color: #8d96e1;
-  text-align: center;
-  justify-content: center;
 }
 
 .type-tag.type-type-softskills {
@@ -737,7 +732,6 @@ main {
   background-color: transparent;
   padding: 7px;
   background-color: #8de1cd;
-  align-self: center;
 }
 
 .type-tag.type-type-technical {
@@ -790,12 +784,6 @@ main {
 
 .training-table td:nth-child(5) {
   font-size: 12px;
-  font-weight: 600;
-}
-
-.training-table td:nth-child(6) {
-  font-size: 20px;
-  font-weight: 600;
 }
 
 /* Filter container styles */
@@ -1086,187 +1074,6 @@ main {
 .top-train .top-training-item .course-score {
   font-size: 16px;
   color: #2C2C2C;
-}
-
-.training-title {
-  margin-top: 80px;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  gap: 0;
-  justify-content: space-between;
-}
-.training-title h1 {
-  font-size: 30px;
-  font-weight: 700;
-  color: #2C2C2C;
-  margin: 10px;
-}
-
-.employee-title {
-  margin-top: 80px;
-}
-
-.completed {
-  color: #5ce31e;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.scheduled {
-  color: #FFC700;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.in-progress {
-  color: #E31E54;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-/* Sidebar Styling of litto */
-.sidebar {
-  background-color: #F3F3F2;
-  width: 300px;
-  padding: 10px 20px 20px 20px;
-  height: 100%;
-}
-
-.sidebar .sidebar-header {
-  display: flex;
-  align-items: center;
-  gap: 0px;
-  margin-bottom: 0px;
-  padding-bottom: 10px;
-  padding-top: 0px;
-  margin-top: 0px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.sidebar .sidebar-header img {
-  width: 40px;
-  height: 40px;
-}
-
-.sidebar .sidebar-header h3 {
-  font-size: 10px;
-  font-weight: 600;
-  margin: 0;
-  color: #2C2C2C;
-}
-
-.sidebar .sidebar-header p {
-  font-size: 7px;
-  color: #DC143B;
-  margin: 0;
-}
-
-.sidebar .sidebar-content .sidebar-section {
-  margin-bottom: 25px;
-  position: relative;
-}
-
-.sidebar .sidebar-content {
-  overflow-y: auto;
-  height: 500px;
-  /* Hide scrollbar for IE, Edge, and Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-.sidebar .sidebar-content::-webkit-scrollbar {
-  display: none;
-}
-
-.sidebar .sidebar-content .sidebar-section h4 {
-  font-size: 15px;
-  margin-bottom: 15px;
-  color: #2C2C2C;
-  font-weight: 600;
-}
-
-.sidebar .sidebar-section .view-all {
-  position: absolute;
-  right: 0;
-  top: 5px;
-  font-size: 12px;
-  color: #DC143B;
-  text-decoration: none;
-}
-
-.sidebar .sidebar-content .sidebar-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.sidebar .sidebar-content .sidebar-section ul li {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background: #FFFFFF;
-  border-radius: 12px;
-  padding: 15px 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-
-.sidebar .sidebar-content .sidebar-section ul li:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar .sidebar-content .sidebar-section ul li .header-row {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 5px;
-}
-
-.sidebar .sidebar-content .sidebar-section ul li .value-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-top: 5px;
-}
-
-.sidebar .sidebar-content .sidebar-section ul li .rank-label,
-.sidebar .sidebar-content .sidebar-section ul li .stat-label {
-  font-size: 5px;
-  color: #333333;
-  font-weight: 600;
-  flex: row;
-  text-align: center;
-}
-
-.sidebar .sidebar-content .sidebar-section ul li .rank-number,
-.sidebar .sidebar-content .sidebar-section ul li .department-name,
-.sidebar .sidebar-content .sidebar-section ul li .stat-value {
-  font-size: 12px;
-  font-weight: 600;
-  color: #2C2C2C;
-  text-align: center;
-  text-wrap: nowrap;
-}
-
-#searchTraining {
-  width: 40px;
-  height: 40px;
-  margin-top: 5px;
-}
-
-#searchInput {
-  height: 75%;
-  width: 75%;
-  border-radius: 5px;
-  position: relative;
-}
-
-.main-content::-webkit-scrollbar {
-  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */
