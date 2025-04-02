@@ -836,8 +836,8 @@ $text-color: #333333;
     padding: 7px;
     background-color: #8d96e1;
     text-align: center;
-    // margin: auto;
-    justify-content: center;
+    margin: auto;
+    align-self: center;
 }
 
 .type-tag.type-type-softskills {
@@ -847,7 +847,6 @@ $text-color: #333333;
     padding: 7px;
     background-color: #8de1cd;
     align-self: center;
-    //border: 1px solid black;
 }
 
 .type-tag.type-type-technical {
@@ -856,8 +855,10 @@ $text-color: #333333;
     background-color: transparent;
     padding: 7px;
     background-color: #e1b18d;
-    //border: 1px solid black;
+    text-align: center;
+
 }
+
 
 /* Status styling */
 .type-tag.type-status-scheduled {

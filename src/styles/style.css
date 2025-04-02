@@ -728,7 +728,8 @@ main {
   padding: 7px;
   background-color: #8d96e1;
   text-align: center;
-  justify-content: center;
+  margin: auto;
+  align-self: center;
 }
 
 .type-tag.type-type-softskills {
@@ -746,6 +747,7 @@ main {
   background-color: transparent;
   padding: 7px;
   background-color: #e1b18d;
+  text-align: center;
 }
 
 /* Status styling */
