@@ -198,7 +198,7 @@
             </section>
             
             <section class="course-modal">
-                <button class="back-button">Back</button>
+                <button class="back-button">Back</button> 
                 <div class="course-title-metrics">
                     <div class="course-title">
                         <h1></h1>
@@ -254,22 +254,20 @@
                         <div class="employee-header">
                             <h2>Employees</h2>
                             <div class="employee-status">
-                                <div class="dropdown">
-                                    <button class="dropdown-btn"></button>
-                                    <ul class="dropdown-menu">
-                                        <li data-value="all"></li>
-                                        <li data-value="Marketing"></li>
-                                        <li data-value="Engineering"></li>
-                                        <li data-value="HR"></li>
-                                        <li data-value="Finance"></li>
-                                        <li data-value="Sales"></li>
-                                    </ul>
-                                </div>
+                                <select id="departmentFilter" class="custom-select">
+                                    <option value="" disabled selected>Select Status</option>
+                                    <option value="all"></option>
+                                    <option value="Marketing"></option>
+                                    <option value="Engineering"></option>
+                                    <option value="HR"></option>
+                                    <option value="Finance"></option>
+                                    <option value="Sales"></option>
+                                </select>
                             </div>
                         </div>
                         <div class="employee-card">
                             <div class="employee-image">
-                                <img src="../assets/employees-icon.svg">
+                                <img src="./src/assets/employees-icon.svg">
                             </div>
                             <div class="employee-info">
                                 <h3 class="employee-name"></h3>

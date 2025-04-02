@@ -225,7 +225,7 @@ function createTypeTag(value, baseClass) {
     tag.textContent = value;
     return tag;
 }
-
+console.log("tableBody:");
 function applyFilter() {
     const mainCategory = document.getElementById('mainCategory').value;
     const secondFilter = document.getElementById('secondFilter').value;
@@ -245,7 +245,7 @@ function applyFilter() {
 
     fetchData(fetchTypeMap[mainCategory] || 0)
         .then(dataSet => {
-            let filteredData = dataSet.filter(item => {
+            let filteredData = Object.entries(dataSet).filter(([key, item]) => {
                 if (secondFilter === 'Select condition' || filterValue === '') return true;
 
                 const filterValueMap = {
@@ -279,27 +279,35 @@ function applyFilter() {
                 return comparisons[thirdFilter] ? comparisons[thirdFilter]() : true;
             });
 
-            // Populate table with filtered data
-            filteredData.forEach(item => {
+            // ✅ Ensure rows get the correct key
+            filteredData.forEach(([key, item], index) => {
+                const formattedKey = `tra${String(index + 1).padStart(3, '0')}`; // 🔥 Start from 1
                 const row = generateTableRow(item, mainCategory);
-
-                // Add click event listener to the row
-                row.addEventListener('click', () => {
-                    const trainingId = item.id; // Assuming `id` is the unique identifier for each training
-                    loadTrainingDetails(item.key); // Call the function with the training ID
-                });
-
+                row.dataset.key = formattedKey; // ✅ Assign formatted key
+                console.log("Row assigned key:", formattedKey); // ✅ Debugging log
                 tableBody.appendChild(row);
             });
+            document.getElementById('tableBody').addEventListener('click', function (event) {
+                const row = event.target.closest('tr');
+                if (row && row.dataset.key) {
+                    const trainingKey = row.dataset.key;
+                    const mainCategory = document.getElementById('mainCategory').value; // Get the selected category
 
-            resultsTable.classList.add('training-table');
-            // Show/hide table based on results
-            resultsTable.classList.toggle('visible', filteredData.length > 0);
+                    console.log("Clicked row key:", trainingKey);
+                    if (mainCategory === "Training Programs") { // ✅ Call only for Training Programs
+                        console.log("Passing key to loadTrainingDetails:", trainingKey);
+                        loadTrainingDetails(trainingKey);
+                        document.querySelector(".course-modal").style.display = "block";
+                    }
+                }
+            });
+
+
         })
-        .catch(error => {
-            console.error("Error in filtering training data:", error);
-        });
 }
+
+
+
 
 function getFilterValues() {
     let selects = document.querySelectorAll('.filter__select');
@@ -439,10 +447,8 @@ Promise.all([
         console.log("Fetched trainers:", trainers);
         console.log("Fetched employees:", employees);
         console.log("Fetched departments:", departments);
-
-        loadTrainingDetails(trainingId);
-        initializeDropdown();
     })
+
     .catch(error => console.error('Error fetching data:', error));
 
 function loadTrainingDetails(trainingId) {
@@ -474,11 +480,13 @@ function loadTrainingDetails(trainingId) {
     titleMetricsContainer.querySelector('.metric-three .metric-value').textContent = training.feedback_score;
     titleMetricsContainer.querySelector('.metric-four .metric-value').textContent = training.effectiveness_score;
 
+    const trainingTypeFormatted = training.training_type.charAt(0).toUpperCase() + training.training_type.slice(1);
+    const trainingStatusFormatted = training.status.charAt(0).toUpperCase() + training.status.slice(1);
     const trainingElement = document.createElement('div');
     trainingElement.className = 'course-details';
     trainingElement.innerHTML = `
         <div class="type-mode">
-            <button class="btn-type" data-type="${training.training_type}">${training.training_type}</button>
+            <button class="btn-type" data-type="${training.training_type}">${trainingTypeFormatted}</button>
             <button class="btn-mode">${training.mode}</button>
         </div>
         <div class="description">
@@ -494,7 +502,7 @@ function loadTrainingDetails(trainingId) {
             <h3 class="trainer-title">Trainer: <span class="trainer-name">${trainerName}</span></h3>
         </div>
         <div class="course-status">
-            <h3 class="status-title">Status: <span class="course-status-label" data-status="${training.status}">${training.status}</span></h3>
+            <h3 class="status-title">Status: <span class="course-status-label" data-status="${training.status}">${trainingStatusFormatted}</span></h3>
         </div>
         <div class="course-topics">
             <h3 class="topic-title">Topics:</h3>
@@ -514,7 +522,7 @@ function loadTrainingDetails(trainingId) {
         const empDepartment = departments[empDepartmentId]?.department_name || "Unknown";
 
         return `
-            <div class="employee-card" data-department="${empDepartment}">
+            <div class="employee-card" data-department="${empDepartment}" onclick="handleEmployeeClick('${empId}')">
                 <div class="employee-image">
                     <img src="./src/assets/employees-icon.svg">
                 </div>
@@ -536,23 +544,30 @@ function loadTrainingDetails(trainingId) {
         <div class="employee-header">
             <h2>Employees</h2>
             <div class="employee-status">
-                <div class="dropdown">
-                    <button class="dropdown-btn">Select Status</button>
-                    <ul class="dropdown-menu">
-                        <li data-value="all">All</li>
-                        <li data-value="Marketing">Marketing</li>
-                        <li data-value="Engineering">Engineering</li>
-                        <li data-value="HR">HR</li>
-                        <li data-value="Finance">Finance</li>
-                        <li data-value="Sales">Sales</li>
-                    </ul>
-                </div>
+                <select id="departmentFilter" class="custom-select">
+                    <option value="" disabled selected>Select Status</option>
+                    <option value="all">All</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="HR">HR</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Sales">Sales</option>
+                </select>
             </div>
         </div>
         <div id="employeeList">${employeeListHTML}</div>
     `;
-
     trainingContainer.appendChild(employeeDetailsElement);
+    document.getElementById("departmentFilter").addEventListener("change", function () {
+        const selectedDepartment = this.value;
+        document.querySelectorAll(".employee-card").forEach(card => {
+            if (selectedDepartment === "all" || card.dataset.department === selectedDepartment) {
+                card.style.display = "flex";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    });
 
     document.addEventListener("click", (event) => {
         if (event.target.classList.contains("back-button")) {
@@ -560,46 +575,25 @@ function loadTrainingDetails(trainingId) {
         }
     });
 }
-function initializeDropdown() {
-    const dropdown = document.querySelector(".dropdown");
-    const dropdownBtn = document.querySelector(".dropdown-btn");
-    const dropdownMenu = document.querySelector(".dropdown-menu");
-    const employeeCards = document.querySelectorAll(".employee-card");
 
-    if (!dropdown || !dropdownBtn || !dropdownMenu) {
-        console.error("Dropdown elements not found.");
-        return;
-    }
-
-    dropdownBtn.addEventListener("click", function (event) {
-        event.stopPropagation();
-        dropdown.classList.toggle("active");
-    });
-
-    dropdownMenu.addEventListener("click", function (event) {
-        if (event.target.tagName === "LI") {
-            const selectedDepartment = event.target.getAttribute("data-value");
-            dropdownBtn.textContent = event.target.textContent;
-
-            employeeCards.forEach(card => {
-                if (selectedDepartment === "all" || card.dataset.department === selectedDepartment) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-
-            dropdown.classList.remove("active");
-        }
-    });
-
-    document.addEventListener("click", function (event) {
-        if (!dropdown.contains(event.target)) {
-            dropdown.classList.remove("active");
-        }
-    });
+function handleEmployeeClick(empId) {
+    document.querySelector(".course-modal").style.display = "none";
+    displayEmployeeTrainings(empId, employees, data, trainers);
 }
 
+function adjustModalWidth() {
+    const mainContent = document.querySelector(".main-content");
+    const courseModal = document.querySelector(".course-modal");
+
+    if (mainContent && courseModal) {
+        const computedStyle = window.getComputedStyle(mainContent);
+        courseModal.style.width = computedStyle.width;
+    }
+}
+
+// Run function when page loads and on window resize
+window.addEventListener("load", adjustModalWidth);
+window.addEventListener("resize", adjustModalWidth);
 
 
 //Stats
@@ -1030,6 +1024,7 @@ function fetchData(type) {
                         attendancePercentage: `${training.attendance}%`,
                         feedbackScore: training.feedback_score,
 
+
                         status: training.status,
                         topics: training.topics
                     };
@@ -1204,86 +1199,7 @@ function generateTableRow(data, category) {
 
     return row;
 }
-function createTypeTag(value, baseClass) {
-    if (!value) return value;
-    const tag = document.createElement('span');
 
-    // Normalize the value for class generation
-    const normalizedValue = value.toLowerCase().replace(/\s+/g, '-');
-
-
-    // Add specific classes for different types
-    tag.classList.add('type-tag', `type-${baseClass}`, `type-${baseClass}-${normalizedValue}`);
-    tag.textContent = value;
-    return tag;
-}
-
-function applyFilter() {
-    const mainCategory = document.getElementById('mainCategory').value;
-    const secondFilter = document.getElementById('secondFilter').value;
-    const thirdFilter = document.getElementById('thirdFilter').value;
-    const filterValue = document.getElementById('filterValue').value.trim().toLowerCase();
-    const resultsTable = document.getElementById('resultsTable');
-    const tableBody = document.getElementById('tableBody');
-
-    tableBody.innerHTML = ''; // Clear previous results
-    setTableHeader(mainCategory);
-
-    const fetchTypeMap = {
-        'Training Programs': 1,
-        'Employees': 2,
-        'Trainers': 3
-    };
-
-    fetchData(fetchTypeMap[mainCategory] || 0)
-        .then(dataSet => {
-            let filteredData = dataSet.filter(item => {
-                if (secondFilter === 'Select condition' || filterValue === '') return true;
-                //console.log("Effectiveness Values:", dataSet.map(item => item.effectiveness));
-                const filterValueMap = {
-                    'Feedback Score': () => parseFloat(item.feedbackScore),
-                    'Duration': () => parseInt(item.duration),
-                    'Attendance': () => parseFloat(item.attendancePercentage),
-                    'Average Attendance': () => parseFloat(item.averageAttendance),
-                    'Total Training Days': () => parseInt(item.totalTrainingDays),
-                    'Total Training Programs': () => parseInt(item.totalTrainingPrograms),
-                    'Effectiveness Score': () => parseFloat(item.effectiveness)
-                };
-
-                const getItemValue = filterValueMap[secondFilter];
-                if (!getItemValue) {
-                    return Object.values(item).some(val =>
-                        val.toString().toLowerCase().includes(filterValue)
-                    );
-                }
-
-                const itemValue = getItemValue();
-                if (isNaN(itemValue)) return false;
-
-                const filterNum = parseFloat(filterValue);
-                const comparisons = {
-                    'Greater than': () => itemValue > filterNum,
-                    'Lesser than': () => itemValue < filterNum,
-                    'Equals': () => itemValue === filterNum,
-                    'Not Equals': () => itemValue !== filterNum
-                };
-
-                return comparisons[thirdFilter] ? comparisons[thirdFilter]() : true;
-            });
-
-            // Populate table with filtered data
-            filteredData.forEach(item => {
-                const row = generateTableRow(item, mainCategory);
-                tableBody.appendChild(row);
-            });
-            resultsTable.classList.add('training-table');
-            // Show/hide table based on results
-            resultsTable.classList.toggle('visible', filteredData.length > 0);
-        })
-        .catch(error => {
-            console.error("Error in filtering training data:", error);
-        });
-}
 
 function populateSidebar() {
     const topDepartments = document.getElementById('topDepartments');
