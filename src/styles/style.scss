@@ -112,6 +112,17 @@ header {
                 font-weight: 500;
             }
         }
+
+        #searchResults {
+            position: absolute;
+            margin-top: 38px;
+            background-color: $red-lighter;
+            color: $font-dark;
+            width: 700px;
+            border-radius: 0 0 5px 5px;
+            padding: 20px;
+            // display: none;
+        }
     }
 }
 

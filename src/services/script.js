@@ -662,6 +662,54 @@ const updateTrainings = async (trainingData) => {
     });
 };
 
+const categorizeTrainings = async () => {
+    const trainingData = await fetchDataFromFire(tables[0]);
+    
+    let techTrainings = 0;
+    let softSkillsTrainings = 0;
+    let languageTrainings = 0;
+    let feedbackScore = 0;
+    let effectivenessScore = 0;
+
+    if (trainingData) {
+        Object.values(trainingData).forEach(trainings => {
+            if (trainings.training_type === "technical") {
+                techTrainings++;
+            } else if (trainings.training_type === "softskills") {
+                softSkillsTrainings++;
+            } else if (trainings.training_type === "language") {
+                languageTrainings++;
+            }
+            if (trainings) {
+                feedbackScore += parseInt(trainings.feedback_score);
+                effectivenessScore += parseInt(trainings.effectiveness_score);
+            }
+        });
+    }
+    const techTrainingElement = document.getElementById("techTrainings");
+    const softSkillsTrainingElement = document.getElementById("softTrainings");
+    const languageTrainingElement = document.getElementById("langTrainings");
+    const feedbackScoreElement = document.getElementById("avgFeedback");
+    const effectivenessScoreElement = document.getElementById("avgEffectiveness");
+
+    if (techTrainingElement) {
+        techTrainingElement.textContent = techTrainings;
+    }
+    if (softSkillsTrainingElement) {
+        softSkillsTrainingElement.textContent = softSkillsTrainings;
+    }
+    if (languageTrainingElement) {
+        languageTrainingElement.textContent = languageTrainings;
+    }
+    if (feedbackScoreElement) {
+        feedbackScoreElement.textContent = (feedbackScore / Object.keys(trainingData).length).toFixed(2);
+    }
+    if (effectivenessScoreElement) {
+        effectivenessScoreElement.textContent = (effectivenessScore / Object.keys(trainingData).length).toFixed(2);
+    }
+    
+};
+
 const updateEmployees = async () => {
     const employeeData = await fetchDataFromFire(tables[1]);
     let trainedEmployeesCount = 0;
@@ -935,6 +983,7 @@ window.onload = () => {
     updateDepartmentChart();
     updateTrainingProgramChart();
     updateTopTraining();
+    categorizeTrainings();
 };
 
 
@@ -1739,3 +1788,65 @@ function populateEmployeeSidebar() {
 
 // Call the function on page load
 document.addEventListener('DOMContentLoaded', populateEmployeeSidebar);
+
+
+
+//Global Search
+
+const searchInput = document.querySelector(".global-search");
+const searchDropdown = document.querySelector(".global-search__dropdown");
+
+searchInput.addEventListener("input", () => {
+    const query = searchInput.value.trim().toLowerCase();
+    const category = searchDropdown.value;
+
+    performSearch(query, category);
+});
+
+searchDropdown.addEventListener("change", () => {
+    const query = searchInput.value.trim().toLowerCase();
+    const category = searchDropdown.value;
+
+    performSearch(query, category);
+});
+
+async function performSearch(query, category) {
+    if (!query) return;
+    let data;
+    switch (category) {
+        case "Training Programs":
+            data = await fetchDataFromFire(tables[0]);
+            break;
+        case "Employees":
+            data = await fetchDataFromFire(tables[1]);
+            break;
+        case "Trainers":
+            data = await fetchDataFromFire(tables[2]);
+            break;
+        default:
+            return;
+    }
+
+    if (!data) return;
+
+    const filteredResults = Object.values(data).filter((item) => {
+        return Object.values(item).some((value) => {
+            return String(value).toLowerCase().includes(query)
+        });
+    });
+
+    displayResults(filteredResults, category);
+}
+
+function displayResults(results, category) {
+    const resultsContainer = document.getElementById("searchResults");
+    if (!resultsContainer) return;
+    
+    if (results.length > 0) {
+        resultsContainer.innerHTML = results.map(result => {
+            return `<div>${JSON.stringify(result)}</div>`
+        }).join("");
+    } else {
+        resultsContainer.innerHTML = "<div>No results found</div>";
+    }
+}
