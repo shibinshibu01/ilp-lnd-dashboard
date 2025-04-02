@@ -67,8 +67,30 @@
         </nav>
 
         <div class="sidebar">
-            <div class="sidebar-header">Sidebar Header</div>
-            <div class="sidebar-content">Sidebar Content</div>
+            <div class="sidebar-header">
+                <img src="../assets/user-pic.svg" alt="User Profile">
+                <div class="sidebar-header__info">
+                    <h3>Jordan S Ben</h3>
+                    <p>Associate - L&D</p>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <div class="sidebar-name-filter">
+                        <h4>Trainers</h4>
+                        <div class="trainer-filter">
+                            <select id="trainerTypeFilter" class="filter__select">
+                                <option value="all">All</option>
+                                <option value="internal">Internal</option>
+                                <option value="external">External</option>
+                            </select>
+                        </div>
+                    </div>
+                    <ul id="trainersList">
+                        <!-- Dynamically populated -->
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="main-content">
@@ -115,13 +137,85 @@
                 </div>
             </div>
 
+            <div class="stats-homebar">
+                <div class="stats-card">
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="ongoingTraining">0</p>
+                        <span class="training-stat__label">Ongoing<br>Trainings</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="completedTraining">0</p>
+                        <span class="training-stat__label">Completed<br>Trainings</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="techTrainings">0</p>
+                        <span class="training-stat__label">Technical<br>Trainings</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="softTrainings">0</p>
+                        <span class="training-stat__label">Soft Skills<br>Trainings</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="langTrainings">0</p>
+                        <span class="training-stat__label">Language<br>Trainings</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="employeesTrained">0</p>
+                        <span class="training-stat__label">Employees<br>Trained</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="avgFeedback">0</p>
+                        <span class="training-stat__label">Avg Feedback<br>Score</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="avgEffectiveness">0</p>
+                        <span class="training-stat__label">Avg Effectiveness<br>Score</span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="stats-homebar">
+                <div class="stats-card">
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="ongoingTraining">0</p>
+                        <span class="training-stat__label">Ongoing<br>Trainings</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="completedTraining">0</p>
+                        <span class="training-stat__label">Completed<br>Trainings</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="employeesTrained">0</p>
+                        <span class="training-stat__label">Employees<br>Trained</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="trainingHours">0</p>
+                        <span class="training-stat__label" id="trainingHoursLabel">Training<br> Days</span>
+                    </div>
+
+                    <div class="training-stat">
+                        <p class="training-stat__number" id="traineeDays">0</p>
+                        <span class="training-stat__label" id="traineeDaysLabel">Trainee<br>Days</span>
+                    </div>
+                </div>
+            </div>
 
             <section class="trainings_list">
                 <div class="training-title">
-                    <h1>Training Programs</h1>
+                    <p class="content-title">Training Programs</p>
                     <div class="training-search">
-                    <input type="text" id="searchInput" placeholder="Search Training...">
-                    <img src="..\assets\search-icon.svg" alt="Search Icon" id="searchTraining" onclick="searchTrainings()">
+                        <input type="text" id="searchInput" placeholder="Search Training..." class="train-search">
+                        <img src="..\assets\search-icon.svg" alt="Search Icon" id="searchTraining" onclick="searchTrainings()">
                     </div>
                 </div>
                 <table class="training-table">
@@ -235,4 +329,4 @@
     <script src="../services/script.js"></script>
 </body>
 
-</html>`
+</html>

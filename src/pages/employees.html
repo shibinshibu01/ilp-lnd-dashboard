@@ -67,36 +67,63 @@
         </nav>
 
         <div class="sidebar">
-            <div class="sidebar-header">Sidebar Header</div>
-            <div class="sidebar-content">Sidebar Content</div>
+            <div class="sidebar-header">
+                <img src="../assets/user-pic.svg" alt="User Profile">
+                <div class="sidebar-header__info">
+                    <h3>Jordan S Ben</h3>
+                    <p>Associate - L&D</p>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <div class="sidebar-name-filter">
+                        <h4>Employees</h4>
+                        <div class="employee-filter">
+                            <select id="employeeDepartmentFilter" class="filter__select">
+                                <option value="all">All</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="hr">HR</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="finance">Finance</option>
+                                <option value="sales">Sales</option>
+                            </select>
+                        </div>
+                    </div>
+                    <ul id="employeeList">
+                        <!-- Dynamically populated -->
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="main-content">
             <div class="dashboard-header">
                 <h1 class="dashboard-header__title">L&D Dashboard</h1>
-
             </div>
-            <div class="employee-title"></div>
+            <div class="employee-title">
+                <div class="employee-name"></div>
+                <div class="employee-metrics">
+                    <div class="metric-container">
+                        <div class="employee-metrics1" id="emp-met-num"></div>
+                        <div class="metric-headings1" id="emp-met-label"></div>
+                    </div>
+                    <div class="metric-container">
+                        <div class="employee-metrics2" id="emp-met-num"></div>
+                        <div class="metric-headings2" id="emp-met-label"></div>
+                    </div>
+                    <div class="metric-container">
+                        <div class="employee-metrics3" id="emp-met-num"></div>
+                        <div class="metric-headings3" id="emp-met-label"></div>
+                    </div>
+                </div>
+            </div>
+            
             <section class="trainings_list">
                 <table class="training-table">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Type</th>
-                            <th>Duration</th>
-                            <th>Target Audience</th>
-                            <th>Trainer</th>
-                            <th>Employee Attendance</th>
-                            <th>Attendance Percentage</th>
-                            <th>Feedback Score</th>
-                            <th>Mode</th>
-                            <th>Status</th>
-                        </tr> 
-                    </thead>
-                    <tbody id="employeetraining-list">
-                    </tbody>
+                    <tbody id="employeetraining-list"></tbody>
                 </table>
             </section>
+            
 
 
 
@@ -128,6 +155,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="course-modal-details">
                     <div class="course-details">
                         <div class="type-mode">
