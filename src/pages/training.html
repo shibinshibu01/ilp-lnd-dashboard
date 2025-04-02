@@ -140,16 +140,6 @@
             <div class="stats-homebar">
                 <div class="stats-card">
                     <div class="training-stat">
-                        <p class="training-stat__number" id="ongoingTraining">0</p>
-                        <span class="training-stat__label">Ongoing<br>Trainings</span>
-                    </div>
-
-                    <div class="training-stat">
-                        <p class="training-stat__number" id="completedTraining">0</p>
-                        <span class="training-stat__label">Completed<br>Trainings</span>
-                    </div>
-
-                    <div class="training-stat">
                         <p class="training-stat__number" id="techTrainings">0</p>
                         <span class="training-stat__label">Technical<br>Trainings</span>
                     </div>
@@ -180,36 +170,6 @@
                     </div>
                 </div>
             </div>
-            <br>
-            <div class="stats-homebar">
-                <div class="stats-card">
-                    <div class="training-stat">
-                        <p class="training-stat__number" id="ongoingTraining">0</p>
-                        <span class="training-stat__label">Ongoing<br>Trainings</span>
-                    </div>
-
-                    <div class="training-stat">
-                        <p class="training-stat__number" id="completedTraining">0</p>
-                        <span class="training-stat__label">Completed<br>Trainings</span>
-                    </div>
-
-                    <div class="training-stat">
-                        <p class="training-stat__number" id="employeesTrained">0</p>
-                        <span class="training-stat__label">Employees<br>Trained</span>
-                    </div>
-
-                    <div class="training-stat">
-                        <p class="training-stat__number" id="trainingHours">0</p>
-                        <span class="training-stat__label" id="trainingHoursLabel">Training<br> Days</span>
-                    </div>
-
-                    <div class="training-stat">
-                        <p class="training-stat__number" id="traineeDays">0</p>
-                        <span class="training-stat__label" id="traineeDaysLabel">Trainee<br>Days</span>
-                    </div>
-                </div>
-            </div>
-
             <section class="trainings_list">
                 <div class="training-title">
                     <p class="content-title">Training Programs</p>
@@ -238,7 +198,7 @@
             </section>
             
             <section class="course-modal">
-                <button class="back-button">Back</button>
+                <button class="back-button">Back</button> 
                 <div class="course-title-metrics">
                     <div class="course-title">
                         <h1></h1>
@@ -294,22 +254,20 @@
                         <div class="employee-header">
                             <h2>Employees</h2>
                             <div class="employee-status">
-                                <div class="dropdown">
-                                    <button class="dropdown-btn"></button>
-                                    <ul class="dropdown-menu">
-                                        <li data-value="all"></li>
-                                        <li data-value="Marketing"></li>
-                                        <li data-value="Engineering"></li>
-                                        <li data-value="HR"></li>
-                                        <li data-value="Finance"></li>
-                                        <li data-value="Sales"></li>
-                                    </ul>
-                                </div>
+                                <select id="departmentFilter" class="custom-select">
+                                    <option value="" disabled selected>Select Status</option>
+                                    <option value="all"></option>
+                                    <option value="Marketing"></option>
+                                    <option value="Engineering"></option>
+                                    <option value="HR"></option>
+                                    <option value="Finance"></option>
+                                    <option value="Sales"></option>
+                                </select>
                             </div>
                         </div>
                         <div class="employee-card">
                             <div class="employee-image">
-                                <img src="../assets/employees-icon.svg">
+                                <img src="./src/assets/employees-icon.svg">
                             </div>
                             <div class="employee-info">
                                 <h3 class="employee-name"></h3>
@@ -328,5 +286,4 @@
 
     <script src="../services/script.js"></script>
 </body>
-
 </html>

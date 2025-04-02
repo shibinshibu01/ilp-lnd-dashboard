@@ -112,6 +112,17 @@ header {
                 font-weight: 500;
             }
         }
+
+        #searchResults {
+            position: absolute;
+            margin-top: 38px;
+            background-color: $red-lighter;
+            color: $font-dark;
+            width: 700px;
+            border-radius: 0 0 5px 5px;
+            padding: 20px;
+            // display: none;
+        }
     }
 }
 
@@ -176,7 +187,13 @@ main {
 }
 
 .course-modal {
-    position: relative;
+    background-color: white;
+    flex:1;
+    margin-top: 80px;
+    min-height: 80%;
+    z-index: 5;
+    position: absolute;
+    right: 0;
     display: none; //by default modal won't be visible ,it'll be visible only when you click on particular training
 }
 
@@ -185,6 +202,14 @@ main {
     display: flex;
     justify-content: space-between;
     margin: 5px;
+
+    .course-title {
+        h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #333333;
+        }
+    }
 
     .course-metrics {
         display: flex;
@@ -212,17 +237,23 @@ main {
 .course-modal-details {
     display: flex;
     justify-content: space-between;
-
     .course-details {
-        width: 70%;
+        width: 60%;
     }
 
     .employee-details {
-        width: 30%;
         margin: 30px;
+        width: 40%;
+        margin-left: 100px;
+        margin: 30px;
+        overflow-y: auto;
+        height: 500px;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 }
-
 .type-mode {
     padding-left: 20px;
 
@@ -326,55 +357,56 @@ main {
 
     .employee-status {
         padding: 10px;
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-
-            .dropdown-btn {
-                background-color: white;
-                border: 1px solid #ccc;
-                padding: 10px;
-                width: 150px;
-                text-align: left;
-                cursor: pointer;
-            }
-
-            .dropdown-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background-color: white;
-                border: 1px solid #ccc;
-                width: 150px;
-                list-style: none;
-                padding: 0;
-                margin: 0;
-                z-index: 1000;
-
-                .dropdown-menu li {
-                    padding: 10px;
-                    cursor: pointer;
-                }
-
-                .dropdown.active .dropdown-menu {
-                    display: block;
-                }
-            }
-        }
     }
+}
+
+.custom-select {
+    position: relative;
+    min-width: 150px;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    font-size: 12px;
+    color: #333333;
+    appearance: none;
+    cursor: pointer;
+    padding-right: 35px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' fill='none'%3E%3Cpath fill='%23E31E54' d='M6 6 0 0h12L6 6Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+}
+
+.custom-select:focus {
+    outline: none;
+    border-color: #000000;
+}
+
+.custom-select option {
+    padding: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+.custom-select::after {
+    content: '▼';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 
 .employee-card {
     display: flex;
-    gap: 20px;
+    padding: 20px;
+    gap: 10px;
     align-items: center;
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgb(203, 203, 203);
     margin: 10px;
     height: 10vh;
+    width: 350px;
 
     .employee-info {
         width: 180px;
@@ -431,12 +463,20 @@ main {
 
 .back-button {
     position: absolute;
-    right: 15px;
+    right: 5px;
+    padding: 8px 10px;
+    background-color: #E31E54;
+    color: #ffffff;
     border: none;
-    padding: 6px 12px;
     border-radius: 5px;
+    font-size: 15px;
+    font-weight: 550;
     cursor: pointer;
-    font-weight: 300;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: darken(#E31E54, 8%);
+    }
 }
 
 .course-description {
@@ -447,6 +487,7 @@ main {
     background-color: white;
     margin-left: 20px;
     margin-right: 20px;
+
 }
 
 :root {
@@ -607,8 +648,10 @@ $text-color: #333333;
     }
 
     /* Hide scrollbar for IE, Edge, and Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */   
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .filter-header {
@@ -1236,7 +1279,7 @@ $text-color: #333333;
 
 /* Sidebar Styling of litto */
 .sidebar {
-    background-color:$sidebar-bg;
+    background-color: $sidebar-bg;
     width: 300px;
     padding: 10px 20px 20px 20px;
     height: 100%;
@@ -1249,7 +1292,8 @@ $text-color: #333333;
     margin-bottom: 0px;
     padding-bottom: 10px;
     padding-top: 0px;
-    margin-top: 0px;;
+    margin-top: 0px;
+    ;
     border-bottom: 1px solid $border-color;
 }
 
@@ -1287,8 +1331,10 @@ $text-color: #333333;
     }
 
     /* Hide scrollbar for IE, Edge, and Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .sidebar .sidebar-content .sidebar-section h4 {
@@ -1335,15 +1381,15 @@ $text-color: #333333;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
 }
 
 .sidebar .sidebar-content .sidebar-section ul li .value-row {
     display: flex;
     justify-content: space-between;
-    align-items: center; 
-    width: 100%; 
-    margin-top: 5px; 
+    align-items: center;
+    width: 100%;
+    margin-top: 5px;
 }
 
 .sidebar .sidebar-content .sidebar-section ul li .rank-label,
@@ -1351,8 +1397,8 @@ $text-color: #333333;
     font-size: 5px;
     color: $text-color;
     font-weight: 600;
-    flex: row; 
-    text-align: center; 
+    flex: row;
+    text-align: center;
 }
 
 .sidebar .sidebar-content .sidebar-section ul li .rank-number,
@@ -1362,7 +1408,176 @@ $text-color: #333333;
     font-weight: 600;
     color: $font-dark;
     text-align: center;
-    text-wrap:nowrap; 
+    text-wrap: nowrap;
+}
+
+.trainer-card {
+    @include set-flex(row, 0px);
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    overflow: hidden; 
+    padding: 0px; 
+    box-sizing: border-box; 
+    max-width: 100%;
+}
+
+.trainer-card__left {
+    text-wrap: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    h5 {
+        font-size: 11px;
+        font-weight: 650;
+    }
+    .trainings-conducted {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 450;
+    }
+    .trainings-conducted__value {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 500;
+    }
+}
+
+.trainer-card__right {
+    @include set-flex(column, 0px);
+    overflow: hidden;
+        font-size: 8px;
+        text-align: center;
+        color: $font-dark;
+        font-weight: 450;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+        margin-left:25px;
+    .trainer-type__value {
+        text-align: center;
+        font-size: 17px;
+        color: $font-dark;
+        font-weight: 600;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+    }
+}
+.sidebar-name-filter{
+    @include set-flex(row, 0px);
+}
+.trainer-filter {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    margin-left:45px;
+    .filter__select {
+        height: 90%;
+        background-color: $main-bg;
+    }
+}
+
+.sidebar-header__info {
+    zoom: 1.5;
+}
+
+.trainings_list {
+    padding: 20px 20px 20px 20px;
+}
+
+.training-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid $sidebar-bg;
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: 100%;
+    max-width: 300px;
+    background-color: $main-bg;
+}
+
+.training-search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 8px;
+    width: 100%;
+}
+
+.training-search img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.training-search img:hover {
+    opacity: 0.7;
+}
+.employee-filter {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    margin-left:25px;
+    .filter__select {
+        height: 90%;
+        background-color: $main-bg;
+    }
+}
+
+.employee-sidebar-card {
+    @include set-flex(row, 0px);
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    overflow: hidden; 
+    padding: 0px; 
+    box-sizing: border-box; 
+    max-width: 100%;
+}
+
+.employee-sidebar-card__left {
+    text-wrap: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    margin: 0px;
+    h5 {
+        font-size: 12px;
+        font-weight: 500;
+    }
+    .trainings-attended {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 450;
+    }
+    .trainings-attended__value {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 500;
+    }
+}
+
+.employee-sidebar-card__right {
+    @include set-flex(column, 0px);
+    overflow: hidden;
+        font-size: 8px;
+        text-align: left;
+        color: $font-dark;
+        font-weight: 450;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+        margin-left: 15px;
+    
+    .employee-sidebar-card__value{
+        text-align: left;
+        font-size: 15px;
+        color: $font-dark;
+        font-weight: 600;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+    }
 }
 
 .trainer-card {
