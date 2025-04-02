@@ -1,0 +1,4498 @@
+{
+  "departments": {
+    "dept001": {
+      "department_name": "Engineering",
+      "employees_trained": 17,
+      "total_training_hours": 45
+    },
+    "dept002": {
+      "department_name": "HR",
+      "employees_trained": 17,
+      "total_training_hours": 45
+    },
+    "dept003": {
+      "department_name": "Marketing",
+      "employees_trained": 25,
+      "total_training_hours": 25
+    },
+    "dept004": {
+      "department_name": "Finance",
+      "employees_trained": 22,
+      "total_training_hours": 46
+    },
+    "dept005": {
+      "department_name": "Sales",
+      "employees_trained": 19,
+      "total_training_hours": 36
+    }
+  },
+  "employees": {
+    "emp001": {
+      "average_attendance": 85.1,
+      "emp_department": "dept005",
+      "emp_name": "Angela Castillo",
+      "total_training_days": 42,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra005": {
+          "attendance": 91
+        },
+        "tra006": {
+          "attendance": 98
+        },
+        "tra012": {
+          "attendance": 65
+        },
+        "tra015": {
+          "attendance": 58
+        },
+        "tra020": {
+          "attendance": 74
+        },
+        "tra029": {
+          "attendance": 67
+        },
+        "tra033": {
+          "attendance": 84
+        },
+        "tra035": {
+          "attendance": 60
+        }
+      }
+    },
+    "emp002": {
+      "average_attendance": 61,
+      "emp_department": "dept004",
+      "emp_name": "John Cardenas",
+      "total_training_days": 36,
+      "total_training_programs": 7,
+      "trainings_done": {
+        "tra007": {
+          "attendance": 91
+        },
+        "tra008": {
+          "attendance": 75
+        },
+        "tra009": {
+          "attendance": 86
+        },
+        "tra015": {
+          "attendance": 83
+        },
+        "tra017": {
+          "attendance": 67
+        },
+        "tra023": {
+          "attendance": 53
+        },
+        "tra028": {
+          "attendance": 99
+        }
+      }
+    },
+    "emp003": {
+      "average_attendance": 69.8,
+      "emp_department": "dept005",
+      "emp_name": "Jacob Marquez",
+      "total_training_days": 20,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 58
+        },
+        "tra026": {
+          "attendance": 58
+        },
+        "tra028": {
+          "attendance": 94
+        },
+        "tra035": {
+          "attendance": 81
+        }
+      }
+    },
+    "emp004": {
+      "average_attendance": 89.4,
+      "emp_department": "dept003",
+      "emp_name": "Christopher Lee",
+      "total_training_days": 51,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 78
+        },
+        "tra003": {
+          "attendance": 52
+        },
+        "tra005": {
+          "attendance": 59
+        },
+        "tra006": {
+          "attendance": 79
+        },
+        "tra007": {
+          "attendance": 62
+        },
+        "tra013": {
+          "attendance": 73
+        },
+        "tra017": {
+          "attendance": 80
+        },
+        "tra022": {
+          "attendance": 80
+        },
+        "tra024": {
+          "attendance": 82
+        },
+        "tra034": {
+          "attendance": 65
+        }
+      }
+    },
+    "emp005": {
+      "average_attendance": 61.8,
+      "emp_department": "dept004",
+      "emp_name": "Gwendolyn Williams",
+      "total_training_days": 33,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra003": {
+          "attendance": 97
+        },
+        "tra008": {
+          "attendance": 85
+        },
+        "tra017": {
+          "attendance": 70
+        },
+        "tra021": {
+          "attendance": 82
+        },
+        "tra028": {
+          "attendance": 50
+        },
+        "tra029": {
+          "attendance": 60
+        },
+        "tra032": {
+          "attendance": 83
+        },
+        "tra035": {
+          "attendance": 65
+        }
+      }
+    },
+    "emp006": {
+      "average_attendance": 61.8,
+      "emp_department": "dept001",
+      "emp_name": "Jorge Ryan",
+      "total_training_days": 57,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 100
+        },
+        "tra009": {
+          "attendance": 67
+        },
+        "tra014": {
+          "attendance": 50
+        },
+        "tra015": {
+          "attendance": 76
+        },
+        "tra019": {
+          "attendance": 95
+        },
+        "tra024": {
+          "attendance": 93
+        },
+        "tra025": {
+          "attendance": 73
+        },
+        "tra026": {
+          "attendance": 87
+        },
+        "tra028": {
+          "attendance": 56
+        },
+        "tra030": {
+          "attendance": 77
+        }
+      }
+    },
+    "emp007": {
+      "average_attendance": 94.2,
+      "emp_department": "dept001",
+      "emp_name": "Kayla Sanders",
+      "total_training_days": 20,
+      "total_training_programs": 3,
+      "trainings_done": {
+        "tra006": {
+          "attendance": 99
+        },
+        "tra012": {
+          "attendance": 53
+        },
+        "tra014": {
+          "attendance": 66
+        }
+      }
+    },
+    "emp008": {
+      "average_attendance": 84.6,
+      "emp_department": "dept004",
+      "emp_name": "Allison Eaton",
+      "total_training_days": 35,
+      "total_training_programs": 6,
+      "trainings_done": {
+        "tra009": {
+          "attendance": 94
+        },
+        "tra015": {
+          "attendance": 84
+        },
+        "tra019": {
+          "attendance": 52
+        },
+        "tra020": {
+          "attendance": 68
+        },
+        "tra030": {
+          "attendance": 91
+        },
+        "tra033": {
+          "attendance": 59
+        }
+      }
+    },
+    "emp009": {
+      "average_attendance": 61.6,
+      "emp_department": "dept003",
+      "emp_name": "Luis Robles",
+      "total_training_days": 39,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra003": {
+          "attendance": 88
+        },
+        "tra004": {
+          "attendance": 94
+        },
+        "tra008": {
+          "attendance": 69
+        },
+        "tra010": {
+          "attendance": 66
+        },
+        "tra011": {
+          "attendance": 50
+        },
+        "tra017": {
+          "attendance": 96
+        },
+        "tra020": {
+          "attendance": 51
+        },
+        "tra026": {
+          "attendance": 67
+        }
+      }
+    },
+    "emp010": {
+      "average_attendance": 61.5,
+      "emp_department": "dept003",
+      "emp_name": "Willie Archer",
+      "total_training_days": 40,
+      "total_training_programs": 7,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 69
+        },
+        "tra003": {
+          "attendance": 55
+        },
+        "tra006": {
+          "attendance": 67
+        },
+        "tra012": {
+          "attendance": 68
+        },
+        "tra018": {
+          "attendance": 73
+        },
+        "tra030": {
+          "attendance": 98
+        },
+        "tra032": {
+          "attendance": 58
+        }
+      }
+    },
+    "emp011": {
+      "average_attendance": 92.9,
+      "emp_department": "dept003",
+      "emp_name": "Nicholas Rose",
+      "total_training_days": 27,
+      "total_training_programs": 5,
+      "trainings_done": {
+        "tra003": {
+          "attendance": 92
+        },
+        "tra004": {
+          "attendance": 100
+        },
+        "tra007": {
+          "attendance": 71
+        },
+        "tra022": {
+          "attendance": 68
+        },
+        "tra029": {
+          "attendance": 82
+        }
+      }
+    },
+    "emp012": {
+      "average_attendance": 93.4,
+      "emp_department": "dept005",
+      "emp_name": "Autumn Franklin",
+      "total_training_days": 53,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 82
+        },
+        "tra010": {
+          "attendance": 55
+        },
+        "tra015": {
+          "attendance": 78
+        },
+        "tra019": {
+          "attendance": 98
+        },
+        "tra020": {
+          "attendance": 58
+        },
+        "tra021": {
+          "attendance": 70
+        },
+        "tra022": {
+          "attendance": 95
+        },
+        "tra026": {
+          "attendance": 83
+        },
+        "tra030": {
+          "attendance": 99
+        },
+        "tra033": {
+          "attendance": 90
+        }
+      }
+    },
+    "emp013": {
+      "average_attendance": 71.8,
+      "emp_department": "dept001",
+      "emp_name": "Stephen Wiggins",
+      "total_training_days": 18,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra004": {
+          "attendance": 61
+        },
+        "tra013": {
+          "attendance": 97
+        },
+        "tra026": {
+          "attendance": 54
+        },
+        "tra031": {
+          "attendance": 74
+        }
+      }
+    },
+    "emp014": {
+      "average_attendance": 76.7,
+      "emp_department": "dept002",
+      "emp_name": "Lisa Wilson",
+      "total_training_days": 52,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 51
+        },
+        "tra004": {
+          "attendance": 72
+        },
+        "tra007": {
+          "attendance": 100
+        },
+        "tra023": {
+          "attendance": 97
+        },
+        "tra024": {
+          "attendance": 58
+        },
+        "tra026": {
+          "attendance": 54
+        },
+        "tra028": {
+          "attendance": 78
+        },
+        "tra031": {
+          "attendance": 50
+        },
+        "tra033": {
+          "attendance": 94
+        },
+        "tra035": {
+          "attendance": 76
+        }
+      }
+    },
+    "emp015": {
+      "average_attendance": 63.1,
+      "emp_department": "dept004",
+      "emp_name": "Timothy Lee",
+      "total_training_days": 25,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra004": {
+          "attendance": 85
+        },
+        "tra030": {
+          "attendance": 98
+        },
+        "tra031": {
+          "attendance": 98
+        },
+        "tra035": {
+          "attendance": 63
+        }
+      }
+    },
+    "emp016": {
+      "average_attendance": 97.9,
+      "emp_department": "dept002",
+      "emp_name": "Sean Martin",
+      "total_training_days": 33,
+      "total_training_programs": 5,
+      "trainings_done": {
+        "tra009": {
+          "attendance": 80
+        },
+        "tra018": {
+          "attendance": 89
+        },
+        "tra023": {
+          "attendance": 99
+        },
+        "tra026": {
+          "attendance": 64
+        },
+        "tra030": {
+          "attendance": 95
+        }
+      }
+    },
+    "emp017": {
+      "average_attendance": 94.6,
+      "emp_department": "dept002",
+      "emp_name": "Jamie Beltran",
+      "total_training_days": 57,
+      "total_training_programs": 9,
+      "trainings_done": {
+        "tra004": {
+          "attendance": 60
+        },
+        "tra010": {
+          "attendance": 62
+        },
+        "tra015": {
+          "attendance": 66
+        },
+        "tra018": {
+          "attendance": 92
+        },
+        "tra020": {
+          "attendance": 98
+        },
+        "tra022": {
+          "attendance": 72
+        },
+        "tra026": {
+          "attendance": 60
+        },
+        "tra029": {
+          "attendance": 52
+        },
+        "tra033": {
+          "attendance": 52
+        }
+      }
+    },
+    "emp018": {
+      "average_attendance": 85.3,
+      "emp_department": "dept004",
+      "emp_name": "Rodney Walker",
+      "total_training_days": 57,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 57
+        },
+        "tra006": {
+          "attendance": 72
+        },
+        "tra011": {
+          "attendance": 82
+        },
+        "tra013": {
+          "attendance": 69
+        },
+        "tra023": {
+          "attendance": 53
+        },
+        "tra024": {
+          "attendance": 99
+        },
+        "tra025": {
+          "attendance": 81
+        },
+        "tra032": {
+          "attendance": 53
+        },
+        "tra034": {
+          "attendance": 70
+        },
+        "tra035": {
+          "attendance": 52
+        }
+      }
+    },
+    "emp019": {
+      "average_attendance": 96.2,
+      "emp_department": "dept003",
+      "emp_name": "Brandon Mcconnell",
+      "total_training_days": 28,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra003": {
+          "attendance": 82
+        },
+        "tra009": {
+          "attendance": 64
+        },
+        "tra010": {
+          "attendance": 83
+        },
+        "tra012": {
+          "attendance": 76
+        }
+      }
+    },
+    "emp020": {
+      "average_attendance": 60.4,
+      "emp_department": "dept002",
+      "emp_name": "Ronald Torres",
+      "total_training_days": 16,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra020": {
+          "attendance": 52
+        },
+        "tra027": {
+          "attendance": 66
+        },
+        "tra032": {
+          "attendance": 58
+        },
+        "tra033": {
+          "attendance": 58
+        }
+      }
+    },
+    "emp021": {
+      "average_attendance": 87,
+      "emp_department": "dept002",
+      "emp_name": "Kimberly Bennett",
+      "total_training_days": 44,
+      "total_training_programs": 7,
+      "trainings_done": {
+        "tra003": {
+          "attendance": 64
+        },
+        "tra009": {
+          "attendance": 78
+        },
+        "tra010": {
+          "attendance": 81
+        },
+        "tra015": {
+          "attendance": 77
+        },
+        "tra021": {
+          "attendance": 51
+        },
+        "tra024": {
+          "attendance": 98
+        },
+        "tra031": {
+          "attendance": 97
+        }
+      }
+    },
+    "emp022": {
+      "average_attendance": 96.2,
+      "emp_department": "dept005",
+      "emp_name": "Heather Cruz",
+      "total_training_days": 38,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 53
+        },
+        "tra006": {
+          "attendance": 61
+        },
+        "tra007": {
+          "attendance": 77
+        },
+        "tra012": {
+          "attendance": 78
+        },
+        "tra018": {
+          "attendance": 52
+        },
+        "tra021": {
+          "attendance": 97
+        },
+        "tra028": {
+          "attendance": 75
+        },
+        "tra029": {
+          "attendance": 76
+        }
+      }
+    },
+    "emp023": {
+      "average_attendance": 91.3,
+      "emp_department": "dept005",
+      "emp_name": "Carol Rodriguez",
+      "total_training_days": 34,
+      "total_training_programs": 9,
+      "trainings_done": {
+        "tra005": {
+          "attendance": 94
+        },
+        "tra006": {
+          "attendance": 77
+        },
+        "tra007": {
+          "attendance": 51
+        },
+        "tra009": {
+          "attendance": 98
+        },
+        "tra011": {
+          "attendance": 79
+        },
+        "tra017": {
+          "attendance": 68
+        },
+        "tra019": {
+          "attendance": 64
+        },
+        "tra021": {
+          "attendance": 80
+        },
+        "tra031": {
+          "attendance": 53
+        }
+      }
+    },
+    "emp024": {
+      "average_attendance": 82.1,
+      "emp_department": "dept001",
+      "emp_name": "Cynthia Harper",
+      "total_training_days": 25,
+      "total_training_programs": 5,
+      "trainings_done": {
+        "tra007": {
+          "attendance": 64
+        },
+        "tra011": {
+          "attendance": 71
+        },
+        "tra015": {
+          "attendance": 76
+        },
+        "tra016": {
+          "attendance": 100
+        },
+        "tra025": {
+          "attendance": 81
+        }
+      }
+    },
+    "emp025": {
+      "average_attendance": 85.6,
+      "emp_department": "dept003",
+      "emp_name": "Troy Greene",
+      "total_training_days": 58,
+      "total_training_programs": 9,
+      "trainings_done": {
+        "tra006": {
+          "attendance": 88
+        },
+        "tra009": {
+          "attendance": 65
+        },
+        "tra012": {
+          "attendance": 61
+        },
+        "tra013": {
+          "attendance": 81
+        },
+        "tra014": {
+          "attendance": 100
+        },
+        "tra015": {
+          "attendance": 93
+        },
+        "tra024": {
+          "attendance": 74
+        },
+        "tra029": {
+          "attendance": 70
+        },
+        "tra035": {
+          "attendance": 54
+        }
+      }
+    },
+    "emp026": {
+      "average_attendance": 60.9,
+      "emp_department": "dept003",
+      "emp_name": "April Roberts",
+      "total_training_days": 24,
+      "total_training_programs": 3,
+      "trainings_done": {
+        "tra009": {
+          "attendance": 74
+        },
+        "tra022": {
+          "attendance": 77
+        },
+        "tra034": {
+          "attendance": 74
+        }
+      }
+    },
+    "emp027": {
+      "average_attendance": 79.8,
+      "emp_department": "dept004",
+      "emp_name": "Barbara Montgomery",
+      "total_training_days": 34,
+      "total_training_programs": 5,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 77
+        },
+        "tra007": {
+          "attendance": 95
+        },
+        "tra010": {
+          "attendance": 80
+        },
+        "tra021": {
+          "attendance": 92
+        },
+        "tra034": {
+          "attendance": 54
+        }
+      }
+    },
+    "emp028": {
+      "average_attendance": 70.1,
+      "emp_department": "dept004",
+      "emp_name": "Ryan Gonzalez",
+      "total_training_days": 17,
+      "total_training_programs": 5,
+      "trainings_done": {
+        "tra013": {
+          "attendance": 57
+        },
+        "tra019": {
+          "attendance": 86
+        },
+        "tra027": {
+          "attendance": 55
+        },
+        "tra029": {
+          "attendance": 68
+        },
+        "tra032": {
+          "attendance": 98
+        }
+      }
+    },
+    "emp029": {
+      "average_attendance": 77.6,
+      "emp_department": "dept004",
+      "emp_name": "Christopher Morgan",
+      "total_training_days": 22,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 80
+        },
+        "tra022": {
+          "attendance": 84
+        },
+        "tra024": {
+          "attendance": 78
+        },
+        "tra028": {
+          "attendance": 84
+        }
+      }
+    },
+    "emp030": {
+      "average_attendance": 65.1,
+      "emp_department": "dept003",
+      "emp_name": "Jason Harris DDS",
+      "total_training_days": 31,
+      "total_training_programs": 7,
+      "trainings_done": {
+        "tra004": {
+          "attendance": 76
+        },
+        "tra006": {
+          "attendance": 81
+        },
+        "tra012": {
+          "attendance": 90
+        },
+        "tra013": {
+          "attendance": 83
+        },
+        "tra017": {
+          "attendance": 53
+        },
+        "tra032": {
+          "attendance": 60
+        },
+        "tra035": {
+          "attendance": 68
+        }
+      }
+    },
+    "emp031": {
+      "average_attendance": 92.7,
+      "emp_department": "dept004",
+      "emp_name": "Michael Gomez",
+      "total_training_days": 35,
+      "total_training_programs": 7,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 50
+        },
+        "tra006": {
+          "attendance": 83
+        },
+        "tra009": {
+          "attendance": 65
+        },
+        "tra011": {
+          "attendance": 85
+        },
+        "tra015": {
+          "attendance": 99
+        },
+        "tra020": {
+          "attendance": 73
+        },
+        "tra029": {
+          "attendance": 59
+        }
+      }
+    },
+    "emp032": {
+      "average_attendance": 80,
+      "emp_department": "dept001",
+      "emp_name": "Emily Stevens",
+      "total_training_days": 26,
+      "total_training_programs": 5,
+      "trainings_done": {
+        "tra003": {
+          "attendance": 67
+        },
+        "tra006": {
+          "attendance": 78
+        },
+        "tra008": {
+          "attendance": 87
+        },
+        "tra023": {
+          "attendance": 54
+        },
+        "tra033": {
+          "attendance": 59
+        }
+      }
+    },
+    "emp033": {
+      "average_attendance": 94.3,
+      "emp_department": "dept002",
+      "emp_name": "Sara Hancock",
+      "total_training_days": 50,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 81
+        },
+        "tra008": {
+          "attendance": 66
+        },
+        "tra023": {
+          "attendance": 74
+        },
+        "tra024": {
+          "attendance": 64
+        },
+        "tra026": {
+          "attendance": 78
+        },
+        "tra032": {
+          "attendance": 98
+        },
+        "tra034": {
+          "attendance": 69
+        },
+        "tra035": {
+          "attendance": 78
+        }
+      }
+    },
+    "emp034": {
+      "average_attendance": 77.2,
+      "emp_department": "dept005",
+      "emp_name": "Marcus Williams",
+      "total_training_days": 23,
+      "total_training_programs": 5,
+      "trainings_done": {
+        "tra011": {
+          "attendance": 96
+        },
+        "tra016": {
+          "attendance": 100
+        },
+        "tra017": {
+          "attendance": 78
+        },
+        "tra027": {
+          "attendance": 89
+        },
+        "tra029": {
+          "attendance": 98
+        }
+      }
+    },
+    "emp035": {
+      "average_attendance": 70.1,
+      "emp_department": "dept005",
+      "emp_name": "Margaret Gardner",
+      "total_training_days": 29,
+      "total_training_programs": 5,
+      "trainings_done": {
+        "tra005": {
+          "attendance": 57
+        },
+        "tra006": {
+          "attendance": 69
+        },
+        "tra014": {
+          "attendance": 82
+        },
+        "tra023": {
+          "attendance": 78
+        },
+        "tra030": {
+          "attendance": 68
+        }
+      }
+    },
+    "emp036": {
+      "average_attendance": 87.8,
+      "emp_department": "dept002",
+      "emp_name": "Michelle Garcia",
+      "total_training_days": 49,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra004": {
+          "attendance": 62
+        },
+        "tra011": {
+          "attendance": 52
+        },
+        "tra013": {
+          "attendance": 56
+        },
+        "tra016": {
+          "attendance": 79
+        },
+        "tra017": {
+          "attendance": 92
+        },
+        "tra020": {
+          "attendance": 63
+        },
+        "tra023": {
+          "attendance": 56
+        },
+        "tra025": {
+          "attendance": 70
+        },
+        "tra029": {
+          "attendance": 95
+        },
+        "tra032": {
+          "attendance": 63
+        }
+      }
+    },
+    "emp037": {
+      "average_attendance": 99.7,
+      "emp_department": "dept003",
+      "emp_name": "Karen Frazier",
+      "total_training_days": 12,
+      "total_training_programs": 3,
+      "trainings_done": {
+        "tra006": {
+          "attendance": 99
+        },
+        "tra015": {
+          "attendance": 87
+        },
+        "tra017": {
+          "attendance": 50
+        }
+      }
+    },
+    "emp038": {
+      "average_attendance": 61.4,
+      "emp_department": "dept001",
+      "emp_name": "Luis Johnson",
+      "total_training_days": 43,
+      "total_training_programs": 9,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 70
+        },
+        "tra005": {
+          "attendance": 79
+        },
+        "tra013": {
+          "attendance": 54
+        },
+        "tra017": {
+          "attendance": 69
+        },
+        "tra023": {
+          "attendance": 85
+        },
+        "tra024": {
+          "attendance": 53
+        },
+        "tra028": {
+          "attendance": 72
+        },
+        "tra032": {
+          "attendance": 86
+        },
+        "tra035": {
+          "attendance": 65
+        }
+      }
+    },
+    "emp039": {
+      "average_attendance": 97.8,
+      "emp_department": "dept003",
+      "emp_name": "Jasmin Sullivan",
+      "total_training_days": 27,
+      "total_training_programs": 5,
+      "trainings_done": {
+        "tra005": {
+          "attendance": 87
+        },
+        "tra006": {
+          "attendance": 90
+        },
+        "tra014": {
+          "attendance": 83
+        },
+        "tra025": {
+          "attendance": 100
+        },
+        "tra033": {
+          "attendance": 82
+        }
+      }
+    },
+    "emp040": {
+      "average_attendance": 79.9,
+      "emp_department": "dept003",
+      "emp_name": "Ryan Carter",
+      "total_training_days": 41,
+      "total_training_programs": 9,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 83
+        },
+        "tra002": {
+          "attendance": 89
+        },
+        "tra005": {
+          "attendance": 60
+        },
+        "tra011": {
+          "attendance": 66
+        },
+        "tra019": {
+          "attendance": 92
+        },
+        "tra022": {
+          "attendance": 53
+        },
+        "tra026": {
+          "attendance": 60
+        },
+        "tra028": {
+          "attendance": 57
+        },
+        "tra030": {
+          "attendance": 52
+        }
+      }
+    },
+    "emp041": {
+      "average_attendance": 62.9,
+      "emp_department": "dept003",
+      "emp_name": "Leslie Munoz",
+      "total_training_days": 39,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 61
+        },
+        "tra003": {
+          "attendance": 88
+        },
+        "tra012": {
+          "attendance": 90
+        },
+        "tra013": {
+          "attendance": 71
+        },
+        "tra016": {
+          "attendance": 96
+        },
+        "tra020": {
+          "attendance": 86
+        },
+        "tra024": {
+          "attendance": 58
+        },
+        "tra028": {
+          "attendance": 50
+        }
+      }
+    },
+    "emp042": {
+      "average_attendance": 72.5,
+      "emp_department": "dept001",
+      "emp_name": "Hannah Goodman",
+      "total_training_days": 58,
+      "total_training_programs": 9,
+      "trainings_done": {
+        "tra005": {
+          "attendance": 97
+        },
+        "tra010": {
+          "attendance": 88
+        },
+        "tra012": {
+          "attendance": 57
+        },
+        "tra015": {
+          "attendance": 86
+        },
+        "tra016": {
+          "attendance": 56
+        },
+        "tra020": {
+          "attendance": 70
+        },
+        "tra022": {
+          "attendance": 76
+        },
+        "tra033": {
+          "attendance": 52
+        },
+        "tra034": {
+          "attendance": 98
+        }
+      }
+    },
+    "emp043": {
+      "average_attendance": 81,
+      "emp_department": "dept002",
+      "emp_name": "Danielle Jordan",
+      "total_training_days": 46,
+      "total_training_programs": 9,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 100
+        },
+        "tra007": {
+          "attendance": 53
+        },
+        "tra008": {
+          "attendance": 64
+        },
+        "tra012": {
+          "attendance": 72
+        },
+        "tra022": {
+          "attendance": 91
+        },
+        "tra025": {
+          "attendance": 76
+        },
+        "tra026": {
+          "attendance": 65
+        },
+        "tra031": {
+          "attendance": 86
+        },
+        "tra035": {
+          "attendance": 58
+        }
+      }
+    },
+    "emp044": {
+      "average_attendance": 81.7,
+      "emp_department": "dept004",
+      "emp_name": "Aaron Brown",
+      "total_training_days": 43,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra008": {
+          "attendance": 99
+        },
+        "tra013": {
+          "attendance": 85
+        },
+        "tra014": {
+          "attendance": 52
+        },
+        "tra017": {
+          "attendance": 71
+        },
+        "tra023": {
+          "attendance": 56
+        },
+        "tra028": {
+          "attendance": 86
+        },
+        "tra031": {
+          "attendance": 56
+        },
+        "tra033": {
+          "attendance": 56
+        }
+      }
+    },
+    "emp045": {
+      "average_attendance": 99.7,
+      "emp_department": "dept002",
+      "emp_name": "Steven Bowers",
+      "total_training_days": 45,
+      "total_training_programs": 9,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 69
+        },
+        "tra005": {
+          "attendance": 57
+        },
+        "tra006": {
+          "attendance": 65
+        },
+        "tra008": {
+          "attendance": 98
+        },
+        "tra009": {
+          "attendance": 91
+        },
+        "tra012": {
+          "attendance": 100
+        },
+        "tra020": {
+          "attendance": 75
+        },
+        "tra027": {
+          "attendance": 98
+        },
+        "tra032": {
+          "attendance": 54
+        }
+      }
+    },
+    "emp046": {
+      "average_attendance": 75.4,
+      "emp_department": "dept005",
+      "emp_name": "Heather Houston",
+      "total_training_days": 56,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 72
+        },
+        "tra004": {
+          "attendance": 95
+        },
+        "tra005": {
+          "attendance": 52
+        },
+        "tra006": {
+          "attendance": 80
+        },
+        "tra007": {
+          "attendance": 54
+        },
+        "tra010": {
+          "attendance": 66
+        },
+        "tra016": {
+          "attendance": 84
+        },
+        "tra028": {
+          "attendance": 79
+        },
+        "tra031": {
+          "attendance": 65
+        },
+        "tra034": {
+          "attendance": 58
+        }
+      }
+    },
+    "emp047": {
+      "average_attendance": 98.4,
+      "emp_department": "dept001",
+      "emp_name": "Ronald Gibson",
+      "total_training_days": 48,
+      "total_training_programs": 9,
+      "trainings_done": {
+        "tra007": {
+          "attendance": 88
+        },
+        "tra008": {
+          "attendance": 77
+        },
+        "tra009": {
+          "attendance": 94
+        },
+        "tra014": {
+          "attendance": 51
+        },
+        "tra017": {
+          "attendance": 68
+        },
+        "tra018": {
+          "attendance": 52
+        },
+        "tra020": {
+          "attendance": 89
+        },
+        "tra028": {
+          "attendance": 61
+        },
+        "tra031": {
+          "attendance": 83
+        }
+      }
+    },
+    "emp048": {
+      "average_attendance": 81.8,
+      "emp_department": "dept004",
+      "emp_name": "Jonathan Howard",
+      "total_training_days": 50,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra003": {
+          "attendance": 81
+        },
+        "tra011": {
+          "attendance": 68
+        },
+        "tra013": {
+          "attendance": 95
+        },
+        "tra015": {
+          "attendance": 79
+        },
+        "tra016": {
+          "attendance": 98
+        },
+        "tra018": {
+          "attendance": 59
+        },
+        "tra020": {
+          "attendance": 95
+        },
+        "tra025": {
+          "attendance": 50
+        },
+        "tra032": {
+          "attendance": 97
+        },
+        "tra034": {
+          "attendance": 64
+        }
+      }
+    },
+    "emp049": {
+      "average_attendance": 93.1,
+      "emp_department": "dept001",
+      "emp_name": "Danielle Lucas",
+      "total_training_days": 32,
+      "total_training_programs": 5,
+      "trainings_done": {
+        "tra004": {
+          "attendance": 90
+        },
+        "tra009": {
+          "attendance": 89
+        },
+        "tra016": {
+          "attendance": 89
+        },
+        "tra025": {
+          "attendance": 79
+        },
+        "tra035": {
+          "attendance": 96
+        }
+      }
+    },
+    "emp050": {
+      "average_attendance": 64.6,
+      "emp_department": "dept003",
+      "emp_name": "Harold Stout",
+      "total_training_days": 24,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 87
+        },
+        "tra016": {
+          "attendance": 70
+        },
+        "tra019": {
+          "attendance": 59
+        },
+        "tra033": {
+          "attendance": 81
+        }
+      }
+    },
+    "emp051": {
+      "average_attendance": 71,
+      "emp_department": "dept003",
+      "emp_name": "Matthew Phillips",
+      "total_training_days": 27,
+      "total_training_programs": 6,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 76
+        },
+        "tra004": {
+          "attendance": 88
+        },
+        "tra005": {
+          "attendance": 54
+        },
+        "tra014": {
+          "attendance": 78
+        },
+        "tra017": {
+          "attendance": 54
+        },
+        "tra026": {
+          "attendance": 67
+        }
+      }
+    },
+    "emp052": {
+      "average_attendance": 61,
+      "emp_department": "dept005",
+      "emp_name": "Nathan Merritt",
+      "total_training_days": 23,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra016": {
+          "attendance": 95
+        },
+        "tra020": {
+          "attendance": 83
+        },
+        "tra025": {
+          "attendance": 97
+        },
+        "tra033": {
+          "attendance": 87
+        }
+      }
+    },
+    "emp053": {
+      "average_attendance": 99.1,
+      "emp_department": "dept003",
+      "emp_name": "Meagan Ramos",
+      "total_training_days": 43,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 83
+        },
+        "tra004": {
+          "attendance": 93
+        },
+        "tra006": {
+          "attendance": 70
+        },
+        "tra011": {
+          "attendance": 80
+        },
+        "tra015": {
+          "attendance": 81
+        },
+        "tra017": {
+          "attendance": 81
+        },
+        "tra021": {
+          "attendance": 81
+        },
+        "tra033": {
+          "attendance": 69
+        }
+      }
+    },
+    "emp054": {
+      "average_attendance": 95.3,
+      "emp_department": "dept005",
+      "emp_name": "Sandy Garcia",
+      "total_training_days": 27,
+      "total_training_programs": 6,
+      "trainings_done": {
+        "tra005": {
+          "attendance": 53
+        },
+        "tra007": {
+          "attendance": 63
+        },
+        "tra019": {
+          "attendance": 54
+        },
+        "tra020": {
+          "attendance": 71
+        },
+        "tra022": {
+          "attendance": 69
+        },
+        "tra034": {
+          "attendance": 67
+        }
+      }
+    },
+    "emp055": {
+      "average_attendance": 98.2,
+      "emp_department": "dept004",
+      "emp_name": "Rachel Martin",
+      "total_training_days": 46,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra015": {
+          "attendance": 66
+        },
+        "tra019": {
+          "attendance": 57
+        },
+        "tra020": {
+          "attendance": 56
+        },
+        "tra021": {
+          "attendance": 89
+        },
+        "tra026": {
+          "attendance": 54
+        },
+        "tra028": {
+          "attendance": 76
+        },
+        "tra030": {
+          "attendance": 79
+        },
+        "tra032": {
+          "attendance": 96
+        },
+        "tra034": {
+          "attendance": 72
+        },
+        "tra035": {
+          "attendance": 88
+        }
+      }
+    },
+    "emp056": {
+      "average_attendance": 80.1,
+      "emp_department": "dept002",
+      "emp_name": "Bruce Gonzalez",
+      "total_training_days": 26,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra012": {
+          "attendance": 76
+        },
+        "tra022": {
+          "attendance": 58
+        },
+        "tra024": {
+          "attendance": 93
+        },
+        "tra032": {
+          "attendance": 55
+        }
+      }
+    },
+    "emp057": {
+      "average_attendance": 60,
+      "emp_department": "dept003",
+      "emp_name": "Ethan West",
+      "total_training_days": 48,
+      "total_training_programs": 9,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 94
+        },
+        "tra005": {
+          "attendance": 81
+        },
+        "tra007": {
+          "attendance": 84
+        },
+        "tra009": {
+          "attendance": 57
+        },
+        "tra011": {
+          "attendance": 91
+        },
+        "tra020": {
+          "attendance": 65
+        },
+        "tra023": {
+          "attendance": 91
+        },
+        "tra025": {
+          "attendance": 95
+        },
+        "tra035": {
+          "attendance": 76
+        }
+      }
+    },
+    "emp058": {
+      "average_attendance": 83.3,
+      "emp_department": "dept005",
+      "emp_name": "Wayne Olson",
+      "total_training_days": 59,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra004": {
+          "attendance": 81
+        },
+        "tra005": {
+          "attendance": 74
+        },
+        "tra010": {
+          "attendance": 93
+        },
+        "tra011": {
+          "attendance": 90
+        },
+        "tra015": {
+          "attendance": 88
+        },
+        "tra020": {
+          "attendance": 57
+        },
+        "tra021": {
+          "attendance": 70
+        },
+        "tra024": {
+          "attendance": 60
+        },
+        "tra029": {
+          "attendance": 58
+        },
+        "tra033": {
+          "attendance": 85
+        }
+      }
+    },
+    "emp059": {
+      "average_attendance": 64.8,
+      "emp_department": "dept001",
+      "emp_name": "Christine Hamilton",
+      "total_training_days": 39,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 67
+        },
+        "tra006": {
+          "attendance": 75
+        },
+        "tra008": {
+          "attendance": 92
+        },
+        "tra010": {
+          "attendance": 92
+        },
+        "tra013": {
+          "attendance": 58
+        },
+        "tra026": {
+          "attendance": 76
+        },
+        "tra027": {
+          "attendance": 72
+        },
+        "tra034": {
+          "attendance": 99
+        }
+      }
+    },
+    "emp060": {
+      "average_attendance": 79.6,
+      "emp_department": "dept005",
+      "emp_name": "Danielle Walker",
+      "total_training_days": 36,
+      "total_training_programs": 6,
+      "trainings_done": {
+        "tra003": {
+          "attendance": 78
+        },
+        "tra007": {
+          "attendance": 52
+        },
+        "tra009": {
+          "attendance": 71
+        },
+        "tra010": {
+          "attendance": 81
+        },
+        "tra011": {
+          "attendance": 60
+        },
+        "tra034": {
+          "attendance": 97
+        }
+      }
+    },
+    "emp061": {
+      "average_attendance": 81.4,
+      "emp_department": "dept004",
+      "emp_name": "David Schneider",
+      "total_training_days": 38,
+      "total_training_programs": 6,
+      "trainings_done": {
+        "tra013": {
+          "attendance": 99
+        },
+        "tra014": {
+          "attendance": 63
+        },
+        "tra015": {
+          "attendance": 53
+        },
+        "tra022": {
+          "attendance": 66
+        },
+        "tra023": {
+          "attendance": 55
+        },
+        "tra025": {
+          "attendance": 82
+        }
+      }
+    },
+    "emp062": {
+      "average_attendance": 67.8,
+      "emp_department": "dept002",
+      "emp_name": "Timothy Porter",
+      "total_training_days": 21,
+      "total_training_programs": 3,
+      "trainings_done": {
+        "tra008": {
+          "attendance": 59
+        },
+        "tra012": {
+          "attendance": 52
+        },
+        "tra018": {
+          "attendance": 100
+        }
+      }
+    },
+    "emp063": {
+      "average_attendance": 81.2,
+      "emp_department": "dept004",
+      "emp_name": "Misty Pratt",
+      "total_training_days": 50,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 84
+        },
+        "tra004": {
+          "attendance": 83
+        },
+        "tra014": {
+          "attendance": 91
+        },
+        "tra017": {
+          "attendance": 58
+        },
+        "tra023": {
+          "attendance": 90
+        },
+        "tra024": {
+          "attendance": 77
+        },
+        "tra026": {
+          "attendance": 63
+        },
+        "tra027": {
+          "attendance": 78
+        }
+      }
+    },
+    "emp064": {
+      "average_attendance": 60.9,
+      "emp_department": "dept003",
+      "emp_name": "Peggy Martinez",
+      "total_training_days": 47,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 81
+        },
+        "tra009": {
+          "attendance": 68
+        },
+        "tra012": {
+          "attendance": 68
+        },
+        "tra013": {
+          "attendance": 58
+        },
+        "tra016": {
+          "attendance": 83
+        },
+        "tra019": {
+          "attendance": 70
+        },
+        "tra020": {
+          "attendance": 58
+        },
+        "tra022": {
+          "attendance": 96
+        }
+      }
+    },
+    "emp065": {
+      "average_attendance": 83.2,
+      "emp_department": "dept001",
+      "emp_name": "Karen Johnson",
+      "total_training_days": 17,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra003": {
+          "attendance": 51
+        },
+        "tra011": {
+          "attendance": 51
+        },
+        "tra016": {
+          "attendance": 96
+        },
+        "tra021": {
+          "attendance": 80
+        }
+      }
+    },
+    "emp066": {
+      "average_attendance": 97.4,
+      "emp_department": "dept001",
+      "emp_name": "Robert Love",
+      "total_training_days": 16,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra004": {
+          "attendance": 62
+        },
+        "tra013": {
+          "attendance": 90
+        },
+        "tra027": {
+          "attendance": 58
+        },
+        "tra028": {
+          "attendance": 79
+        }
+      }
+    },
+    "emp067": {
+      "average_attendance": 87.5,
+      "emp_department": "dept004",
+      "emp_name": "Yesenia Wilkerson",
+      "total_training_days": 38,
+      "total_training_programs": 6,
+      "trainings_done": {
+        "tra004": {
+          "attendance": 88
+        },
+        "tra007": {
+          "attendance": 53
+        },
+        "tra008": {
+          "attendance": 58
+        },
+        "tra014": {
+          "attendance": 73
+        },
+        "tra023": {
+          "attendance": 94
+        },
+        "tra025": {
+          "attendance": 86
+        }
+      }
+    },
+    "emp068": {
+      "average_attendance": 71.6,
+      "emp_department": "dept001",
+      "emp_name": "Miss Lisa Acosta MD",
+      "total_training_days": 53,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra011": {
+          "attendance": 54
+        },
+        "tra014": {
+          "attendance": 64
+        },
+        "tra015": {
+          "attendance": 87
+        },
+        "tra017": {
+          "attendance": 63
+        },
+        "tra024": {
+          "attendance": 78
+        },
+        "tra029": {
+          "attendance": 96
+        },
+        "tra030": {
+          "attendance": 81
+        },
+        "tra033": {
+          "attendance": 64
+        }
+      }
+    },
+    "emp069": {
+      "average_attendance": 67.8,
+      "emp_department": "dept001",
+      "emp_name": "John Sullivan",
+      "total_training_days": 31,
+      "total_training_programs": 5,
+      "trainings_done": {
+        "tra007": {
+          "attendance": 100
+        },
+        "tra018": {
+          "attendance": 64
+        },
+        "tra023": {
+          "attendance": 90
+        },
+        "tra031": {
+          "attendance": 96
+        },
+        "tra034": {
+          "attendance": 61
+        }
+      }
+    },
+    "emp070": {
+      "average_attendance": 69.9,
+      "emp_department": "dept002",
+      "emp_name": "Sally Meadows",
+      "total_training_days": 41,
+      "total_training_programs": 9,
+      "trainings_done": {
+        "tra017": {
+          "attendance": 100
+        },
+        "tra019": {
+          "attendance": 71
+        },
+        "tra021": {
+          "attendance": 91
+        },
+        "tra024": {
+          "attendance": 84
+        },
+        "tra025": {
+          "attendance": 68
+        },
+        "tra027": {
+          "attendance": 94
+        },
+        "tra031": {
+          "attendance": 91
+        },
+        "tra032": {
+          "attendance": 67
+        },
+        "tra033": {
+          "attendance": 87
+        }
+      }
+    },
+    "emp071": {
+      "average_attendance": 75.6,
+      "emp_department": "dept002",
+      "emp_name": "Christopher White",
+      "total_training_days": 58,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra007": {
+          "attendance": 85
+        },
+        "tra009": {
+          "attendance": 72
+        },
+        "tra010": {
+          "attendance": 74
+        },
+        "tra012": {
+          "attendance": 73
+        },
+        "tra014": {
+          "attendance": 53
+        },
+        "tra020": {
+          "attendance": 51
+        },
+        "tra021": {
+          "attendance": 60
+        },
+        "tra025": {
+          "attendance": 85
+        },
+        "tra032": {
+          "attendance": 67
+        },
+        "tra035": {
+          "attendance": 75
+        }
+      }
+    },
+    "emp072": {
+      "average_attendance": 72.6,
+      "emp_department": "dept005",
+      "emp_name": "Lisa Mccann",
+      "total_training_days": 47,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 54
+        },
+        "tra005": {
+          "attendance": 54
+        },
+        "tra011": {
+          "attendance": 96
+        },
+        "tra013": {
+          "attendance": 81
+        },
+        "tra023": {
+          "attendance": 60
+        },
+        "tra024": {
+          "attendance": 67
+        },
+        "tra025": {
+          "attendance": 78
+        },
+        "tra027": {
+          "attendance": 80
+        },
+        "tra031": {
+          "attendance": 89
+        },
+        "tra035": {
+          "attendance": 79
+        }
+      }
+    },
+    "emp073": {
+      "average_attendance": 83.9,
+      "emp_department": "dept001",
+      "emp_name": "Jeffrey Quinn",
+      "total_training_days": 32,
+      "total_training_programs": 6,
+      "trainings_done": {
+        "tra005": {
+          "attendance": 64
+        },
+        "tra012": {
+          "attendance": 84
+        },
+        "tra018": {
+          "attendance": 60
+        },
+        "tra020": {
+          "attendance": 70
+        },
+        "tra032": {
+          "attendance": 94
+        },
+        "tra034": {
+          "attendance": 99
+        }
+      }
+    },
+    "emp074": {
+      "average_attendance": 88.9,
+      "emp_department": "dept004",
+      "emp_name": "Lauren Gomez",
+      "total_training_days": 41,
+      "total_training_programs": 6,
+      "trainings_done": {
+        "tra008": {
+          "attendance": 94
+        },
+        "tra012": {
+          "attendance": 86
+        },
+        "tra014": {
+          "attendance": 78
+        },
+        "tra022": {
+          "attendance": 60
+        },
+        "tra025": {
+          "attendance": 97
+        },
+        "tra031": {
+          "attendance": 71
+        }
+      }
+    },
+    "emp075": {
+      "average_attendance": 94.4,
+      "emp_department": "dept003",
+      "emp_name": "Jason Jones",
+      "total_training_days": 11,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra005": {
+          "attendance": 81
+        },
+        "tra007": {
+          "attendance": 57
+        },
+        "tra017": {
+          "attendance": 53
+        },
+        "tra027": {
+          "attendance": 79
+        }
+      }
+    },
+    "emp076": {
+      "average_attendance": 91.4,
+      "emp_department": "dept002",
+      "emp_name": "John Paul",
+      "total_training_days": 19,
+      "total_training_programs": 3,
+      "trainings_done": {
+        "tra014": {
+          "attendance": 81
+        },
+        "tra016": {
+          "attendance": 60
+        },
+        "tra021": {
+          "attendance": 73
+        }
+      }
+    },
+    "emp077": {
+      "average_attendance": 76.4,
+      "emp_department": "dept002",
+      "emp_name": "Toni Williams",
+      "total_training_days": 16,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra006": {
+          "attendance": 82
+        },
+        "tra020": {
+          "attendance": 63
+        },
+        "tra025": {
+          "attendance": 69
+        },
+        "tra026": {
+          "attendance": 98
+        }
+      }
+    },
+    "emp078": {
+      "average_attendance": 87.6,
+      "emp_department": "dept004",
+      "emp_name": "Kevin Pineda",
+      "total_training_days": 26,
+      "total_training_programs": 6,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 78
+        },
+        "tra019": {
+          "attendance": 83
+        },
+        "tra020": {
+          "attendance": 74
+        },
+        "tra021": {
+          "attendance": 99
+        },
+        "tra022": {
+          "attendance": 93
+        },
+        "tra025": {
+          "attendance": 82
+        }
+      }
+    },
+    "emp079": {
+      "average_attendance": 65.2,
+      "emp_department": "dept002",
+      "emp_name": "Karl Howell",
+      "total_training_days": 45,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 83
+        },
+        "tra003": {
+          "attendance": 88
+        },
+        "tra013": {
+          "attendance": 71
+        },
+        "tra014": {
+          "attendance": 92
+        },
+        "tra016": {
+          "attendance": 63
+        },
+        "tra033": {
+          "attendance": 79
+        },
+        "tra034": {
+          "attendance": 92
+        },
+        "tra035": {
+          "attendance": 63
+        }
+      }
+    },
+    "emp080": {
+      "average_attendance": 63.2,
+      "emp_department": "dept004",
+      "emp_name": "Jason Montgomery",
+      "total_training_days": 28,
+      "total_training_programs": 6,
+      "trainings_done": {
+        "tra007": {
+          "attendance": 60
+        },
+        "tra017": {
+          "attendance": 69
+        },
+        "tra018": {
+          "attendance": 66
+        },
+        "tra020": {
+          "attendance": 76
+        },
+        "tra026": {
+          "attendance": 84
+        },
+        "tra030": {
+          "attendance": 67
+        }
+      }
+    },
+    "emp081": {
+      "average_attendance": 70.4,
+      "emp_department": "dept003",
+      "emp_name": "Andrea Meyer",
+      "total_training_days": 43,
+      "total_training_programs": 7,
+      "trainings_done": {
+        "tra013": {
+          "attendance": 50
+        },
+        "tra014": {
+          "attendance": 78
+        },
+        "tra020": {
+          "attendance": 97
+        },
+        "tra021": {
+          "attendance": 70
+        },
+        "tra022": {
+          "attendance": 88
+        },
+        "tra029": {
+          "attendance": 70
+        },
+        "tra034": {
+          "attendance": 64
+        }
+      }
+    },
+    "emp082": {
+      "average_attendance": 83.9,
+      "emp_department": "dept005",
+      "emp_name": "Regina Anderson",
+      "total_training_days": 21,
+      "total_training_programs": 5,
+      "trainings_done": {
+        "tra005": {
+          "attendance": 69
+        },
+        "tra008": {
+          "attendance": 86
+        },
+        "tra019": {
+          "attendance": 87
+        },
+        "tra025": {
+          "attendance": 69
+        },
+        "tra031": {
+          "attendance": 53
+        }
+      }
+    },
+    "emp083": {
+      "average_attendance": 82,
+      "emp_department": "dept003",
+      "emp_name": "Aaron Snyder",
+      "total_training_days": 23,
+      "total_training_programs": 7,
+      "trainings_done": {
+        "tra005": {
+          "attendance": 51
+        },
+        "tra006": {
+          "attendance": 59
+        },
+        "tra016": {
+          "attendance": 61
+        },
+        "tra017": {
+          "attendance": 75
+        },
+        "tra020": {
+          "attendance": 65
+        },
+        "tra026": {
+          "attendance": 56
+        },
+        "tra032": {
+          "attendance": 75
+        }
+      }
+    },
+    "emp084": {
+      "average_attendance": 92.8,
+      "emp_department": "dept002",
+      "emp_name": "April Moore",
+      "total_training_days": 18,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra018": {
+          "attendance": 99
+        },
+        "tra020": {
+          "attendance": 97
+        },
+        "tra031": {
+          "attendance": 57
+        },
+        "tra032": {
+          "attendance": 99
+        }
+      }
+    },
+    "emp085": {
+      "average_attendance": 71.4,
+      "emp_department": "dept005",
+      "emp_name": "Karen Hughes",
+      "total_training_days": 60,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra005": {
+          "attendance": 90
+        },
+        "tra009": {
+          "attendance": 72
+        },
+        "tra010": {
+          "attendance": 80
+        },
+        "tra011": {
+          "attendance": 74
+        },
+        "tra013": {
+          "attendance": 58
+        },
+        "tra014": {
+          "attendance": 73
+        },
+        "tra018": {
+          "attendance": 69
+        },
+        "tra019": {
+          "attendance": 72
+        },
+        "tra022": {
+          "attendance": 91
+        },
+        "tra034": {
+          "attendance": 61
+        }
+      }
+    },
+    "emp086": {
+      "average_attendance": 86.4,
+      "emp_department": "dept003",
+      "emp_name": "Teresa Cole",
+      "total_training_days": 29,
+      "total_training_programs": 5,
+      "trainings_done": {
+        "tra003": {
+          "attendance": 54
+        },
+        "tra014": {
+          "attendance": 99
+        },
+        "tra025": {
+          "attendance": 68
+        },
+        "tra026": {
+          "attendance": 69
+        },
+        "tra030": {
+          "attendance": 54
+        }
+      }
+    },
+    "emp087": {
+      "average_attendance": 86.9,
+      "emp_department": "dept004",
+      "emp_name": "Ryan Butler",
+      "total_training_days": 20,
+      "total_training_programs": 3,
+      "trainings_done": {
+        "tra016": {
+          "attendance": 76
+        },
+        "tra018": {
+          "attendance": 65
+        },
+        "tra023": {
+          "attendance": 65
+        }
+      }
+    },
+    "emp088": {
+      "average_attendance": 63.5,
+      "emp_department": "dept001",
+      "emp_name": "Steven Nguyen",
+      "total_training_days": 19,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 97
+        },
+        "tra021": {
+          "attendance": 59
+        },
+        "tra022": {
+          "attendance": 85
+        },
+        "tra035": {
+          "attendance": 70
+        }
+      }
+    },
+    "emp089": {
+      "average_attendance": 62.2,
+      "emp_department": "dept005",
+      "emp_name": "Kevin Cross",
+      "total_training_days": 65,
+      "total_training_programs": 10,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 67
+        },
+        "tra009": {
+          "attendance": 58
+        },
+        "tra011": {
+          "attendance": 64
+        },
+        "tra012": {
+          "attendance": 69
+        },
+        "tra016": {
+          "attendance": 59
+        },
+        "tra018": {
+          "attendance": 55
+        },
+        "tra020": {
+          "attendance": 83
+        },
+        "tra021": {
+          "attendance": 88
+        },
+        "tra022": {
+          "attendance": 57
+        },
+        "tra030": {
+          "attendance": 74
+        }
+      }
+    },
+    "emp090": {
+      "average_attendance": 99.5,
+      "emp_department": "dept001",
+      "emp_name": "Crystal Medina",
+      "total_training_days": 37,
+      "total_training_programs": 7,
+      "trainings_done": {
+        "tra003": {
+          "attendance": 59
+        },
+        "tra005": {
+          "attendance": 60
+        },
+        "tra008": {
+          "attendance": 66
+        },
+        "tra018": {
+          "attendance": 91
+        },
+        "tra022": {
+          "attendance": 69
+        },
+        "tra029": {
+          "attendance": 54
+        },
+        "tra035": {
+          "attendance": 100
+        }
+      }
+    },
+    "emp091": {
+      "average_attendance": 80.5,
+      "emp_department": "dept005",
+      "emp_name": "Jennifer Long",
+      "total_training_days": 16,
+      "total_training_programs": 3,
+      "trainings_done": {
+        "tra008": {
+          "attendance": 57
+        },
+        "tra013": {
+          "attendance": 75
+        },
+        "tra023": {
+          "attendance": 99
+        }
+      }
+    },
+    "emp092": {
+      "average_attendance": 93.6,
+      "emp_department": "dept003",
+      "emp_name": "Lindsey Sanchez",
+      "total_training_days": 54,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 58
+        },
+        "tra008": {
+          "attendance": 98
+        },
+        "tra010": {
+          "attendance": 82
+        },
+        "tra012": {
+          "attendance": 83
+        },
+        "tra022": {
+          "attendance": 66
+        },
+        "tra023": {
+          "attendance": 93
+        },
+        "tra027": {
+          "attendance": 67
+        },
+        "tra031": {
+          "attendance": 98
+        }
+      }
+    },
+    "emp093": {
+      "average_attendance": 80.3,
+      "emp_department": "dept005",
+      "emp_name": "Michael Garza",
+      "total_training_days": 21,
+      "total_training_programs": 3,
+      "trainings_done": {
+        "tra010": {
+          "attendance": 81
+        },
+        "tra027": {
+          "attendance": 65
+        },
+        "tra034": {
+          "attendance": 63
+        }
+      }
+    },
+    "emp094": {
+      "average_attendance": 98.2,
+      "emp_department": "dept003",
+      "emp_name": "Beth Henderson",
+      "total_training_days": 34,
+      "total_training_programs": 6,
+      "trainings_done": {
+        "tra007": {
+          "attendance": 98
+        },
+        "tra013": {
+          "attendance": 82
+        },
+        "tra023": {
+          "attendance": 58
+        },
+        "tra029": {
+          "attendance": 57
+        },
+        "tra031": {
+          "attendance": 100
+        },
+        "tra034": {
+          "attendance": 68
+        }
+      }
+    },
+    "emp095": {
+      "average_attendance": 86.2,
+      "emp_department": "dept004",
+      "emp_name": "Allison Mccoy",
+      "total_training_days": 20,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra014": {
+          "attendance": 89
+        },
+        "tra017": {
+          "attendance": 94
+        },
+        "tra026": {
+          "attendance": 54
+        },
+        "tra035": {
+          "attendance": 68
+        }
+      }
+    },
+    "emp096": {
+      "average_attendance": 72.2,
+      "emp_department": "dept003",
+      "emp_name": "Cathy Burnett",
+      "total_training_days": 33,
+      "total_training_programs": 7,
+      "trainings_done": {
+        "tra004": {
+          "attendance": 86
+        },
+        "tra015": {
+          "attendance": 87
+        },
+        "tra020": {
+          "attendance": 95
+        },
+        "tra027": {
+          "attendance": 72
+        },
+        "tra028": {
+          "attendance": 78
+        },
+        "tra030": {
+          "attendance": 58
+        },
+        "tra032": {
+          "attendance": 82
+        }
+      }
+    },
+    "emp097": {
+      "average_attendance": 70.7,
+      "emp_department": "dept004",
+      "emp_name": "Steven Pierce",
+      "total_training_days": 43,
+      "total_training_programs": 8,
+      "trainings_done": {
+        "tra002": {
+          "attendance": 50
+        },
+        "tra004": {
+          "attendance": 93
+        },
+        "tra005": {
+          "attendance": 98
+        },
+        "tra010": {
+          "attendance": 69
+        },
+        "tra015": {
+          "attendance": 57
+        },
+        "tra016": {
+          "attendance": 73
+        },
+        "tra026": {
+          "attendance": 55
+        },
+        "tra033": {
+          "attendance": 89
+        }
+      }
+    },
+    "emp098": {
+      "average_attendance": 60.5,
+      "emp_department": "dept004",
+      "emp_name": "Stephen Johnson",
+      "total_training_days": 32,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra023": {
+          "attendance": 95
+        },
+        "tra024": {
+          "attendance": 77
+        },
+        "tra029": {
+          "attendance": 52
+        },
+        "tra034": {
+          "attendance": 64
+        }
+      }
+    },
+    "emp099": {
+      "average_attendance": 98.7,
+      "emp_department": "dept005",
+      "emp_name": "Shawn King",
+      "total_training_days": 13,
+      "total_training_programs": 4,
+      "trainings_done": {
+        "tra007": {
+          "attendance": 68
+        },
+        "tra017": {
+          "attendance": 87
+        },
+        "tra020": {
+          "attendance": 89
+        },
+        "tra027": {
+          "attendance": 58
+        }
+      }
+    },
+    "emp100": {
+      "average_attendance": 64,
+      "emp_department": "dept003",
+      "emp_name": "Ryan Shelton",
+      "total_training_days": 44,
+      "total_training_programs": 6,
+      "trainings_done": {
+        "tra001": {
+          "attendance": 63
+        },
+        "tra010": {
+          "attendance": 66
+        },
+        "tra015": {
+          "attendance": 71
+        },
+        "tra024": {
+          "attendance": 77
+        },
+        "tra032": {
+          "attendance": 81
+        },
+        "tra034": {
+          "attendance": 60
+        }
+      }
+    }
+  },
+  "trainers": {
+    "trainer001": {
+      "feedback": 3.7,
+      "name": "John Smith",
+      "trainings_conducted": [
+        "tra023",
+        "tra034"
+      ],
+      "type": "internal"
+    },
+    "trainer002": {
+      "feedback": 4.3,
+      "name": "Mrs. Valerie Johnson",
+      "trainings_conducted": [
+        "tra009",
+        "tra031"
+      ],
+      "type": "external"
+    },
+    "trainer003": {
+      "feedback": 4.7,
+      "name": "Robert Jackson",
+      "trainings_conducted": [
+        "tra010",
+        "tra018",
+        "tra020"
+      ],
+      "type": "internal"
+    },
+    "trainer004": {
+      "feedback": 3.7,
+      "name": "Jeff Finley",
+      "trainings_conducted": [
+        "tra015",
+        "tra024"
+      ],
+      "type": "external"
+    },
+    "trainer005": {
+      "feedback": 4.7,
+      "name": "Norman Brown",
+      "trainings_conducted": [
+        "tra002",
+        "tra005",
+        "tra008",
+        "tra011",
+        "tra022"
+      ],
+      "type": "external"
+    },
+    "trainer006": {
+      "feedback": 4.8,
+      "name": "Mark Gilbert",
+      "type": "internal"
+    },
+    "trainer007": {
+      "feedback": 4.2,
+      "name": "Jason Montgomery",
+      "trainings_conducted": [
+        "tra001",
+        "tra026",
+        "tra035"
+      ],
+      "type": "external"
+    },
+    "trainer008": {
+      "feedback": 4,
+      "name": "Gail Barr",
+      "trainings_conducted": [
+        "tra019",
+        "tra021"
+      ],
+      "type": "internal"
+    },
+    "trainer009": {
+      "feedback": 3.8,
+      "name": "Erin Brooks",
+      "trainings_conducted": [
+        "tra012",
+        "tra014",
+        "tra028"
+      ],
+      "type": "internal"
+    },
+    "trainer010": {
+      "feedback": 4.7,
+      "name": "David Anderson",
+      "trainings_conducted": [
+        "tra007",
+        "tra025",
+        "tra029"
+      ],
+      "type": "internal"
+    },
+    "trainer011": {
+      "feedback": 4.1,
+      "name": "Kenneth Richardson",
+      "trainings_conducted": [
+        "tra004",
+        "tra017"
+      ],
+      "type": "external"
+    },
+    "trainer012": {
+      "feedback": 4.7,
+      "name": "Charles Larson",
+      "trainings_conducted": [
+        "tra032"
+      ],
+      "type": "internal"
+    },
+    "trainer013": {
+      "feedback": 3.6,
+      "name": "Sharon Webb",
+      "trainings_conducted": [
+        "tra006",
+        "tra030"
+      ],
+      "type": "external"
+    },
+    "trainer014": {
+      "feedback": 4.2,
+      "name": "Courtney Green",
+      "trainings_conducted": [
+        "tra003",
+        "tra016",
+        "tra027"
+      ],
+      "type": "internal"
+    },
+    "trainer015": {
+      "feedback": 3.9,
+      "name": "Michelle Ross",
+      "trainings_conducted": [
+        "tra013",
+        "tra033"
+      ],
+      "type": "external"
+    }
+  },
+  "trainings": {
+    "tra001": {
+      "attendance": 73.9,
+      "attendees": [
+        "emp003",
+        "emp004",
+        "emp010",
+        "emp018",
+        "emp027",
+        "emp033",
+        "emp038",
+        "emp040",
+        "emp045",
+        "emp046",
+        "emp050",
+        "emp053",
+        "emp057",
+        "emp063",
+        "emp064",
+        "emp089",
+        "emp092",
+        "emp100"
+      ],
+      "duration": 9,
+      "effectiveness_score": 3.8,
+      "employees_attended": 18,
+      "end_date": "2025-04-11",
+      "feedback_score": 3.2,
+      "mode": "offline",
+      "start_date": "2022-12-14",
+      "status": "in-progress",
+      "target_audience": "dept002",
+      "topics": [
+        "Negotiation Skills",
+        "Managing Difficult Conversations",
+        "Dealing with Workplace Conflicts"
+      ],
+      "trainer": "trainer007",
+      "training_description": "This training covers essential aspects of conflict resolution, helping employees enhance their skills.",
+      "training_name": "Conflict Resolution",
+      "training_type": "language"
+    },
+    "tra002": {
+      "attendance": 73.2,
+      "attendees": [
+        "emp006",
+        "emp012",
+        "emp014",
+        "emp022",
+        "emp029",
+        "emp031",
+        "emp040",
+        "emp041",
+        "emp043",
+        "emp051",
+        "emp059",
+        "emp072",
+        "emp078",
+        "emp079",
+        "emp088",
+        "emp097"
+      ],
+      "duration": 3,
+      "effectiveness_score": 3.5,
+      "employees_attended": 16,
+      "end_date": "2024-10-26",
+      "feedback_score": 3.4,
+      "mode": "online",
+      "start_date": "2022-01-05",
+      "status": "scheduled",
+      "target_audience": "dept004",
+      "topics": [
+        "Network Security",
+        "Ethical Hacking",
+        "Data Protection"
+      ],
+      "trainer": "trainer005",
+      "training_description": "This training covers essential aspects of cybersecurity basics, helping employees enhance their skills.",
+      "training_name": "Cybersecurity Basics",
+      "training_type": "softskills"
+    },
+    "tra003": {
+      "attendance": 73.1,
+      "attendees": [
+        "emp004",
+        "emp005",
+        "emp009",
+        "emp010",
+        "emp011",
+        "emp019",
+        "emp021",
+        "emp032",
+        "emp041",
+        "emp048",
+        "emp060",
+        "emp065",
+        "emp079",
+        "emp086",
+        "emp090"
+      ],
+      "duration": 3,
+      "effectiveness_score": 4.2,
+      "employees_attended": 15,
+      "end_date": "2025-12-05",
+      "feedback_score": 4.4,
+      "mode": "hybrid",
+      "start_date": "2024-04-14",
+      "status": "in-progress",
+      "target_audience": "dept004",
+      "topics": [
+        "Network Security",
+        "Ethical Hacking",
+        "Data Protection"
+      ],
+      "trainer": "trainer014",
+      "training_description": "This training covers essential aspects of cybersecurity basics, helping employees enhance their skills.",
+      "training_name": "Cybersecurity Basics",
+      "training_type": "softskills"
+    },
+    "tra004": {
+      "attendance": 81.6,
+      "attendees": [
+        "emp009",
+        "emp011",
+        "emp013",
+        "emp014",
+        "emp015",
+        "emp017",
+        "emp030",
+        "emp036",
+        "emp046",
+        "emp049",
+        "emp051",
+        "emp053",
+        "emp058",
+        "emp063",
+        "emp066",
+        "emp067",
+        "emp096",
+        "emp097"
+      ],
+      "duration": 7,
+      "effectiveness_score": 4.5,
+      "employees_attended": 18,
+      "end_date": "2025-10-29",
+      "feedback_score": 4.9,
+      "mode": "offline",
+      "start_date": "2022-03-13",
+      "status": "in-progress",
+      "target_audience": "dept001",
+      "topics": [
+        "Greetings and Introductions",
+        "Basic Grammar",
+        "Essential Vocabulary"
+      ],
+      "trainer": "trainer011",
+      "training_description": "This training covers essential aspects of french for beginners, helping employees enhance their skills.",
+      "training_name": "French for Beginners",
+      "training_type": "language"
+    },
+    "tra005": {
+      "attendance": 71,
+      "attendees": [
+        "emp001",
+        "emp004",
+        "emp023",
+        "emp035",
+        "emp038",
+        "emp039",
+        "emp040",
+        "emp042",
+        "emp045",
+        "emp046",
+        "emp051",
+        "emp054",
+        "emp057",
+        "emp058",
+        "emp072",
+        "emp073",
+        "emp075",
+        "emp082",
+        "emp083",
+        "emp085",
+        "emp090",
+        "emp097"
+      ],
+      "duration": 2,
+      "effectiveness_score": 4.5,
+      "employees_attended": 22,
+      "end_date": "2024-06-03",
+      "feedback_score": 4.9,
+      "mode": "offline",
+      "start_date": "2023-11-01",
+      "status": "scheduled",
+      "target_audience": "dept005",
+      "topics": [
+        "Multithreading",
+        "JVM Performance Tuning",
+        "Spring Boot"
+      ],
+      "trainer": "trainer005",
+      "training_description": "This training covers essential aspects of advanced java, helping employees enhance their skills.",
+      "training_name": "Advanced Java",
+      "training_type": "technical"
+    },
+    "tra006": {
+      "attendance": 78.6,
+      "attendees": [
+        "emp001",
+        "emp004",
+        "emp007",
+        "emp010",
+        "emp018",
+        "emp022",
+        "emp023",
+        "emp025",
+        "emp030",
+        "emp031",
+        "emp032",
+        "emp035",
+        "emp037",
+        "emp039",
+        "emp045",
+        "emp046",
+        "emp053",
+        "emp059",
+        "emp077",
+        "emp083"
+      ],
+      "duration": 3,
+      "effectiveness_score": 3.5,
+      "employees_attended": 20,
+      "end_date": "2025-10-11",
+      "feedback_score": 4.8,
+      "mode": "hybrid",
+      "start_date": "2021-06-06",
+      "status": "scheduled",
+      "target_audience": "dept001",
+      "topics": [
+        "AWS Fundamentals",
+        "Azure vs. Google Cloud",
+        "Cloud Security"
+      ],
+      "trainer": "trainer013",
+      "training_description": "This training covers essential aspects of cloud computing, helping employees enhance their skills.",
+      "training_name": "Cloud Computing",
+      "training_type": "language"
+    },
+    "tra007": {
+      "attendance": 72.7,
+      "attendees": [
+        "emp002",
+        "emp004",
+        "emp011",
+        "emp014",
+        "emp022",
+        "emp023",
+        "emp024",
+        "emp027",
+        "emp043",
+        "emp046",
+        "emp047",
+        "emp054",
+        "emp057",
+        "emp060",
+        "emp067",
+        "emp069",
+        "emp071",
+        "emp075",
+        "emp080",
+        "emp094",
+        "emp099"
+      ],
+      "duration": 3,
+      "effectiveness_score": 3.8,
+      "employees_attended": 21,
+      "end_date": "2023-06-14",
+      "feedback_score": 3.1,
+      "mode": "offline",
+      "start_date": "2023-06-11",
+      "status": "completed",
+      "target_audience": "dept002",
+      "topics": [
+        "Email Etiquette",
+        "Professional Vocabulary",
+        "Presentation Skills"
+      ],
+      "trainer": "trainer010",
+      "training_description": "This training covers essential aspects of business english, helping employees enhance their skills.",
+      "training_name": "Business English",
+      "training_type": "softskills"
+    },
+    "tra008": {
+      "attendance": 78.2,
+      "attendees": [
+        "emp002",
+        "emp005",
+        "emp009",
+        "emp032",
+        "emp033",
+        "emp043",
+        "emp044",
+        "emp045",
+        "emp047",
+        "emp059",
+        "emp062",
+        "emp067",
+        "emp074",
+        "emp082",
+        "emp090",
+        "emp091",
+        "emp092"
+      ],
+      "duration": 6,
+      "effectiveness_score": 4.2,
+      "employees_attended": 17,
+      "end_date": "2025-08-12",
+      "feedback_score": 4.1,
+      "mode": "online",
+      "start_date": "2023-02-18",
+      "status": "completed",
+      "target_audience": "dept002",
+      "topics": [
+        "Writing Manuals",
+        "Documentation Best Practices",
+        "Editing Techniques"
+      ],
+      "trainer": "trainer005",
+      "training_description": "This training covers essential aspects of technical writing, helping employees enhance their skills.",
+      "training_name": "Technical Writing",
+      "training_type": "technical"
+    },
+    "tra009": {
+      "attendance": 75.9,
+      "attendees": [
+        "emp002",
+        "emp006",
+        "emp008",
+        "emp016",
+        "emp019",
+        "emp021",
+        "emp023",
+        "emp025",
+        "emp026",
+        "emp031",
+        "emp045",
+        "emp047",
+        "emp049",
+        "emp057",
+        "emp060",
+        "emp064",
+        "emp071",
+        "emp085",
+        "emp089"
+      ],
+      "duration": 8,
+      "effectiveness_score": 4.2,
+      "employees_attended": 19,
+      "end_date": "2021-08-23",
+      "feedback_score": 3.7,
+      "mode": "hybrid",
+      "start_date": "2020-01-20",
+      "status": "scheduled",
+      "target_audience": "dept001",
+      "topics": [
+        "Supervised vs. Unsupervised Learning",
+        "Neural Networks",
+        "Model Evaluation"
+      ],
+      "trainer": "trainer002",
+      "training_description": "This training covers essential aspects of machine learning, helping employees enhance their skills.",
+      "training_name": "Machine Learning",
+      "training_type": "softskills"
+    },
+    "tra010": {
+      "attendance": 76.4,
+      "attendees": [
+        "emp009",
+        "emp012",
+        "emp017",
+        "emp019",
+        "emp021",
+        "emp027",
+        "emp042",
+        "emp046",
+        "emp058",
+        "emp059",
+        "emp060",
+        "emp071",
+        "emp085",
+        "emp092",
+        "emp093",
+        "emp097",
+        "emp100"
+      ],
+      "duration": 9,
+      "effectiveness_score": 4.9,
+      "employees_attended": 17,
+      "end_date": "2020-06-25",
+      "feedback_score": 3.7,
+      "mode": "online",
+      "start_date": "2020-10-03",
+      "status": "scheduled",
+      "target_audience": "dept004",
+      "topics": [
+        "Prioritization Techniques",
+        "Avoiding Procrastination",
+        "Work-Life Balance"
+      ],
+      "trainer": "trainer003",
+      "training_description": "This training covers essential aspects of time management, helping employees enhance their skills.",
+      "training_name": "Time Management",
+      "training_type": "technical"
+    },
+    "tra011": {
+      "attendance": 72.7,
+      "attendees": [
+        "emp009",
+        "emp018",
+        "emp023",
+        "emp024",
+        "emp031",
+        "emp034",
+        "emp036",
+        "emp040",
+        "emp048",
+        "emp053",
+        "emp057",
+        "emp058",
+        "emp060",
+        "emp065",
+        "emp068",
+        "emp072",
+        "emp085",
+        "emp089"
+      ],
+      "duration": 4,
+      "effectiveness_score": 4.6,
+      "employees_attended": 18,
+      "end_date": "2025-08-08",
+      "feedback_score": 4.2,
+      "mode": "hybrid",
+      "start_date": "2025-04-15",
+      "status": "scheduled",
+      "target_audience": "dept001",
+      "topics": [
+        "Decision Making",
+        "Team Building",
+        "Motivational Strategies"
+      ],
+      "trainer": "trainer005",
+      "training_description": "This training covers essential aspects of leadership training, helping employees enhance their skills.",
+      "training_name": "Leadership Training",
+      "training_type": "softskills"
+    },
+    "tra012": {
+      "attendance": 73.7,
+      "attendees": [
+        "emp001",
+        "emp007",
+        "emp010",
+        "emp019",
+        "emp022",
+        "emp025",
+        "emp030",
+        "emp041",
+        "emp042",
+        "emp043",
+        "emp045",
+        "emp056",
+        "emp062",
+        "emp064",
+        "emp071",
+        "emp073",
+        "emp074",
+        "emp089",
+        "emp092"
+      ],
+      "duration": 8,
+      "effectiveness_score": 4.9,
+      "employees_attended": 19,
+      "end_date": "2022-12-27",
+      "feedback_score": 3.3,
+      "mode": "online",
+      "start_date": "2021-03-27",
+      "status": "scheduled",
+      "target_audience": "dept002",
+      "topics": [
+        "Basic Phrases",
+        "Pronunciation Tips",
+        "Common Expressions"
+      ],
+      "trainer": "trainer009",
+      "training_description": "This training covers essential aspects of conversational spanish, helping employees enhance their skills.",
+      "training_name": "Conversational Spanish",
+      "training_type": "softskills"
+    },
+    "tra013": {
+      "attendance": 73.5,
+      "attendees": [
+        "emp004",
+        "emp013",
+        "emp018",
+        "emp025",
+        "emp028",
+        "emp030",
+        "emp036",
+        "emp038",
+        "emp041",
+        "emp044",
+        "emp048",
+        "emp059",
+        "emp061",
+        "emp064",
+        "emp066",
+        "emp072",
+        "emp079",
+        "emp081",
+        "emp085",
+        "emp091",
+        "emp094"
+      ],
+      "duration": 3,
+      "effectiveness_score": 3.4,
+      "employees_attended": 21,
+      "end_date": "2025-05-25",
+      "feedback_score": 3.8,
+      "mode": "offline",
+      "start_date": "2023-01-24",
+      "status": "scheduled",
+      "target_audience": "dept003",
+      "topics": [
+        "Hiragana & Katakana",
+        "Basic Kanji",
+        "Common Expressions"
+      ],
+      "trainer": "trainer015",
+      "training_description": "This training covers essential aspects of japanese essentials, helping employees enhance their skills.",
+      "training_name": "Japanese Essentials",
+      "training_type": "softskills"
+    },
+    "tra014": {
+      "attendance": 74.8,
+      "attendees": [
+        "emp006",
+        "emp007",
+        "emp025",
+        "emp035",
+        "emp039",
+        "emp044",
+        "emp047",
+        "emp051",
+        "emp061",
+        "emp063",
+        "emp067",
+        "emp068",
+        "emp071",
+        "emp074",
+        "emp076",
+        "emp079",
+        "emp081",
+        "emp085",
+        "emp086",
+        "emp095"
+      ],
+      "duration": 9,
+      "effectiveness_score": 4,
+      "employees_attended": 20,
+      "end_date": "2023-06-11",
+      "feedback_score": 3.2,
+      "mode": "offline",
+      "start_date": "2023-01-31",
+      "status": "in-progress",
+      "target_audience": "dept005",
+      "topics": [
+        "Active Listening",
+        "Body Language",
+        "Persuasive Speaking"
+      ],
+      "trainer": "trainer009",
+      "training_description": "This training covers essential aspects of effective communication, helping employees enhance their skills.",
+      "training_name": "Effective Communication",
+      "training_type": "softskills"
+    },
+    "tra015": {
+      "attendance": 77.7,
+      "attendees": [
+        "emp001",
+        "emp002",
+        "emp006",
+        "emp008",
+        "emp012",
+        "emp017",
+        "emp021",
+        "emp024",
+        "emp025",
+        "emp031",
+        "emp037",
+        "emp042",
+        "emp048",
+        "emp053",
+        "emp055",
+        "emp058",
+        "emp061",
+        "emp068",
+        "emp096",
+        "emp097",
+        "emp100"
+      ],
+      "duration": 6,
+      "effectiveness_score": 3.1,
+      "employees_attended": 21,
+      "end_date": "2025-01-31",
+      "feedback_score": 3.5,
+      "mode": "online",
+      "start_date": "2024-03-03",
+      "status": "completed",
+      "target_audience": "dept004",
+      "topics": [
+        "Prioritization Techniques",
+        "Avoiding Procrastination",
+        "Work-Life Balance"
+      ],
+      "trainer": "trainer004",
+      "training_description": "This training covers essential aspects of time management, helping employees enhance their skills.",
+      "training_name": "Time Management",
+      "training_type": "softskills"
+    },
+    "tra016": {
+      "attendance": 79.9,
+      "attendees": [
+        "emp024",
+        "emp034",
+        "emp036",
+        "emp041",
+        "emp042",
+        "emp046",
+        "emp048",
+        "emp049",
+        "emp050",
+        "emp052",
+        "emp064",
+        "emp065",
+        "emp076",
+        "emp079",
+        "emp083",
+        "emp087",
+        "emp089",
+        "emp097"
+      ],
+      "duration": 6,
+      "effectiveness_score": 3,
+      "employees_attended": 18,
+      "end_date": "2023-04-18",
+      "feedback_score": 3.9,
+      "mode": "hybrid",
+      "start_date": "2023-05-08",
+      "status": "completed",
+      "target_audience": "dept002",
+      "topics": [
+        "Decision Making",
+        "Team Building",
+        "Motivational Strategies"
+      ],
+      "trainer": "trainer014",
+      "training_description": "This training covers essential aspects of leadership training, helping employees enhance their skills.",
+      "training_name": "Leadership Training",
+      "training_type": "language"
+    },
+    "tra017": {
+      "attendance": 72.5,
+      "attendees": [
+        "emp002",
+        "emp004",
+        "emp005",
+        "emp009",
+        "emp023",
+        "emp030",
+        "emp034",
+        "emp036",
+        "emp037",
+        "emp038",
+        "emp044",
+        "emp047",
+        "emp051",
+        "emp053",
+        "emp063",
+        "emp068",
+        "emp070",
+        "emp075",
+        "emp080",
+        "emp083",
+        "emp095",
+        "emp099"
+      ],
+      "duration": 3,
+      "effectiveness_score": 3.5,
+      "employees_attended": 22,
+      "end_date": "2024-09-19",
+      "feedback_score": 3.6,
+      "mode": "online",
+      "start_date": "2022-12-11",
+      "status": "scheduled",
+      "target_audience": "dept001",
+      "topics": [
+        "Network Security",
+        "Ethical Hacking",
+        "Data Protection"
+      ],
+      "trainer": "trainer011",
+      "training_description": "This training covers essential aspects of cybersecurity basics, helping employees enhance their skills.",
+      "training_name": "Cybersecurity Basics",
+      "training_type": "language"
+    },
+    "tra018": {
+      "attendance": 72.4,
+      "attendees": [
+        "emp010",
+        "emp016",
+        "emp017",
+        "emp022",
+        "emp047",
+        "emp048",
+        "emp062",
+        "emp069",
+        "emp073",
+        "emp080",
+        "emp084",
+        "emp085",
+        "emp087",
+        "emp089",
+        "emp090"
+      ],
+      "duration": 7,
+      "effectiveness_score": 3.3,
+      "employees_attended": 15,
+      "end_date": "2024-04-19",
+      "feedback_score": 3.3,
+      "mode": "online",
+      "start_date": "2024-09-05",
+      "status": "in-progress",
+      "target_audience": "dept004",
+      "topics": [
+        "Email Etiquette",
+        "Professional Vocabulary",
+        "Presentation Skills"
+      ],
+      "trainer": "trainer003",
+      "training_description": "This training covers essential aspects of business english, helping employees enhance their skills.",
+      "training_name": "Business English",
+      "training_type": "softskills"
+    },
+    "tra019": {
+      "attendance": 74.3,
+      "attendees": [
+        "emp006",
+        "emp008",
+        "emp012",
+        "emp023",
+        "emp028",
+        "emp040",
+        "emp050",
+        "emp054",
+        "emp055",
+        "emp064",
+        "emp070",
+        "emp078",
+        "emp082",
+        "emp085"
+      ],
+      "duration": 2,
+      "effectiveness_score": 3.5,
+      "employees_attended": 14,
+      "end_date": "2023-03-19",
+      "feedback_score": 4.6,
+      "mode": "hybrid",
+      "start_date": "2022-11-28",
+      "status": "in-progress",
+      "target_audience": "dept004",
+      "topics": [
+        "Hiragana & Katakana",
+        "Basic Kanji",
+        "Common Expressions"
+      ],
+      "trainer": "trainer008",
+      "training_description": "This training covers essential aspects of japanese essentials, helping employees enhance their skills.",
+      "training_name": "Japanese Essentials",
+      "training_type": "language"
+    },
+    "tra020": {
+      "attendance": 73.4,
+      "attendees": [
+        "emp001",
+        "emp008",
+        "emp009",
+        "emp012",
+        "emp017",
+        "emp020",
+        "emp031",
+        "emp036",
+        "emp041",
+        "emp042",
+        "emp045",
+        "emp047",
+        "emp048",
+        "emp052",
+        "emp054",
+        "emp055",
+        "emp057",
+        "emp058",
+        "emp064",
+        "emp071",
+        "emp073",
+        "emp077",
+        "emp078",
+        "emp080",
+        "emp081",
+        "emp083",
+        "emp084",
+        "emp089",
+        "emp096",
+        "emp099"
+      ],
+      "duration": 4,
+      "effectiveness_score": 3.5,
+      "employees_attended": 30,
+      "end_date": "2024-07-27",
+      "feedback_score": 4.9,
+      "mode": "online",
+      "start_date": "2024-12-19",
+      "status": "scheduled",
+      "target_audience": "dept005",
+      "topics": [
+        "AWS Fundamentals",
+        "Azure vs. Google Cloud",
+        "Cloud Security"
+      ],
+      "trainer": "trainer003",
+      "training_description": "This training covers essential aspects of cloud computing, helping employees enhance their skills.",
+      "training_name": "Cloud Computing",
+      "training_type": "technical"
+    },
+    "tra021": {
+      "attendance": 78.4,
+      "attendees": [
+        "emp005",
+        "emp012",
+        "emp021",
+        "emp022",
+        "emp023",
+        "emp027",
+        "emp053",
+        "emp055",
+        "emp058",
+        "emp065",
+        "emp070",
+        "emp071",
+        "emp076",
+        "emp078",
+        "emp081",
+        "emp088",
+        "emp089"
+      ],
+      "duration": 4,
+      "effectiveness_score": 3.2,
+      "employees_attended": 17,
+      "end_date": "2025-05-25",
+      "feedback_score": 3.1,
+      "mode": "offline",
+      "start_date": "2024-01-22",
+      "status": "scheduled",
+      "target_audience": "dept005",
+      "topics": [
+        "Hiragana & Katakana",
+        "Basic Kanji",
+        "Common Expressions"
+      ],
+      "trainer": "trainer008",
+      "training_description": "This training covers essential aspects of japanese essentials, helping employees enhance their skills.",
+      "training_name": "Japanese Essentials",
+      "training_type": "language"
+    },
+    "tra022": {
+      "attendance": 75.9,
+      "attendees": [
+        "emp004",
+        "emp011",
+        "emp012",
+        "emp017",
+        "emp026",
+        "emp029",
+        "emp040",
+        "emp042",
+        "emp043",
+        "emp054",
+        "emp056",
+        "emp061",
+        "emp064",
+        "emp074",
+        "emp078",
+        "emp081",
+        "emp085",
+        "emp088",
+        "emp089",
+        "emp090",
+        "emp092"
+      ],
+      "duration": 7,
+      "effectiveness_score": 3.6,
+      "employees_attended": 21,
+      "end_date": "2024-10-20",
+      "feedback_score": 3.1,
+      "mode": "online",
+      "start_date": "2022-11-29",
+      "status": "in-progress",
+      "target_audience": "dept004",
+      "topics": [
+        "Active Listening",
+        "Body Language",
+        "Persuasive Speaking"
+      ],
+      "trainer": "trainer005",
+      "training_description": "This training covers essential aspects of effective communication, helping employees enhance their skills.",
+      "training_name": "Effective Communication",
+      "training_type": "language"
+    },
+    "tra023": {
+      "attendance": 76,
+      "attendees": [
+        "emp002",
+        "emp014",
+        "emp016",
+        "emp018",
+        "emp032",
+        "emp033",
+        "emp035",
+        "emp036",
+        "emp038",
+        "emp044",
+        "emp057",
+        "emp061",
+        "emp063",
+        "emp067",
+        "emp069",
+        "emp072",
+        "emp087",
+        "emp091",
+        "emp092",
+        "emp094",
+        "emp098"
+      ],
+      "duration": 7,
+      "effectiveness_score": 3.4,
+      "employees_attended": 21,
+      "end_date": "2024-05-23",
+      "feedback_score": 3.6,
+      "mode": "hybrid",
+      "start_date": "2022-12-05",
+      "status": "completed",
+      "target_audience": "dept001",
+      "topics": [
+        "Decision Making",
+        "Team Building",
+        "Motivational Strategies"
+      ],
+      "trainer": "trainer001",
+      "training_description": "This training covers essential aspects of leadership training, helping employees enhance their skills.",
+      "training_name": "Leadership Training",
+      "training_type": "language"
+    },
+    "tra024": {
+      "attendance": 76.1,
+      "attendees": [
+        "emp004",
+        "emp006",
+        "emp014",
+        "emp018",
+        "emp021",
+        "emp025",
+        "emp029",
+        "emp033",
+        "emp038",
+        "emp041",
+        "emp056",
+        "emp058",
+        "emp063",
+        "emp068",
+        "emp070",
+        "emp072",
+        "emp098",
+        "emp100"
+      ],
+      "duration": 9,
+      "effectiveness_score": 3.3,
+      "employees_attended": 18,
+      "end_date": "2020-05-20",
+      "feedback_score": 3.2,
+      "mode": "online",
+      "start_date": "2020-10-18",
+      "status": "scheduled",
+      "target_audience": "dept004",
+      "topics": [
+        "Overcoming Stage Fear",
+        "Speech Structuring",
+        "Engaging the Audience"
+      ],
+      "trainer": "trainer004",
+      "training_description": "This training covers essential aspects of public speaking, helping employees enhance their skills.",
+      "training_name": "Public Speaking",
+      "training_type": "technical"
+    },
+    "tra025": {
+      "attendance": 79.3,
+      "attendees": [
+        "emp006",
+        "emp018",
+        "emp024",
+        "emp036",
+        "emp039",
+        "emp043",
+        "emp048",
+        "emp049",
+        "emp052",
+        "emp057",
+        "emp061",
+        "emp067",
+        "emp070",
+        "emp071",
+        "emp072",
+        "emp074",
+        "emp077",
+        "emp078",
+        "emp082",
+        "emp086"
+      ],
+      "duration": 6,
+      "effectiveness_score": 3.6,
+      "employees_attended": 20,
+      "end_date": "2024-03-20",
+      "feedback_score": 3.5,
+      "mode": "hybrid",
+      "start_date": "2024-10-25",
+      "status": "completed",
+      "target_audience": "dept003",
+      "topics": [
+        "Hiragana & Katakana",
+        "Basic Kanji",
+        "Common Expressions"
+      ],
+      "trainer": "trainer010",
+      "training_description": "This training covers essential aspects of japanese essentials, helping employees enhance their skills.",
+      "training_name": "Japanese Essentials",
+      "training_type": "technical"
+    },
+    "tra026": {
+      "attendance": 67,
+      "attendees": [
+        "emp003",
+        "emp006",
+        "emp009",
+        "emp012",
+        "emp013",
+        "emp014",
+        "emp016",
+        "emp017",
+        "emp033",
+        "emp040",
+        "emp043",
+        "emp051",
+        "emp055",
+        "emp059",
+        "emp063",
+        "emp077",
+        "emp080",
+        "emp083",
+        "emp086",
+        "emp095",
+        "emp097"
+      ],
+      "duration": 3,
+      "effectiveness_score": 3.9,
+      "employees_attended": 21,
+      "end_date": "2025-06-19",
+      "feedback_score": 3.1,
+      "mode": "offline",
+      "start_date": "2025-03-30",
+      "status": "scheduled",
+      "target_audience": "dept005",
+      "topics": [
+        "Writing Manuals",
+        "Documentation Best Practices",
+        "Editing Techniques"
+      ],
+      "trainer": "trainer007",
+      "training_description": "This training covers essential aspects of technical writing, helping employees enhance their skills.",
+      "training_name": "Technical Writing",
+      "training_type": "technical"
+    },
+    "tra027": {
+      "attendance": 73.6,
+      "attendees": [
+        "emp020",
+        "emp028",
+        "emp034",
+        "emp045",
+        "emp059",
+        "emp063",
+        "emp066",
+        "emp070",
+        "emp072",
+        "emp075",
+        "emp092",
+        "emp093",
+        "emp096",
+        "emp099"
+      ],
+      "duration": 3,
+      "effectiveness_score": 4.1,
+      "employees_attended": 14,
+      "end_date": "2020-08-14",
+      "feedback_score": 4.8,
+      "mode": "offline",
+      "start_date": "2020-09-21",
+      "status": "in-progress",
+      "target_audience": "dept002",
+      "topics": [
+        "Greetings and Introductions",
+        "Basic Grammar",
+        "Essential Vocabulary"
+      ],
+      "trainer": "trainer014",
+      "training_description": "This training covers essential aspects of french for beginners, helping employees enhance their skills.",
+      "training_name": "French for Beginners",
+      "training_type": "technical"
+    },
+    "tra028": {
+      "attendance": 73.4,
+      "attendees": [
+        "emp002",
+        "emp003",
+        "emp005",
+        "emp006",
+        "emp014",
+        "emp022",
+        "emp029",
+        "emp038",
+        "emp040",
+        "emp041",
+        "emp044",
+        "emp046",
+        "emp047",
+        "emp055",
+        "emp066",
+        "emp096"
+      ],
+      "duration": 3,
+      "effectiveness_score": 3.9,
+      "employees_attended": 16,
+      "end_date": "2025-08-04",
+      "feedback_score": 4.7,
+      "mode": "online",
+      "start_date": "2025-10-17",
+      "status": "scheduled",
+      "target_audience": "dept001",
+      "topics": [
+        "Overcoming Stage Fear",
+        "Speech Structuring",
+        "Engaging the Audience"
+      ],
+      "trainer": "trainer009",
+      "training_description": "This training covers essential aspects of public speaking, helping employees enhance their skills.",
+      "training_name": "Public Speaking",
+      "training_type": "technical"
+    },
+    "tra029": {
+      "attendance": 69.6,
+      "attendees": [
+        "emp001",
+        "emp005",
+        "emp011",
+        "emp017",
+        "emp022",
+        "emp025",
+        "emp028",
+        "emp031",
+        "emp034",
+        "emp036",
+        "emp058",
+        "emp068",
+        "emp081",
+        "emp090",
+        "emp094",
+        "emp098"
+      ],
+      "duration": 7,
+      "effectiveness_score": 3.5,
+      "employees_attended": 16,
+      "end_date": "2024-10-28",
+      "feedback_score": 3.8,
+      "mode": "hybrid",
+      "start_date": "2024-12-31",
+      "status": "in-progress",
+      "target_audience": "dept003",
+      "topics": [
+        "Negotiation Skills",
+        "Managing Difficult Conversations",
+        "Dealing with Workplace Conflicts"
+      ],
+      "trainer": "trainer010",
+      "training_description": "This training covers essential aspects of conflict resolution, helping employees enhance their skills.",
+      "training_name": "Conflict Resolution",
+      "training_type": "softskills"
+    },
+    "tra030": {
+      "attendance": 77.9,
+      "attendees": [
+        "emp006",
+        "emp008",
+        "emp010",
+        "emp012",
+        "emp015",
+        "emp016",
+        "emp035",
+        "emp040",
+        "emp055",
+        "emp068",
+        "emp080",
+        "emp086",
+        "emp089",
+        "emp096"
+      ],
+      "duration": 8,
+      "effectiveness_score": 3,
+      "employees_attended": 14,
+      "end_date": "2025-12-13",
+      "feedback_score": 4.7,
+      "mode": "hybrid",
+      "start_date": "2024-12-16",
+      "status": "in-progress",
+      "target_audience": "dept001",
+      "topics": [
+        "Supervised vs. Unsupervised Learning",
+        "Neural Networks",
+        "Model Evaluation"
+      ],
+      "trainer": "trainer013",
+      "training_description": "This training covers essential aspects of machine learning, helping employees enhance their skills.",
+      "training_name": "Machine Learning",
+      "training_type": "language"
+    },
+    "tra031": {
+      "attendance": 77.5,
+      "attendees": [
+        "emp013",
+        "emp014",
+        "emp015",
+        "emp021",
+        "emp023",
+        "emp043",
+        "emp044",
+        "emp046",
+        "emp047",
+        "emp069",
+        "emp070",
+        "emp072",
+        "emp074",
+        "emp082",
+        "emp084",
+        "emp092",
+        "emp094"
+      ],
+      "duration": 5,
+      "effectiveness_score": 3.9,
+      "employees_attended": 17,
+      "end_date": "2025-05-01",
+      "feedback_score": 4.4,
+      "mode": "online",
+      "start_date": "2025-03-02",
+      "status": "completed",
+      "target_audience": "dept002",
+      "topics": [
+        "Writing Manuals",
+        "Documentation Best Practices",
+        "Editing Techniques"
+      ],
+      "trainer": "trainer002",
+      "training_description": "This training covers essential aspects of technical writing, helping employees enhance their skills.",
+      "training_name": "Technical Writing",
+      "training_type": "softskills"
+    },
+    "tra032": {
+      "attendance": 76.2,
+      "attendees": [
+        "emp005",
+        "emp010",
+        "emp018",
+        "emp020",
+        "emp028",
+        "emp030",
+        "emp033",
+        "emp036",
+        "emp038",
+        "emp045",
+        "emp048",
+        "emp055",
+        "emp056",
+        "emp070",
+        "emp071",
+        "emp073",
+        "emp083",
+        "emp084",
+        "emp096",
+        "emp100"
+      ],
+      "duration": 2,
+      "effectiveness_score": 3.3,
+      "employees_attended": 20,
+      "end_date": "2024-06-04",
+      "feedback_score": 4.1,
+      "mode": "offline",
+      "start_date": "2023-11-17",
+      "status": "scheduled",
+      "target_audience": "dept001",
+      "topics": [
+        "Multithreading",
+        "JVM Performance Tuning",
+        "Spring Boot"
+      ],
+      "trainer": "trainer012",
+      "training_description": "This training covers essential aspects of advanced java, helping employees enhance their skills.",
+      "training_name": "Advanced Java",
+      "training_type": "softskills"
+    },
+    "tra033": {
+      "attendance": 73.7,
+      "attendees": [
+        "emp001",
+        "emp008",
+        "emp012",
+        "emp014",
+        "emp017",
+        "emp020",
+        "emp032",
+        "emp039",
+        "emp042",
+        "emp044",
+        "emp050",
+        "emp052",
+        "emp053",
+        "emp058",
+        "emp068",
+        "emp070",
+        "emp079",
+        "emp097"
+      ],
+      "duration": 7,
+      "effectiveness_score": 4.4,
+      "employees_attended": 18,
+      "end_date": "2022-06-21",
+      "feedback_score": 4.2,
+      "mode": "online",
+      "start_date": "2022-05-26",
+      "status": "in-progress",
+      "target_audience": "dept005",
+      "topics": [
+        "Negotiation Skills",
+        "Managing Difficult Conversations",
+        "Dealing with Workplace Conflicts"
+      ],
+      "trainer": "trainer015",
+      "training_description": "This training covers essential aspects of conflict resolution, helping employees enhance their skills.",
+      "training_name": "Conflict Resolution",
+      "training_type": "technical"
+    },
+    "tra034": {
+      "attendance": 72.3,
+      "attendees": [
+        "emp004",
+        "emp018",
+        "emp026",
+        "emp027",
+        "emp033",
+        "emp042",
+        "emp046",
+        "emp048",
+        "emp054",
+        "emp055",
+        "emp059",
+        "emp060",
+        "emp069",
+        "emp073",
+        "emp079",
+        "emp081",
+        "emp085",
+        "emp093",
+        "emp094",
+        "emp098",
+        "emp100"
+      ],
+      "duration": 9,
+      "effectiveness_score": 3.5,
+      "employees_attended": 21,
+      "end_date": "2024-05-17",
+      "feedback_score": 3.7,
+      "mode": "hybrid",
+      "start_date": "2023-02-10",
+      "status": "completed",
+      "target_audience": "dept003",
+      "topics": [
+        "Multithreading",
+        "JVM Performance Tuning",
+        "Spring Boot"
+      ],
+      "trainer": "trainer001",
+      "training_description": "This training covers essential aspects of advanced java, helping employees enhance their skills.",
+      "training_name": "Advanced Java",
+      "training_type": "technical"
+    },
+    "tra035": {
+      "attendance": 71.8,
+      "attendees": [
+        "emp001",
+        "emp003",
+        "emp005",
+        "emp014",
+        "emp015",
+        "emp018",
+        "emp025",
+        "emp030",
+        "emp033",
+        "emp038",
+        "emp043",
+        "emp049",
+        "emp055",
+        "emp057",
+        "emp071",
+        "emp072",
+        "emp079",
+        "emp088",
+        "emp090",
+        "emp095"
+      ],
+      "duration": 5,
+      "effectiveness_score": 3.6,
+      "employees_attended": 20,
+      "end_date": "2023-04-06",
+      "feedback_score": 3.9,
+      "mode": "hybrid",
+      "start_date": "2022-12-11",
+      "status": "completed",
+      "target_audience": "dept002",
+      "topics": [
+        "NumPy and Pandas",
+        "Data Visualization",
+        "Machine Learning Basics"
+      ],
+      "trainer": "trainer007",
+      "training_description": "This training covers essential aspects of python for data science, helping employees enhance their skills.",
+      "training_name": "Python for Data Science",
+      "training_type": "technical"
+    }
+  }
+}
