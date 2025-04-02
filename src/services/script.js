@@ -1812,10 +1812,9 @@ searchInput.addEventListener("input", () => {
 });
 
 searchDropdown.addEventListener("change", () => {
-    const query = searchInput.value.trim().toLowerCase();
     const category = searchDropdown.value;
+    searchInput.value = null;
 
-    performSearch(query, category);
 });
 
 async function performSearch(query, category) {
