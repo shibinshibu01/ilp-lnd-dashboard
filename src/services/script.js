@@ -551,9 +551,22 @@ function loadTrainingDetails(trainingId) {
 
 function handleEmployeeClick(empId) {
     document.querySelector(".course-modal").style.display = "none";
-    displayEmployeeTrainings(empId, employees, data);
+    displayEmployeeTrainings(empId, employees, data, trainers);
 }
 
+function adjustModalWidth() {
+    const mainContent = document.querySelector(".main-content");
+    const courseModal = document.querySelector(".course-modal");
+
+    if (mainContent && courseModal) {
+        const computedStyle = window.getComputedStyle(mainContent);
+        courseModal.style.width = computedStyle.width;
+    }
+}
+
+// Run function when page loads and on window resize
+window.addEventListener("load", adjustModalWidth);
+window.addEventListener("resize", adjustModalWidth);
 
 
 //Homebar Stats
