@@ -1791,6 +1791,18 @@ document.addEventListener('DOMContentLoaded', populateEmployeeSidebar);
 
 const searchInput = document.querySelector(".global-search");
 const searchDropdown = document.querySelector(".global-search__dropdown");
+const resultsContainer = document.getElementById("searchResults");
+
+searchInput.addEventListener("focus", () => {
+    resultsContainer.style.display = "block";
+});
+
+document.addEventListener("click", (event) => {
+    if (!searchInput.contains(event.target) && !searchDropdown.contains(event.target) && !resultsContainer.contains(event.target)) {
+        resultsContainer.style.display = "none";
+    }
+});
+resultsContainer.style.display = "none";
 
 searchInput.addEventListener("input", () => {
     const query = searchInput.value.trim().toLowerCase();
@@ -1835,14 +1847,46 @@ async function performSearch(query, category) {
 }
 
 function displayResults(results, category) {
-    const resultsContainer = document.getElementById("searchResults");
     if (!resultsContainer) return;
     
     if (results.length > 0) {
-        resultsContainer.innerHTML = results.map(result => {
-            return `<div>${JSON.stringify(result)}</div>`
-        }).join("");
+        resultsContainer.innerHTML = results
+            .map(result => {
+                return `
+                    <div class="result-item">
+                        ${formatResult(result, category)}
+                    </div>
+                `;
+            })
+            .join("");
     } else {
-        resultsContainer.innerHTML = "<div>No results found</div>";
+        resultsContainer.innerHTML = "<div class='no-results'>No results found</div>";
+    }
+}
+
+
+function formatResult(result, category) {
+    switch (category) {
+        case "Training Programs":
+            return `
+                <h3>${result.training_name}</h3>
+                <p><strong>Feedback Score:</strong> ${result.feedback_score}</p>
+                <p><strong>Effectiveness Score:</strong> ${result.effectiveness_score}</p>
+                <p><strong>Status:</strong> ${result.status}</p>
+            `;
+        case "Employees":
+            return `
+                <h3>${result.emp_name}</h3>
+                <p><strong>Total Training Programs Done:</strong> ${result.total_training_programs}</p>
+                <p><strong>Total Training Days Done:</strong> ${result.total_training_days}</p>
+            `;
+        case "Trainers":
+            return `
+                <h3>${result.name}</h3>
+                <p><strong>Rating:</strong> ${result.feedback}</p>
+                <p><strong>Type:</strong> ${result.type}</p>
+            `;
+        default:
+            return `<p>Unknown category</p>`;
     }
 }
