@@ -1541,8 +1541,17 @@ $text-color: #333333;
     color:$red;
     font-weight: 600;
     font-size: 20px;
-    .employee-name{
+    .employee-details{
         flex:2;
+        @include set-flex(column,0);
+
+        .employee-name{
+            font-size: 25px;
+        }
+        .employee-dept{
+            color:black;
+            font-size: 15px;
+        }
     }
     .employee-metrics{
         @include set-flex(row,0);

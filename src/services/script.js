@@ -1470,7 +1470,7 @@ function displayEmployeeTrainings(empId, employees, trainings, trainers) {
 
         
 
-        let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "Placeholder";
+        let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "NO Trainer";
 
         let tableRow = `
         <tr>
@@ -1755,43 +1755,54 @@ function populateEmployeeSidebar() {
             console.error("Error fetching employees data:", error);
         });
 
+
     // Render employees based on filter
     function renderEmployees(employees, trainings, trainers) {
         const employeeList = document.getElementById("employeeList");
-        employeeList.innerHTML = ''; // Clear the list
+        employeeList.innerHTML = ''; 
     
-        employees.forEach(employee => {
-            const li = document.createElement('li');
-            li.innerHTML = `
-                <div class="employee-sidebar-card" data-emp-id="${employee.emp_id}">
-                    <div class="employee-sidebar-card__left">
-                        <h5 class="employee-sidebar-card-name">${employee.emp_name}</h5>
-                        <span class="trainings-attended">Trainings Attended: </span>
-                        <span class="trainings-count">${employee.trainings_done ? Object.keys(employee.trainings_done).length : 0}</span>
-                    </div>
-                    <div class="employee-sidebar-card__right">
-                        <span class="employee-sidebar-card-department">Department</span>
-                        <span class="employee-sidebar-card__value">${employee.departmentName}</span>
-                    </div>
-                </div>
-            `;
-
-            // Attach click event to load training details
-            li.addEventListener("click", () => {
-                selectEmployee(employee.id);
-                document.querySelector(".employee-name").innerText = `${employee.emp_name}`;
-                // document.querySelector(".employee-dept").innerText = `${employee.`;
-                document.querySelector(".employee-metrics1").innerText = `${employee.total_training_days}`;
-                document.querySelector(".employee-metrics2").innerText = `${employee.total_training_programs}`;
-                document.querySelector(".employee-metrics3").innerText = `${employee.average_attendance}%`;
-                document.querySelector(".metric-headings1").innerText = `Total Training Days`;
-                document.querySelector(".metric-headings2").innerText = `Total Training Programs`;
-                document.querySelector(".metric-headings3").innerText = `Total Training Average Attendence`;
+        axios.get("https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/departments/.json")
+            .then(response => {
+                let departments = response.data; 
+    
+                employees.forEach(employee => {
+                    const departmentName = departments?.[employee.emp_department]?.department_name || employee.emp_department;
+    
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <div class="employee-sidebar-card" data-emp-id="${employee.emp_id}">
+                            <div class="employee-sidebar-card__left">
+                                <h5 class="employee-sidebar-card-name">${employee.emp_name}</h5>
+                                <span class="trainings-attended">Trainings Attended: </span>
+                                <span class="trainings-count">${employee.trainings_done ? Object.keys(employee.trainings_done).length : 0}</span>
+                            </div>
+                            <div class="employee-sidebar-card__right">
+                                <span class="employee-sidebar-card-department">Department</span>
+                                <span class="employee-sidebar-card__value">${departmentName}</span>
+                            </div>
+                        </div>
+                    `;
+    
+                    li.addEventListener("click", () => {
+                        selectEmployee(employee.id);
+                        document.querySelector(".employee-dept").innerText = departmentName; 
+                        document.querySelector(".employee-name").innerText = employee.emp_name;
+                        document.querySelector(".employee-metrics1").innerText = employee.total_training_days;
+                        document.querySelector(".employee-metrics2").innerText = employee.total_training_programs;
+                        document.querySelector(".employee-metrics3").innerText = `${employee.average_attendance}%`;
+                        document.querySelector(".metric-headings1").innerText = "Total Training Days";
+                        document.querySelector(".metric-headings2").innerText = "Total Training Programs";
+                        document.querySelector(".metric-headings3").innerText = "Total Training Average Attendance";
+                    });
+    
+                    employeeList.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching department data:", error);
             });
-    
-            employeeList.appendChild(li);
-        });
     }
+    
     
 
     // Filter employees on dropdown change
