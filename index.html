@@ -29,6 +29,7 @@
                 <option value="Employees">Employees</option>
                 <option value="Trainers">Trainers</option>
             </select>
+            <div id="searchResults"></div>
         </div>
     </header>
 
@@ -69,7 +70,7 @@
         <div class="sidebar">
             <div class="sidebar-header">
                 <img src="src/assets/user-pic.svg" alt="User Avatar">
-                <div>
+                <div class="sidebar-header__info">
                     <h3>Jordan S Ben</h3>
                     <p>Associate - L&D</p>
                 </div>
@@ -77,7 +78,7 @@
             <div class="sidebar-content">
                 <div class="sidebar-section">
                     <h4>Departments</h4>
-                    <a href="#" class="view-all">View all</a>
+                    <!-- <a href="#" class="view-all">View all</a> -->
                     <ul id="topDepartments">
                         <!-- Dynamically populated -->
                     </ul>
@@ -91,7 +92,7 @@
                 </div>
                 <div class="sidebar-section">
                     <h4>Trainers</h4>
-                    <a href="#" class="view-all">View all</a>
+                    <!-- <a href="#" class="view-all">View all</a> -->
                     <ul id="topTrainers">
                         <!-- Dynamically populated -->
                     </ul>
@@ -152,7 +153,7 @@
 
                     <div class="training-stat">
                         <p class="training-stat__number" id="completedTraining">0</p>
-                        <span class="training-stat__label">Completed<br>Training</span>
+                        <span class="training-stat__label">Completed<br>Trainings</span>
                     </div>
 
                     <div class="training-stat">

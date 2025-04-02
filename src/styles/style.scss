@@ -112,6 +112,17 @@ header {
                 font-weight: 500;
             }
         }
+
+        #searchResults {
+            position: absolute;
+            margin-top: 38px;
+            background-color: $red-lighter;
+            color: $font-dark;
+            width: 700px;
+            border-radius: 0 0 5px 5px;
+            padding: 20px;
+            // display: none;
+        }
     }
 }
 
@@ -119,6 +130,7 @@ main {
     display: flex;
     flex: 1;
     margin-top: 60px;
+    overflow: hidden;
 }
 
 .navbar {
@@ -168,25 +180,10 @@ main {
     }
 }
 
-
-// .sidebar {
-//     @include set-flex(column, 0);
-//     width: 350px;
-
-//     .sidebar-header {
-//         height: 50px;
-//         background: #7c9969;
-//     }
-
-//     .sidebar-content {
-//         flex: 1;
-//         background: #5d638e;
-//     }
-// }
-
 .main-content {
     flex: 1;
     background: #FFFFFF;
+    overflow-y: auto;
 }
 
 .course-modal {
@@ -486,7 +483,6 @@ main {
     padding: 20px;
 }
 
-
 .main-content--custom--filter {
     background-color: white;
     margin-left: 20px;
@@ -513,9 +509,6 @@ main {
     font-family: 'Poppins', sans-serif;
 }
 
-
-
-
 /* Table header */
 .training-table thead th {
     color: #6B7280;
@@ -525,9 +518,6 @@ main {
     padding: 10px 16px;
     border-bottom: 1px solid #E5E7EB;
 }
-
-
-
 
 /* Table body */
 .training-table tbody tr {
@@ -549,6 +539,7 @@ main {
 .training-table tbody td:first-child {
     color: #E31E54;
     font-weight: 600;
+    font-size: 15px;
 }
 
 /* Type tag styling */
@@ -558,28 +549,41 @@ main {
     border-radius: 4px;
     font-size: 12px;
     font-weight: 500;
+
 }
 
 /* Type-specific styling */
 .type-tag.type-type-soft-skills {
     background-color: #FFE5E5;
     color: #D32F2F;
+    align-items: center;
 }
 
 .type-tag.type-type-language-training {
     background-color: #E5F6FF;
     color: #0075FF;
+    align-items: center;
 }
 
 /* Mode styling */
+
 .type-tag.type-mode-online,
 .type-tag.type-mode-offline,
-.type-tag.type-mode-hybrid {
+.type-tag.type-mode-hybrid{
     color: #D32F2F;
     border: 1px solid #D32F2F;
     background-color: white;
 }
 
+.mode {
+    color: #D32F2F;
+    border: 1px solid #D32F2F;
+    border: 1px solid $red;
+    text-align: center;
+    border-radius: 5px;
+    margin: auto;
+    padding:5px;
+}
 
 /* Status styling */
 .type-tag.type-status-upcoming {
@@ -594,7 +598,7 @@ main {
     font-weight: 600;
     background-color: transparent;
     padding: 0;
-}
+   }
 
 /* Number styling for attendance, feedback, etc. */
 .training-table td:nth-child(4),
@@ -617,14 +621,6 @@ main {
 }
 
 /* Filter container styles */
-// Variables
-$primary-red: #E31E54;
-$background-color: #f5f5f5;
-$white: #ffffff;
-$border-color: #e0e0e0;
-$text-color: #333333;
-
-// Variables
 $primary-red: #E31E54;
 $background-color: #f5f5f5;
 $white: #ffffff;
@@ -750,12 +746,8 @@ $text-color: #333333;
     }
 }
 
-///asw
-
 .main-content--custom--filter {
     background-color: $main-bg;
-    // margin-left: 20px;
-    // margin-right: 20px;
     width: 98.5%;
 }
 
@@ -813,6 +805,8 @@ $text-color: #333333;
     font-weight: 600;
 }
 
+
+
 /* Type tag styling */
 .type-tag {
     display: inline-block;
@@ -848,7 +842,9 @@ $text-color: #333333;
     background-color: transparent;
     padding: 7px;
     background-color: #8d96e1;
-    //border: 1px solid black;
+    text-align: center;
+    // margin: auto;
+    justify-content: center;
 }
 
 .type-tag.type-type-softskills {
@@ -857,6 +853,7 @@ $text-color: #333333;
     background-color: transparent;
     padding: 7px;
     background-color: #8de1cd;
+    align-self: center;
     //border: 1px solid black;
 }
 
@@ -866,7 +863,6 @@ $text-color: #333333;
     background-color: transparent;
     padding: 7px;
     background-color: #e1b18d;
-    //border: 1px solid black;
 }
 
 /* Status styling */
@@ -911,18 +907,15 @@ $text-color: #333333;
 
 .training-table td:nth-child(5) {
     font-size: 12px;
-    // font-weight: 600;
+    font-weight: 600;
+}
+
+.training-table td:nth-child(6) {
+    font-size: 20px;
+    font-weight: 600;
 }
 
 /* Filter container styles */
-// Variables
-$primary-red: #E31E54;
-$background-color: #f5f5f5;
-$white: #ffffff;
-$border-color: #e0e0e0;
-$text-color: #333333;
-
-// Variables
 $primary-red: #E31E54;
 $background-color: #f5f5f5;
 $white: #ffffff;
@@ -937,8 +930,6 @@ $text-color: #333333;
     margin-top: 160px;
 }
 
-
-
 .filter-header {
     font-size: 16px;
     font-weight: 600;
@@ -948,8 +939,6 @@ $text-color: #333333;
     margin-left: 4px;
     vertical-align: top;
 }
-
-
 
 .filter-select {
     position: relative;
@@ -1129,9 +1118,6 @@ $text-color: #333333;
 }
 
 .dashboard {
-    // display: grid;
-    // grid-template-columns: 1.5fr 1fr 1fr;
-    // grid-template-rows: auto auto;
     @include set-flex(column, 30px);
     gap: 15px;
     padding: 20px;
@@ -1173,6 +1159,10 @@ $text-color: #333333;
     font-weight: 600;
     color: $text-color;
 }
+.content-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: $text-color;}
 
 .card {
     background-color: $white;
@@ -1246,6 +1236,47 @@ $text-color: #333333;
     }
 }
 
+.training-title {
+    margin-top: 80px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    justify-content: space-between;
+    h1{
+      font-size: 30px;
+      font-weight: 700;
+      color: $font-dark;
+      margin: 10px;
+    }
+  }
+
+  .employee-title{
+    margin-top: 80px;
+  }
+
+
+.completed{
+    color: #5ce31e;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  
+  .scheduled{
+  color: #FFC700;
+  font-size: 13px;
+  font-weight: 600;
+  }
+  
+  .in-progress{
+      color: #E31E54;
+      font-size: 13px;
+      font-weight: 600;
+  }
+
+
+
+
 /* Sidebar Styling of litto */
 .sidebar {
     background-color: $sidebar-bg;
@@ -1269,6 +1300,7 @@ $text-color: #333333;
 .sidebar .sidebar-header img {
     width: 40px;
     height: 40px;
+    margin-right: 10px;
 }
 
 .sidebar .sidebar-header h3 {
@@ -1286,6 +1318,7 @@ $text-color: #333333;
 
 .sidebar .sidebar-content .sidebar-section {
     margin-bottom: 25px;
+    margin-top: 10px;
     position: relative;
 }
 
@@ -1335,7 +1368,7 @@ $text-color: #333333;
     align-items: flex-start;
     background: $main-bg;
     border-radius: 12px;
-    padding: 15px 20px;
+    padding: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -1376,4 +1409,342 @@ $text-color: #333333;
     color: $font-dark;
     text-align: center;
     text-wrap: nowrap;
+}
+
+.trainer-card {
+    @include set-flex(row, 0px);
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    overflow: hidden; 
+    padding: 0px; 
+    box-sizing: border-box; 
+    max-width: 100%;
+}
+
+.trainer-card__left {
+    text-wrap: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    h5 {
+        font-size: 11px;
+        font-weight: 650;
+    }
+    .trainings-conducted {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 450;
+    }
+    .trainings-conducted__value {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 500;
+    }
+}
+
+.trainer-card__right {
+    @include set-flex(column, 0px);
+    overflow: hidden;
+        font-size: 8px;
+        text-align: center;
+        color: $font-dark;
+        font-weight: 450;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+        margin-left:25px;
+    .trainer-type__value {
+        text-align: center;
+        font-size: 17px;
+        color: $font-dark;
+        font-weight: 600;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+    }
+}
+.sidebar-name-filter{
+    @include set-flex(row, 0px);
+}
+.trainer-filter {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    margin-left:45px;
+    .filter__select {
+        height: 90%;
+        background-color: $main-bg;
+    }
+}
+
+.sidebar-header__info {
+    zoom: 1.5;
+}
+
+.trainings_list {
+    padding: 20px 20px 20px 20px;
+}
+
+.training-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid $sidebar-bg;
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: 100%;
+    max-width: 300px;
+    background-color: $main-bg;
+}
+
+.training-search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 8px;
+    width: 100%;
+}
+
+.training-search img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.training-search img:hover {
+    opacity: 0.7;
+}
+.employee-filter {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    margin-left:25px;
+    .filter__select {
+        height: 90%;
+        background-color: $main-bg;
+    }
+}
+
+.employee-sidebar-card {
+    @include set-flex(row, 0px);
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    overflow: hidden; 
+    padding: 0px; 
+    box-sizing: border-box; 
+    max-width: 100%;
+}
+
+.employee-sidebar-card__left {
+    text-wrap: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    margin: 0px;
+    h5 {
+        font-size: 12px;
+        font-weight: 500;
+    }
+    .trainings-attended {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 450;
+    }
+    .trainings-attended__value {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 500;
+    }
+}
+
+.employee-sidebar-card__right {
+    @include set-flex(column, 0px);
+    overflow: hidden;
+        font-size: 8px;
+        text-align: left;
+        color: $font-dark;
+        font-weight: 450;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+        margin-left: 15px;
+    
+    .employee-sidebar-card__value{
+        text-align: left;
+        font-size: 15px;
+        color: $font-dark;
+        font-weight: 600;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+    }
+}
+
+.trainer-card {
+    @include set-flex(row, 0px);
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    overflow: hidden; 
+    padding: 0px; 
+    box-sizing: border-box; 
+    max-width: 100%;
+}
+
+.trainer-card__left {
+    text-wrap: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    h5 {
+        font-size: 11px;
+        font-weight: 650;
+    }
+    .trainings-conducted {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 450;
+    }
+    .trainings-conducted__value {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 500;
+    }
+}
+
+.trainer-card__right {
+    @include set-flex(column, 0px);
+    overflow: hidden;
+        font-size: 8px;
+        text-align: center;
+        color: $font-dark;
+        font-weight: 450;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+        margin-left:25px;
+    .trainer-type__value {
+        text-align: center;
+        font-size: 17px;
+        color: $font-dark;
+        font-weight: 600;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+    }
+}
+.sidebar-name-filter{
+    @include set-flex(row, 0px);
+}
+.trainer-filter {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    margin-left:45px;
+    .filter__select {
+        height: 90%;
+        background-color: $main-bg;
+    }
+}
+
+.sidebar-header__info {
+    zoom: 1.5;
+}
+
+.trainings_list {
+    padding: 20px 20px 20px 20px;
+}
+
+.training-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid $sidebar-bg;
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: 100%;
+    max-width: 300px;
+    background-color: $main-bg;
+}
+
+.training-search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 8px;
+    width: 100%;
+}
+
+.training-search img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.training-search img:hover {
+    opacity: 0.7;
+}
+.employee-filter {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    margin-left:25px;
+    .filter__select {
+        height: 90%;
+        background-color: $main-bg;
+    }
+}
+
+.employee-sidebar-card {
+    @include set-flex(row, 0px);
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    overflow: hidden; 
+    padding: 0px; 
+    box-sizing: border-box; 
+    max-width: 100%;
+}
+
+.employee-sidebar-card__left {
+    text-wrap: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    margin: 0px;
+    h5 {
+        font-size: 12px;
+        font-weight: 500;
+    }
+    .trainings-attended {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 450;
+    }
+    .trainings-attended__value {
+        font-size: 10px;
+        color: $font-dark;
+        font-weight: 500;
+    }
+}
+
+.employee-sidebar-card__right {
+    @include set-flex(column, 0px);
+    overflow: hidden;
+        font-size: 8px;
+        text-align: left;
+        color: $font-dark;
+        font-weight: 450;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+        margin-left: 15px;
+    
+    .employee-sidebar-card__value{
+        text-align: left;
+        font-size: 15px;
+        color: $font-dark;
+        font-weight: 600;
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+    }
 }
