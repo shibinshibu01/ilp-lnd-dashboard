@@ -99,29 +99,34 @@
         <div class="main-content">
             <div class="dashboard-header">
                 <h1 class="dashboard-header__title">L&D Dashboard</h1>
-
             </div>
-            <div class="employee-title"></div>
+            <div class="employee-title">
+                <div class="employee-details">
+                    <div class="employee-name"></div>
+                    <div class="employee-dept"></div>
+                </div>
+                <div class="employee-metrics">
+                    <div class="metric-container">
+                        <div class="employee-metrics1" id="emp-met-num"></div>
+                        <div class="metric-headings1" id="emp-met-label"></div>
+                    </div>
+                    <div class="metric-container">
+                        <div class="employee-metrics2" id="emp-met-num"></div>
+                        <div class="metric-headings2" id="emp-met-label"></div>
+                    </div>
+                    <div class="metric-container">
+                        <div class="employee-metrics3" id="emp-met-num"></div>
+                        <div class="metric-headings3" id="emp-met-label"></div>
+                    </div>
+                </div>
+            </div>
+            
             <section class="trainings_list">
                 <table class="training-table">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Type</th>
-                            <th>Duration</th>
-                            <th>Target Audience</th>
-                            <th>Trainer</th>
-                            <th>Employee Attendance</th>
-                            <th>Attendance Percentage</th>
-                            <th>Feedback Score</th>
-                            <th>Mode</th>
-                            <th>Status</th>
-                        </tr> 
-                    </thead>
-                    <tbody id="employeetraining-list">
-                    </tbody>
+                    <tbody id="employeetraining-list"></tbody>
                 </table>
             </section>
+            
 
 
 
@@ -153,6 +158,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="course-modal-details">
                     <div class="course-details">
                         <div class="type-mode">

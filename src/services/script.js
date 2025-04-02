@@ -225,7 +225,7 @@ function createTypeTag(value, baseClass) {
     tag.textContent = value;
     return tag;
 }
-
+console.log("tableBody:");
 function applyFilter() {
     const mainCategory = document.getElementById('mainCategory').value;
     const secondFilter = document.getElementById('secondFilter').value;
@@ -245,7 +245,7 @@ function applyFilter() {
 
     fetchData(fetchTypeMap[mainCategory] || 0)
         .then(dataSet => {
-            let filteredData = dataSet.filter(item => {
+            let filteredData = Object.entries(dataSet).filter(([key, item]) => {
                 if (secondFilter === 'Select condition' || filterValue === '') return true;
 
                 const filterValueMap = {
@@ -279,27 +279,35 @@ function applyFilter() {
                 return comparisons[thirdFilter] ? comparisons[thirdFilter]() : true;
             });
 
-            // Populate table with filtered data
-            filteredData.forEach(item => {
+            // ✅ Ensure rows get the correct key
+            filteredData.forEach(([key, item], index) => {
+                const formattedKey = `tra${String(index + 1).padStart(3, '0')}`; // 🔥 Start from 1
                 const row = generateTableRow(item, mainCategory);
-
-                // Add click event listener to the row
-                row.addEventListener('click', () => {
-                    const trainingId = item.id; // Assuming `id` is the unique identifier for each training
-                    loadTrainingDetails(item.key); // Call the function with the training ID
-                });
-
+                row.dataset.key = formattedKey; // ✅ Assign formatted key
+                console.log("Row assigned key:", formattedKey); // ✅ Debugging log
                 tableBody.appendChild(row);
             });
+            document.getElementById('tableBody').addEventListener('click', function (event) {
+                const row = event.target.closest('tr');
+                if (row && row.dataset.key) {
+                    const trainingKey = row.dataset.key;
+                    const mainCategory = document.getElementById('mainCategory').value; // Get the selected category
 
-            resultsTable.classList.add('training-table');
-            // Show/hide table based on results
-            resultsTable.classList.toggle('visible', filteredData.length > 0);
+                    console.log("Clicked row key:", trainingKey);
+                    if (mainCategory === "Training Programs") { // ✅ Call only for Training Programs
+                        console.log("Passing key to loadTrainingDetails:", trainingKey);
+                        loadTrainingDetails(trainingKey);
+                        document.querySelector(".course-modal").style.display = "block";
+                    }
+                }
+            });
+
+
         })
-        .catch(error => {
-            console.error("Error in filtering training data:", error);
-        });
 }
+
+
+
 
 function getFilterValues() {
     let selects = document.querySelectorAll('.filter__select');
@@ -439,10 +447,8 @@ Promise.all([
         console.log("Fetched trainers:", trainers);
         console.log("Fetched employees:", employees);
         console.log("Fetched departments:", departments);
-
-        loadTrainingDetails(trainingId);
-        initializeDropdown();
     })
+
     .catch(error => console.error('Error fetching data:', error));
 
 function loadTrainingDetails(trainingId) {
@@ -474,11 +480,13 @@ function loadTrainingDetails(trainingId) {
     titleMetricsContainer.querySelector('.metric-three .metric-value').textContent = training.feedback_score;
     titleMetricsContainer.querySelector('.metric-four .metric-value').textContent = training.effectiveness_score;
 
+    const trainingTypeFormatted = training.training_type.charAt(0).toUpperCase() + training.training_type.slice(1);
+    const trainingStatusFormatted = training.status.charAt(0).toUpperCase() + training.status.slice(1);
     const trainingElement = document.createElement('div');
     trainingElement.className = 'course-details';
     trainingElement.innerHTML = `
         <div class="type-mode">
-            <button class="btn-type" data-type="${training.training_type}">${training.training_type}</button>
+            <button class="btn-type" data-type="${training.training_type}">${trainingTypeFormatted}</button>
             <button class="btn-mode">${training.mode}</button>
         </div>
         <div class="description">
@@ -494,7 +502,7 @@ function loadTrainingDetails(trainingId) {
             <h3 class="trainer-title">Trainer: <span class="trainer-name">${trainerName}</span></h3>
         </div>
         <div class="course-status">
-            <h3 class="status-title">Status: <span class="course-status-label" data-status="${training.status}">${training.status}</span></h3>
+            <h3 class="status-title">Status: <span class="course-status-label" data-status="${training.status}">${trainingStatusFormatted}</span></h3>
         </div>
         <div class="course-topics">
             <h3 class="topic-title">Topics:</h3>
@@ -514,7 +522,7 @@ function loadTrainingDetails(trainingId) {
         const empDepartment = departments[empDepartmentId]?.department_name || "Unknown";
 
         return `
-            <div class="employee-card" data-department="${empDepartment}">
+            <div class="employee-card" data-department="${empDepartment}" onclick="handleEmployeeClick('${empId}')">
                 <div class="employee-image">
                     <img src="./src/assets/employees-icon.svg">
                 </div>
@@ -536,23 +544,30 @@ function loadTrainingDetails(trainingId) {
         <div class="employee-header">
             <h2>Employees</h2>
             <div class="employee-status">
-                <div class="dropdown">
-                    <button class="dropdown-btn">Select Status</button>
-                    <ul class="dropdown-menu">
-                        <li data-value="all">All</li>
-                        <li data-value="Marketing">Marketing</li>
-                        <li data-value="Engineering">Engineering</li>
-                        <li data-value="HR">HR</li>
-                        <li data-value="Finance">Finance</li>
-                        <li data-value="Sales">Sales</li>
-                    </ul>
-                </div>
+                <select id="departmentFilter" class="custom-select">
+                    <option value="" disabled selected>Select Status</option>
+                    <option value="all">All</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="HR">HR</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Sales">Sales</option>
+                </select>
             </div>
         </div>
         <div id="employeeList">${employeeListHTML}</div>
     `;
-
     trainingContainer.appendChild(employeeDetailsElement);
+    document.getElementById("departmentFilter").addEventListener("change", function () {
+        const selectedDepartment = this.value;
+        document.querySelectorAll(".employee-card").forEach(card => {
+            if (selectedDepartment === "all" || card.dataset.department === selectedDepartment) {
+                card.style.display = "flex";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    });
 
     document.addEventListener("click", (event) => {
         if (event.target.classList.contains("back-button")) {
@@ -560,46 +575,25 @@ function loadTrainingDetails(trainingId) {
         }
     });
 }
-function initializeDropdown() {
-    const dropdown = document.querySelector(".dropdown");
-    const dropdownBtn = document.querySelector(".dropdown-btn");
-    const dropdownMenu = document.querySelector(".dropdown-menu");
-    const employeeCards = document.querySelectorAll(".employee-card");
 
-    if (!dropdown || !dropdownBtn || !dropdownMenu) {
-        console.error("Dropdown elements not found.");
-        return;
-    }
-
-    dropdownBtn.addEventListener("click", function (event) {
-        event.stopPropagation();
-        dropdown.classList.toggle("active");
-    });
-
-    dropdownMenu.addEventListener("click", function (event) {
-        if (event.target.tagName === "LI") {
-            const selectedDepartment = event.target.getAttribute("data-value");
-            dropdownBtn.textContent = event.target.textContent;
-
-            employeeCards.forEach(card => {
-                if (selectedDepartment === "all" || card.dataset.department === selectedDepartment) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-
-            dropdown.classList.remove("active");
-        }
-    });
-
-    document.addEventListener("click", function (event) {
-        if (!dropdown.contains(event.target)) {
-            dropdown.classList.remove("active");
-        }
-    });
+function handleEmployeeClick(empId) {
+    document.querySelector(".course-modal").style.display = "none";
+    displayEmployeeTrainings(empId, employees, data, trainers);
 }
 
+function adjustModalWidth() {
+    const mainContent = document.querySelector(".main-content");
+    const courseModal = document.querySelector(".course-modal");
+
+    if (mainContent && courseModal) {
+        const computedStyle = window.getComputedStyle(mainContent);
+        courseModal.style.width = computedStyle.width;
+    }
+}
+
+// Run function when page loads and on window resize
+window.addEventListener("load", adjustModalWidth);
+window.addEventListener("resize", adjustModalWidth);
 
 
 //Stats
@@ -1030,6 +1024,7 @@ function fetchData(type) {
                         attendancePercentage: `${training.attendance}%`,
                         feedbackScore: training.feedback_score,
 
+
                         status: training.status,
                         topics: training.topics
                     };
@@ -1204,86 +1199,7 @@ function generateTableRow(data, category) {
 
     return row;
 }
-function createTypeTag(value, baseClass) {
-    if (!value) return value;
-    const tag = document.createElement('span');
 
-    // Normalize the value for class generation
-    const normalizedValue = value.toLowerCase().replace(/\s+/g, '-');
-
-
-    // Add specific classes for different types
-    tag.classList.add('type-tag', `type-${baseClass}`, `type-${baseClass}-${normalizedValue}`);
-    tag.textContent = value;
-    return tag;
-}
-
-function applyFilter() {
-    const mainCategory = document.getElementById('mainCategory').value;
-    const secondFilter = document.getElementById('secondFilter').value;
-    const thirdFilter = document.getElementById('thirdFilter').value;
-    const filterValue = document.getElementById('filterValue').value.trim().toLowerCase();
-    const resultsTable = document.getElementById('resultsTable');
-    const tableBody = document.getElementById('tableBody');
-
-    tableBody.innerHTML = ''; // Clear previous results
-    setTableHeader(mainCategory);
-
-    const fetchTypeMap = {
-        'Training Programs': 1,
-        'Employees': 2,
-        'Trainers': 3
-    };
-
-    fetchData(fetchTypeMap[mainCategory] || 0)
-        .then(dataSet => {
-            let filteredData = dataSet.filter(item => {
-                if (secondFilter === 'Select condition' || filterValue === '') return true;
-                //console.log("Effectiveness Values:", dataSet.map(item => item.effectiveness));
-                const filterValueMap = {
-                    'Feedback Score': () => parseFloat(item.feedbackScore),
-                    'Duration': () => parseInt(item.duration),
-                    'Attendance': () => parseFloat(item.attendancePercentage),
-                    'Average Attendance': () => parseFloat(item.averageAttendance),
-                    'Total Training Days': () => parseInt(item.totalTrainingDays),
-                    'Total Training Programs': () => parseInt(item.totalTrainingPrograms),
-                    'Effectiveness Score': () => parseFloat(item.effectiveness)
-                };
-
-                const getItemValue = filterValueMap[secondFilter];
-                if (!getItemValue) {
-                    return Object.values(item).some(val =>
-                        val.toString().toLowerCase().includes(filterValue)
-                    );
-                }
-
-                const itemValue = getItemValue();
-                if (isNaN(itemValue)) return false;
-
-                const filterNum = parseFloat(filterValue);
-                const comparisons = {
-                    'Greater than': () => itemValue > filterNum,
-                    'Lesser than': () => itemValue < filterNum,
-                    'Equals': () => itemValue === filterNum,
-                    'Not Equals': () => itemValue !== filterNum
-                };
-
-                return comparisons[thirdFilter] ? comparisons[thirdFilter]() : true;
-            });
-
-            // Populate table with filtered data
-            filteredData.forEach(item => {
-                const row = generateTableRow(item, mainCategory);
-                tableBody.appendChild(row);
-            });
-            resultsTable.classList.add('training-table');
-            // Show/hide table based on results
-            resultsTable.classList.toggle('visible', filteredData.length > 0);
-        })
-        .catch(error => {
-            console.error("Error in filtering training data:", error);
-        });
-}
 
 function populateSidebar() {
     const topDepartments = document.getElementById('topDepartments');
@@ -1371,7 +1287,7 @@ function populateSidebar() {
 
 document.addEventListener('DOMContentLoaded', populateSidebar);
 
-document.addEventListener("DOMContentLoaded", () => {
+// document.addEventListener("DOMContentLoaded", () => {
     const trainingDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings/.json";
     const employeesDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/employees/.json";
     const trainersDataUrl = "https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainers/.json";
@@ -1387,10 +1303,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const trainersData = trainersResponse.data; 
 
         displayTrainings(trainingsData, trainersData);
-        displayEmployeeTrainings("emp001", employeesData, trainingsData,trainersData);
+        
     }))
     .catch(error => console.error("Error fetching data:", error));
-});
+// });
 
 function displayTrainings(trainings, trainers) {
     const trainingList = document.getElementById("training-list");
@@ -1425,8 +1341,9 @@ function displayTrainings(trainings, trainers) {
     
         let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "No Trainer";
         
+
         let tableRow = `
-        <tr>
+        <tr class="training-item">
             <td id="training-title">${training.training_name}</td>
             <td class="${typeClass}">${training.training_type}</td>
             <td>${training.duration} hrs</td>
@@ -1441,6 +1358,35 @@ function displayTrainings(trainings, trainers) {
 
         trainingList.insertAdjacentHTML("beforeend", tableRow);
     });
+}
+
+
+async function selectEmployee(emp_id) {
+    try {
+        const [employeesResponse, trainersResponse, trainingsResponse] = await Promise.all([
+            axios.get("https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/employees/.json"),
+            axios.get("https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainers/.json"),
+            axios.get("https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/trainings/.json")
+        ]);
+
+        const employees = employeesResponse.data;
+        const trainers = trainersResponse.data;
+        const trainings = trainingsResponse.data;
+
+        // Find the specific employee
+
+        const employee = employees[emp_id];
+        if (!employee) {
+            console.error("Employee not found:", emp_id);
+            return;
+        }
+
+        
+        displayEmployeeTrainings(emp_id,employees,trainings,trainers);
+        
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
 }
 
 
@@ -1487,8 +1433,9 @@ function displayEmployeeTrainings(empId, employees, trainings, trainers) {
             statusClass = "scheduled";
         }
 
-      
-        let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "Placeholder";
+        
+
+        let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "NO Trainer";
 
         let tableRow = `
         <tr>
@@ -1535,7 +1482,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const trainersData = trainersResponse.data; 
 
         displayTrainings(trainingsData, trainersData);
-        displayEmployeeTrainings("emp001", employeesData, trainingsData,trainersData);
+        // displayEmployeeTrainings("emp001", employeesData, trainingsData,trainersData);
     }))
     .catch(error => console.error("Error fetching data:", error));
 });
@@ -1595,7 +1542,7 @@ function displayTrainings(trainings, trainers) {
 function displayEmployeeTrainings(empId, employees, trainings, trainers) {
     const employeeList = document.getElementById("employeetraining-list");
     if (!employeeList) {
-        console.error("Element with ID 'employee-training-list' not found.");
+        console.error("Element with ID 'employeetraining-list' not found.");
         return;
     }
 
@@ -1611,31 +1558,51 @@ function displayEmployeeTrainings(empId, employees, trainings, trainers) {
         return;
     }
 
-    employeeList.innerHTML = ""; 
+    // Find the parent table
+    let tableContainer = employeeList.closest("table");
+    if (!tableContainer) {
+        console.error("No <table> element found wrapping #employeetraining-list.");
+        return;
+    }
 
+    // Clear previous table content
+    employeeList.innerHTML = "";
+    tableContainer.innerHTML = ""; 
+
+    // Create thead dynamically
+    const tableHead = document.createElement("thead");
+    tableHead.innerHTML = `
+        <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Duration</th>
+            <th>Target Audience</th>
+            <th>Trainer</th>
+            <th>Employee Attendance</th>
+            <th>Attendance Percentage</th>
+            <th>Feedback Score</th>
+            <th>Mode</th>
+            <th>Status</th>
+        </tr>
+    `;
+
+    // Append thead to table
+    tableContainer.appendChild(tableHead);
+    tableContainer.appendChild(employeeList); // Reattach tbody
+
+    // Create table rows dynamically
     Object.keys(attendedTrainings).forEach(trainingId => {
         const training = trainings[trainingId]; 
         if (!training) return;
 
-        let typeClass = "";
-        if (training.training_type === "softskills") {
-            typeClass = "type-tag type-type-softskills";
-        } else if (training.training_type === "language") {
-            typeClass = "type-tag type-type-language";
-        } else if (training.training_type === "technical") {
-            typeClass = "type-tag type-type-technical";
-        }
+        let typeClass = training.training_type === "softskills" ? "type-tag type-type-softskills" :
+                        training.training_type === "language" ? "type-tag type-type-language" :
+                        training.training_type === "technical" ? "type-tag type-type-technical" : "";
 
-        let statusClass = "";
-        if (training.status === "completed") {
-            statusClass = "completed";
-        } else if (training.status === "in-progress") {
-            statusClass = "in-progress";
-        } else if (training.status === "scheduled") {
-            statusClass = "scheduled";
-        }
+        let statusClass = training.status === "completed" ? "completed" :
+                          training.status === "in-progress" ? "in-progress" :
+                          training.status === "scheduled" ? "scheduled" : "";
 
-      
         let trainerName = trainers && trainers[training.trainer] ? trainers[training.trainer].name : "Placeholder";
 
         let tableRow = `
@@ -1648,13 +1615,14 @@ function displayEmployeeTrainings(empId, employees, trainings, trainers) {
             <td>${training.employees_attended}</td>
             <td>${training.attendance}%</td>
             <td>${training.effectiveness_score}</td>
-            <td ><p class="mode">${training.mode}<p></td>
+            <td><p class="mode">${training.mode}</p></td>
             <td class="${statusClass}">${training.status}</td>
         </tr>`;
 
         employeeList.insertAdjacentHTML("beforeend", tableRow);
     });
 }
+
 
 
 function searchTrainings() {
@@ -1752,27 +1720,55 @@ function populateEmployeeSidebar() {
             console.error("Error fetching employees data:", error);
         });
 
+
     // Render employees based on filter
-    function renderEmployees(employees) {
-        employeeList.innerHTML = ''; // Clear the list
-        employees.forEach(employee => {
-            const li = document.createElement('li');
-            li.innerHTML = `
-                <div class="employee-sidebar-card">
-                    <div class="employee-sidebar-card__left">
-                        <h5 class="employee-sidebar-card-name">${employee.emp_name}</h5>
-                        <span class="trainings-attended">Trainings Attended: </span>
-                        <span class="trainings-count">${employee.trainings_done ? Object.keys(employee.trainings_done).length : 0}</span>
-                    </div>
-                    <div class="employee-sidebar-card__right">
-                        <span class="employee-sidebar-card-department">Department</span>
-                        <span class="employee-sidebar-card__value">${employee.departmentName}</span>
-                    </div>
-                </div>
-            `;
-            employeeList.appendChild(li);
-        });
+    function renderEmployees(employees, trainings, trainers) {
+        const employeeList = document.getElementById("employeeList");
+        employeeList.innerHTML = ''; 
+    
+        axios.get("https://ilp-js-default-rtdb.asia-southeast1.firebasedatabase.app/departments/.json")
+            .then(response => {
+                let departments = response.data; 
+    
+                employees.forEach(employee => {
+                    const departmentName = departments?.[employee.emp_department]?.department_name || employee.emp_department;
+    
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <div class="employee-sidebar-card" data-emp-id="${employee.emp_id}">
+                            <div class="employee-sidebar-card__left">
+                                <h5 class="employee-sidebar-card-name">${employee.emp_name}</h5>
+                                <span class="trainings-attended">Trainings Attended: </span>
+                                <span class="trainings-count">${employee.trainings_done ? Object.keys(employee.trainings_done).length : 0}</span>
+                            </div>
+                            <div class="employee-sidebar-card__right">
+                                <span class="employee-sidebar-card-department">Department</span>
+                                <span class="employee-sidebar-card__value">${departmentName}</span>
+                            </div>
+                        </div>
+                    `;
+    
+                    li.addEventListener("click", () => {
+                        selectEmployee(employee.id);
+                        document.querySelector(".employee-dept").innerText = departmentName; 
+                        document.querySelector(".employee-name").innerText = employee.emp_name;
+                        document.querySelector(".employee-metrics1").innerText = employee.total_training_days;
+                        document.querySelector(".employee-metrics2").innerText = employee.total_training_programs;
+                        document.querySelector(".employee-metrics3").innerText = `${employee.average_attendance}%`;
+                        document.querySelector(".metric-headings1").innerText = "Total Training Days";
+                        document.querySelector(".metric-headings2").innerText = "Total Training Programs";
+                        document.querySelector(".metric-headings3").innerText = "Total Training Average Attendance";
+                    });
+    
+                    employeeList.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching department data:", error);
+            });
     }
+    
+    
 
     // Filter employees on dropdown change
     employeeDepartmentFilter.addEventListener('change', () => {
